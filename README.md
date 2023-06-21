@@ -90,22 +90,14 @@ if you choose back to main, you will get the main menu.
 
 ## Credits
 This project has been checked by: 
+the following feedback was given:
 
 
-List your collaborators, if any, with links to their GitHub profiles.
-* [member 1](https://github.com/person1)
-* [member 2](https://github.com/person1)
-
-If you used any third-party assets that require attribution, list the creators with links to their primary web presence in this section.
-* [junit jupiter 5](https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter/5.7.0)
-
+ChatGPT was used to generate some of the more complex tests.
 
 Tutorials used:
 * [Complete JUnit & Mockito Tutorial Course: From Zero to Hero 2022](https://www.youtube.com/watch?v=0ZtU3X9n6tI&list=WL&index=19&t=329s)
 ## License
-
 MIT License
 
 ## Tests
-
-Go the extra mile and write tests for your application. Then provide examples on how to run them here.
