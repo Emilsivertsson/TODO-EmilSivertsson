@@ -3,8 +3,10 @@ package org.CodeForPizza;
 import java.sql.*;
 import java.util.ArrayList;
 
+/**
+ * this class handles the connection to the database and the queries.
+ */
 public class SQLite {
-
 
     Connection conn = null;
 
@@ -17,7 +19,6 @@ public class SQLite {
     }
 
     public void createTables() throws SQLException {
-
 
         String users = "CREATE TABLE IF NOT EXISTS users " +
                 "(id INTEGER PRIMARY KEY AUTOINCREMENT, " +
@@ -69,7 +70,6 @@ public class SQLite {
                 todo.setTitle(rs.getString("title"));
                 todo.setText(rs.getString("text"));
                 todo.setDone(rs.getBoolean("done"));
-
                 todos.add(todo);
             }
             return todos;
@@ -77,7 +77,6 @@ public class SQLite {
             throw new SQLException(e.getMessage());
         }
     }
-
 
     public String readAllUsers() throws SQLException {
         try{
@@ -128,7 +127,6 @@ public class SQLite {
         }
     }
 
-
     public void createTodo(Todo todo) throws SQLException {
         try {
             PreparedStatement stmt = conn.prepareStatement("Insert into todo (title, text, done, assignedTo) values (?,?,?,?)");
@@ -140,8 +138,6 @@ public class SQLite {
         } catch (SQLException e) {
             throw new SQLException(e.getMessage());
         }
-
-
     }
 
     public String readOneTodo(int id) throws SQLException {
@@ -153,7 +149,6 @@ public class SQLite {
                     + "Description: " +rs.getString("text") + "\n"
                     + "Completed: " + rs.getBoolean("done") + "\n"
                     + "Assigned to: " + rs.getInt("assignedTo");
-
         } catch (SQLException e){
             throw new SQLException(e.getMessage());
         }
