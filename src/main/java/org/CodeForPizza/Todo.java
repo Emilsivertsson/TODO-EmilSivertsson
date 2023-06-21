@@ -1,5 +1,8 @@
 package org.CodeForPizza;
 
+/**
+ * This class is used to create and handle todos.
+ */
 public class Todo {
 
     int id;
@@ -15,18 +18,14 @@ public class Todo {
         this.text = text;
         this.title = title;
         this.done = false;
-
     }
 
     public Todo() {
-
     }
-
 
     public String getText() {
         return text;
     }
-
 
     public boolean isDone() {
         return done;

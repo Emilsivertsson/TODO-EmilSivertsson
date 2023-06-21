@@ -3,6 +3,9 @@ package org.CodeForPizza;
 
 import java.util.ArrayList;
 
+/**
+ * This class is to create and handle users.
+ */
 public class User{
 
     int id;
@@ -33,6 +36,7 @@ public class User{
     public int getAge() {
         return age;
     }
+
     public void setAge(int age) {
         if(age < 0 || age == 0){
             throw new IllegalArgumentException("Age can not be negative or 0");
@@ -54,6 +58,5 @@ public class User{
     public ArrayList<Todo> getTodos() {
         return todos;
     }
-
 }
 

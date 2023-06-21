@@ -1,5 +1,8 @@
 package org.CodeForPizza;
 
+/**
+ * This class is used to print out text to the user.
+ */
 public class Output {
 
     static String mainMenu() {
@@ -92,7 +95,6 @@ public class Output {
     static String getExitText() {
         return "Exiting...";
     }
-
 
     static String askForNewDescription() {
         return "What is the new description of the todo?";

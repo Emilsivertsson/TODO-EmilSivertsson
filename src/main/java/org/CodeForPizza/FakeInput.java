@@ -1,5 +1,7 @@
 package org.CodeForPizza;
-
+/**
+ * This class is used to fake user input in the tests.
+ */
 public class FakeInput {
 
     public int inputNumber(int value) {

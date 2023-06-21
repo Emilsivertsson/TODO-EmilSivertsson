@@ -2,6 +2,9 @@ package org.CodeForPizza;
 
 import java.sql.SQLException;
 
+/**
+ * this class is used to create, read, update and delete todos.
+ */
 public class TodoFacade {
 
     SQLite db = new SQLite("user");
@@ -15,7 +18,6 @@ public class TodoFacade {
         todo.setDone(false);
         todo.setAssignedTo(userId);
         db.createTodo(todo);
-
     }
 
     public String read(int id) throws SQLException {
@@ -28,7 +30,6 @@ public class TodoFacade {
 
     public void delete(int id) throws SQLException {
         db.deleteTodo(id);
-
     }
 
     public void update(int id, String description) throws SQLException {

@@ -3,6 +3,9 @@ package org.CodeForPizza;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+/**
+ * this class is used to create, read, update and delete users.
+ */
 public class UserFacad{
 
     SQLite db = new SQLite("user");
@@ -24,14 +27,12 @@ public class UserFacad{
         return db.readAllUsers();
     }
 
-
     public void delete(int id) throws SQLException {
         db.deleteUser(id);
     }
 
     public void update(int id, int age) throws SQLException {
         db.updateUserAge(id, age);
-
     }
 
     public void update(int id, String name) throws SQLException {

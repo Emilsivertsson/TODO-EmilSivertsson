@@ -2,6 +2,10 @@ package org.CodeForPizza;
 
 import java.sql.SQLException;
 
+/**
+ * This class is the main class of the application.
+ * It is used to run the application, and to call the different menus.
+ */
 public class Application {
 
     SQLite sqLite = new SQLite("user");
@@ -10,72 +14,49 @@ public class Application {
     UserFacad userFacad = new UserFacad();
     TodoFacade todoFacade = new TodoFacade();
 
-
-
     public Application() throws SQLException {
         sqLite.createTables();
-        run();
+        mainMenu();
     }
 
-
-    void run() throws SQLException {
+    void mainMenu() throws SQLException {
         while (true) {
             int choice = input.inputNumber(Output.mainMenu());
             switch (choice) {
-                case 1:
-                    userMenu();
-                    break;
-                case 2:
-                    todoMeny();
-                    break;
-                case 3:
+                case 1 -> userMenu();
+                case 2 -> todoMeny();
+                case 3 -> {
                     System.out.println(Output.getExitText());
                     System.exit(0);
-                    break;
-                default:
-                    System.out.println(Output.invalidInput());
-                    break;
+                }
+                default -> System.out.println(Output.invalidInput());
             }
         }
     }
 
     private void todoMeny() throws SQLException {
         int choice = input.inputNumber(Output.todoMenu());
-        switch(choice){
-            case 1:
-                createTodo();
-                break;
-            case 2:
-                showAllTodos();
-                break;
-            case 3:
-                showOneTodo();
-                break;
-            case 4:
-                updateTodo();
-                break;
-            case 5:
-                deleteTodo();
-                break;
-            case 6:
-                run();
-                break;
-            default:
-                System.out.println(Output.invalidInput());
-                break;
+        switch (choice) {
+            case 1 -> createTodo();
+            case 2 -> showAllTodos();
+            case 3 -> showOneTodo();
+            case 4 -> updateTodo();
+            case 5 -> deleteTodo();
+            case 6 -> mainMenu();
+            default -> System.out.println(Output.invalidInput());
         }
     }
 
     private void deleteTodo() throws SQLException {
         System.out.println(todoFacade.read());
-        int choice = input.inputNumber(Output.askForId());
-        todoFacade.delete(choice);
+        int id = input.inputNumber(Output.askForId());
+        todoFacade.delete(id);
     }
 
     private void showOneTodo() throws SQLException {
         System.out.println(todoFacade.read());
-        int choice = input.inputNumber(Output.askForId());
-        System.out.println(todoFacade.read(choice));
+        int id = input.inputNumber(Output.askForId());
+        System.out.println(todoFacade.read(id));
     }
 
     private void showAllTodos() throws SQLException {
@@ -84,97 +65,65 @@ public class Application {
 
     private void createTodo() throws SQLException{
         System.out.println(userFacad.read());
-        int userId = input.inputNumber(Output.askForId());
+        int id = input.inputNumber(Output.askForId());
         String title = input.inputString(Output.askForTitle());
         String description = input.inputString(Output.askForDescription());
-        todoFacade.create(userId, title, description);
-
-
+        todoFacade.create(id, title, description);
     }
-
 
     private void updateTodo() throws SQLException {
         int choice = input.inputNumber(Output.updateTodo());
-        switch(choice){
-            case 21:
-                updateTodoDescription();
-                break;
-            case 2:
-                updateTodoStatus();
-                break;
-            case 3:
-                todoMeny();
-                break;
-            default:
-                System.out.println(Output.invalidInput());
-                break;
+        switch (choice) {
+            case 21 -> updateTodoDescription();
+            case 2 -> updateTodoStatus();
+            case 3 -> todoMeny();
+            default -> System.out.println(Output.invalidInput());
         }
-
     }
 
     private void updateTodoStatus() throws SQLException {
         System.out.println(todoFacade.read());
-        int choice = input.inputNumber(Output.askForId());
+        int id = input.inputNumber(Output.askForId());
         int statusChoice = input.inputNumber(Output.askForDone());
         boolean status = false;
-        switch (statusChoice){
-            case 1:
-                status = true;
-                break;
-            case 2:
-                status = false;
-                break;
-            default:
-                System.out.println(Output.invalidInput());
-                break;
+        switch (statusChoice) {
+            case 1 -> status = true;
+            case 2 -> status = false;
+            default -> System.out.println(Output.invalidInput());
         }
-        todoFacade.update(choice, status);
+        todoFacade.update(id, status);
     }
 
     private void updateTodoDescription() throws SQLException{
         System.out.println(todoFacade.read());
-        int choice = input.inputNumber(Output.askForId());
+        int id = input.inputNumber(Output.askForId());
         String description = input.inputString(Output.askForNewDescription());
-        todoFacade.update(choice, description);
+        todoFacade.update(id, description);
     }
 
     private void userMenu() throws SQLException {
         int choice = input.inputNumber(Output.userMenu());
-        switch(choice){
-            case 1:
-                createUser();
-                break;
-            case 2:
-                showAllUsers();
-                break;
-            case 3:
-                showOneUser();
-                break;
-            case 4:
-                updateUser();
-                break;
-            case 5:
-                deleteUser();
-                break;
-            case 6:
-                run();
-                break;
-            default:
-                System.out.println(Output.invalidInput());
-                break;
+        switch (choice) {
+            case 1 -> createUser();
+            case 2 -> showAllUsers();
+            case 3 -> showOneUser();
+            case 4 -> updateUser();
+            case 5 -> deleteUser();
+            case 6 -> mainMenu();
+            default -> System.out.println(Output.invalidInput());
         }
     }
 
     private void deleteUser() throws SQLException {
         System.out.println(userFacad.read());
-        int choice = input.inputNumber(Output.askForId());
-        userFacad.delete(choice);
+        int id = input.inputNumber(Output.askForId());
+        userFacad.delete(id);
     }
 
     private void showOneUser() throws SQLException {
         System.out.println(userFacad.read());
-        int choice = input.inputNumber(Output.askForId());
-        System.out.println(userFacad.read(choice));
+        int id = input.inputNumber(Output.askForId());
+        System.out.println(userFacad.read(id));
     }
 
 
@@ -190,19 +139,11 @@ public class Application {
 
     private void updateUser() throws SQLException {
         int choice = input.inputNumber(Output.updateUser());
-        switch(choice){
-            case 1:
-                updateUserName();
-                break;
-            case 2:
-                updateUserAge();
-                break;
-            case 3:
-                userMenu();
-                break;
-            default:
-                System.out.println(Output.invalidInput());
-                break;
+        switch (choice) {
+            case 1 -> updateUserName();
+            case 2 -> updateUserAge();
+            case 3 -> userMenu();
+            default -> System.out.println(Output.invalidInput());
         }
     }
 
@@ -219,7 +160,5 @@ public class Application {
         String name = input.inputString(Output.askForNewName());
         userFacad.update(id, name);
     }
-
-
 }
 

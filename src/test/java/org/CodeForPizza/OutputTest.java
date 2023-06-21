@@ -25,7 +25,7 @@ class OutputTest {
                 """;
 
         // Act
-        String actual = output.mainMenu();
+        String actual = Output.mainMenu();
 
         // Assert
         assertEquals(expected, actual);
@@ -45,7 +45,7 @@ class OutputTest {
                 """;
 
         // Act
-        String actual = output.userMenu();
+        String actual = Output.userMenu();
 
         // Assert
         assertEquals(expected, actual);
@@ -65,7 +65,7 @@ class OutputTest {
                 """;
 
         // Act
-        String actual = output.todoMenu();
+        String actual = Output.todoMenu();
 
         // Assert
         assertEquals(expected, actual);
@@ -82,7 +82,7 @@ class OutputTest {
                 """;
 
         // Act
-        String actual = output.updateUser();
+        String actual = Output.updateUser();
 
         // Assert
         assertEquals(expected, actual);
@@ -99,7 +99,7 @@ class OutputTest {
                 """;
 
         // Act
-        String actual = output.updateTodo();
+        String actual = Output.updateTodo();
 
         // Assert
         assertEquals(expected, actual);
@@ -111,7 +111,7 @@ class OutputTest {
         String expected = "What is the name of the user?";
 
         // Act
-        String actual = output.askForName();
+        String actual = Output.askForName();
 
         // Assert
         assertEquals(expected, actual);
@@ -123,7 +123,7 @@ class OutputTest {
         String expected = "What is the age of the user?";
 
         // Act
-        String actual = output.askForAge();
+        String actual = Output.askForAge();
 
         // Assert
         assertEquals(expected, actual);
@@ -135,7 +135,7 @@ class OutputTest {
         String expected = "What is the new age of the user?";
 
         // Act
-        String actual = output.askForNewAge();
+        String actual = Output.askForNewAge();
 
         // Assert
         assertEquals(expected, actual);
@@ -147,7 +147,7 @@ class OutputTest {
         String expected = "What is the new name of the user?";
 
         // Act
-        String actual = output.askForNewName();
+        String actual = Output.askForNewName();
 
         // Assert
         assertEquals(expected, actual);
@@ -159,7 +159,7 @@ class OutputTest {
         String expected = "Please enter id";
 
         // Act
-        String actual = output.askForId();
+        String actual = Output.askForId();
 
         // Assert
         assertEquals(expected, actual);
@@ -171,7 +171,7 @@ class OutputTest {
         String expected = "What is the description of the todo?";
 
         // Act
-        String actual = output.askForDescription();
+        String actual = Output.askForDescription();
 
         // Assert
         assertEquals(expected, actual);
@@ -187,7 +187,7 @@ class OutputTest {
                 """;
 
         // Act
-        String actual = output.askForDone();
+        String actual = Output.askForDone();
 
         // Assert
         assertEquals(expected, actual);
@@ -199,7 +199,7 @@ class OutputTest {
         String expected = "Please input a number";
 
         // Act
-        String actual = output.invalidInput();
+        String actual = Output.invalidInput();
 
         // Assert
         assertEquals(expected, actual);
@@ -211,7 +211,7 @@ class OutputTest {
         String expected = "Exiting...";
 
         // Act
-        String actual = output.getExitText();
+        String actual = Output.getExitText();
 
         // Assert
         assertEquals(expected, actual);
@@ -223,7 +223,7 @@ class OutputTest {
         String expected = "What is the new description of the todo?";
 
         // Act
-        String actual = output.askForNewDescription();
+        String actual = Output.askForNewDescription();
 
         // Assert
         assertEquals(expected, actual);
@@ -235,7 +235,7 @@ class OutputTest {
         String expected = "What is the title of the todo?";
 
         // Act
-        String actual = output.askForTitle();
+        String actual = Output.askForTitle();
 
         // Assert
         assertEquals(expected, actual);
