@@ -37,5 +37,11 @@
             <version>3.42.0.0</version>
         </dependency>
     </dependencies>
+    <build>
+        <testSourceDirectory>src/test/java</testSourceDirectory>
+        <plugins>
+            <!-- Plugin configurations -->
+        </plugins>
+    </build>
 
 </project>
