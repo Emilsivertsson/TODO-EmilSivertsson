@@ -1,6 +1,7 @@
 package org.CodeForPizza;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -13,6 +14,7 @@ class TodoTest {
     }
 
     @Test
+    @DisplayName("should pass if the text is correct")
     void getText() {
         // Arrange
         String expected = "Hello more";
@@ -25,6 +27,7 @@ class TodoTest {
     }
 
     @Test
+    @DisplayName("should pass if the todo is not done")
     void isDone() {
         // Arrange
         boolean expected = false;
@@ -37,6 +40,7 @@ class TodoTest {
     }
 
     @Test
+    @DisplayName("should pass if the todo is done")
     void setDone() {
         // Arrange
         boolean value = true;
@@ -50,6 +54,7 @@ class TodoTest {
     }
 
     @Test
+    @DisplayName("should pass if the assignedTo has correct return")
     void getAssignedTo() {
         // Arrange
         int expected = 1;
@@ -64,6 +69,7 @@ class TodoTest {
     }
 
     @Test
+    @DisplayName("should pass if the assignedTo is correct set")
     void setAssignedTo() {
         // Arrange
         int value = 1;
@@ -75,6 +81,7 @@ class TodoTest {
         assertEquals(value, todo.getAssignedTo());
     }
     @Test
+    @DisplayName("should pass if the assignedTo is set to zero throws IllegalArgumentException")
     void setAssignedToZero() {
         // Arrange
         int value = 0;
@@ -85,6 +92,7 @@ class TodoTest {
 
 
     @Test
+    @DisplayName("should pass if getTitle returns correct value")
     void getTitle() {
         // Arrange
         String expected = "Hello";
@@ -97,6 +105,7 @@ class TodoTest {
     }
 
     @Test
+    @DisplayName("should pass if setId sets correct value")
     void setId() {
         // Arrange
         int value = 1;
@@ -108,6 +117,7 @@ class TodoTest {
         assertEquals(value, todo.id);
     }
     @Test
+    @DisplayName("should pass if setId to zero throws IllegalArgumentException")
     void setIdZero() {
         // Arrange
         int value = 0;
@@ -117,6 +127,7 @@ class TodoTest {
     }
 
     @Test
+    @DisplayName("should pass if setTitle sets correct value")
     void setTitle() {
         // Arrange
         String value = "Hello";
@@ -128,6 +139,7 @@ class TodoTest {
         assertEquals(value, todo.getTitle());
     }
     @Test
+    @DisplayName("should pass if setTitle to empty throws IllegalArgumentException")
     void setTitleEmpty() {
         // Arrange
         String value = "";
@@ -137,6 +149,7 @@ class TodoTest {
     }
 
     @Test
+    @DisplayName("should pass if setText sets correct value")
     void setText() {
         // Arrange
         String value = "Hello";
@@ -148,6 +161,7 @@ class TodoTest {
         assertEquals(value, todo.getText());
     }
     @Test
+    @DisplayName("should pass if setText to empty throws IllegalArgumentException")
     void setTextEmpty() {
         // Arrange
         String value = "";
@@ -157,6 +171,7 @@ class TodoTest {
     }
 
     @Test
+    @DisplayName("should pass if toString returns correct value")
     void testToString() {
         // Arrange
         int id = 1;

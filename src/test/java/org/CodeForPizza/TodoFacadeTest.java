@@ -1,6 +1,7 @@
 package org.CodeForPizza;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
@@ -14,7 +15,7 @@ class TodoFacadeTest {
     SQLite mockSQLite;
     TodoFacade todoFacade;
 
-    TodoFacadeTest() throws SQLException {
+    TodoFacadeTest(){
     }
 
     @BeforeEach
@@ -25,6 +26,7 @@ class TodoFacadeTest {
     }
 
     @Test
+    @DisplayName("should pass if createTodo is called")
     void create() throws SQLException {
         // Arrange
         int userId = 1;
@@ -36,10 +38,10 @@ class TodoFacadeTest {
 
         // Assert
         verify(mockSQLite).createTodo(Mockito.any(Todo.class));
-
     }
 
     @Test
+    @DisplayName("should pass if readAll returns correct string")
     void readAll() throws SQLException {
         // Arrange
         Mockito.when(mockSQLite.readAllTodos()).thenReturn("Hello");
@@ -52,6 +54,7 @@ class TodoFacadeTest {
     }
 
     @Test
+    @DisplayName("should pass if readOne returns correct string")
     void ReadOne() throws SQLException {
         // Arrange
         Mockito.when(mockSQLite.readOneTodo(1)).thenReturn("Hello");
@@ -64,6 +67,7 @@ class TodoFacadeTest {
     }
 
     @Test
+    @DisplayName("should pass if delete is called")
     void delete() throws SQLException {
         // Arrange
         int id = 1;
@@ -76,6 +80,7 @@ class TodoFacadeTest {
     }
 
     @Test
+    @DisplayName("should pass if updateDescription is called")
     void updateDescription() throws SQLException {
         // Arrange
         int id = 1;
@@ -89,6 +94,7 @@ class TodoFacadeTest {
     }
 
     @Test
+    @DisplayName("should pass if updateStatus is called")
     void UpdateStatus() throws SQLException {
         // Arrange
         int id = 1;
@@ -99,8 +105,5 @@ class TodoFacadeTest {
 
         // Assert
         verify(mockSQLite).updateTodoStatus(1, true);
-
-
-
     }
 }

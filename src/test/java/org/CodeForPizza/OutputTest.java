@@ -1,6 +1,7 @@
 package org.CodeForPizza;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -15,6 +16,7 @@ class OutputTest {
     }
 
     @Test
+    @DisplayName("Should pass if the main menu is correct")
     void mainMenu() {
         // Arrange
         String expected = """
@@ -32,6 +34,7 @@ class OutputTest {
     }
 
     @Test
+    @DisplayName("Should pass if the user menu is correct")
     void userMenu() {
         // Arrange
         String expected = """
@@ -52,6 +55,7 @@ class OutputTest {
     }
 
     @Test
+    @DisplayName("Should pass if the todo menu is correct")
     void todoMenu() {
         // Arrange
         String expected = """
@@ -72,6 +76,7 @@ class OutputTest {
     }
 
     @Test
+    @DisplayName("Should pass if the update user menu is correct")
     void updateUser() {
         // Arrange
         String expected = """
@@ -89,6 +94,7 @@ class OutputTest {
     }
 
     @Test
+    @DisplayName("Should pass if the update todo menu is correct")
     void updateTodo() {
         // Arrange
         String expected = """
@@ -106,6 +112,7 @@ class OutputTest {
     }
 
     @Test
+    @DisplayName("Should pass if the ask for name is correct")
     void askForName() {
         // Arrange
         String expected = "What is the name of the user?";
@@ -118,6 +125,7 @@ class OutputTest {
     }
 
     @Test
+    @DisplayName("Should pass if the ask for age is correct")
     void askForAge() {
         // Arrange
         String expected = "What is the age of the user?";
@@ -130,6 +138,7 @@ class OutputTest {
     }
 
     @Test
+    @DisplayName("Should pass if the ask for new age is correct")
     void askForNewAge() {
         // Arrange
         String expected = "What is the new age of the user?";
@@ -142,6 +151,7 @@ class OutputTest {
     }
 
     @Test
+    @DisplayName("Should pass if the ask for new name is correct")
     void askForNewName() {
         // Arrange
         String expected = "What is the new name of the user?";
@@ -154,6 +164,7 @@ class OutputTest {
     }
 
     @Test
+    @DisplayName("Should pass if the ask for id is correct")
     void askForId() {
         // Arrange
         String expected = "Please enter id";
@@ -166,6 +177,7 @@ class OutputTest {
     }
 
     @Test
+    @DisplayName("Should pass if the ask for description is correct")
     void askForDescription() {
         // Arrange
         String expected = "What is the description of the todo?";
@@ -178,6 +190,7 @@ class OutputTest {
     }
 
     @Test
+    @DisplayName("Should pass if the ask if todo is done is correct")
     void askForDone() {
         // Arrange
         String expected = """
@@ -194,6 +207,7 @@ class OutputTest {
     }
 
     @Test
+    @DisplayName("Should pass if the invalid input is correct")
     void invalidInput() {
         // Arrange
         String expected = "Please input a number";
@@ -206,6 +220,7 @@ class OutputTest {
     }
 
     @Test
+    @DisplayName("Should pass if the exit text is correct")
     void getExitText() {
         // Arrange
         String expected = "Exiting...";
@@ -218,6 +233,7 @@ class OutputTest {
     }
 
     @Test
+    @DisplayName("Should pass if the ask for new description is correct")
     void askForNewDescription() {
         // Arrange
         String expected = "What is the new description of the todo?";
@@ -230,6 +246,7 @@ class OutputTest {
     }
 
     @Test
+    @DisplayName("Should pass if the ask for title is correct")
     void askForTitle() {
         // Arrange
         String expected = "What is the title of the todo?";

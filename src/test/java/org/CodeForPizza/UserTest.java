@@ -1,6 +1,7 @@
 package org.CodeForPizza;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -19,6 +20,7 @@ class UserTest {
     }
 
     @Test
+    @DisplayName("Should pass if the users name is correct")
     void getName() {
         // Arrange
         String expected = "Emil";
@@ -31,6 +33,7 @@ class UserTest {
     }
 
     @Test
+    @DisplayName("Should pass if the users age is correct")
     void setName() {
         // Arrange
         String name = "kalle";
@@ -43,15 +46,17 @@ class UserTest {
     }
 
     @Test
+    @DisplayName("Should pass if the users name is null and throws IllegalArgumentException")
     void setNameIsNUll() {
         // Arrange
         String name = null;
 
-        // Act
+        // act and assert
         assertThrows(IllegalArgumentException.class, () -> user.setName(name));
     }
 
     @Test
+    @DisplayName("should pass if the users age is correct")
     void getAge() {
         // Arrange
         int expected = 39;
@@ -64,6 +69,7 @@ class UserTest {
     }
 
     @Test
+    @DisplayName("Should pass if the users age is correct")
     void setAge() {
         // Arrange
         int age = 40;
@@ -76,15 +82,17 @@ class UserTest {
     }
 
     @Test
+    @DisplayName("Should pass if the users age is 0 and throws IllegalArgumentException")
     void setAgeZero() {
         // Arrange
         int age = 0;
 
-        // Act
+        // Act and assert
         assertThrows(IllegalArgumentException.class, () -> user.setAge(age));
     }
 
     @Test
+    @DisplayName("Should pass if the users age is correct")
     void setId() {
         // Arrange
         int id = 1;
@@ -97,15 +105,17 @@ class UserTest {
     }
 
     @Test
-    void setIdzero() {
+    @DisplayName("Should pass if the users age is 0 and throws IllegalArgumentException")
+    void setIdZero() {
         // Arrange
         int id = 0;
 
-        // Act
+        // Act and assert
         assertThrows(IllegalArgumentException.class, () -> user.setId(id));
     }
 
     @Test
+    @DisplayName("Should pass if the users id is correct")
     void getId() {
         // Arrange
         int expected = 0;
@@ -118,6 +128,7 @@ class UserTest {
     }
 
     @Test
+    @DisplayName("Should pass if the users todos are correct")
     void getTodos() {
         // Arrange
         ArrayList<Todo> expected = new ArrayList<>();
@@ -135,10 +146,5 @@ class UserTest {
             assertEquals(expectedTodo.getTitle(), actualTodo.getTitle());
             assertEquals(expectedTodo.getText(), actualTodo.getText());
         }
-
-
-
-
-
     }
 }
