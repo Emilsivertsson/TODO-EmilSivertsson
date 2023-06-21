@@ -1,6 +1,7 @@
 package org.CodeForPizza;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
@@ -13,18 +14,14 @@ import static org.mockito.Mockito.*;
 class SQLiteTest {
 
     Connection mockConnection;
-
     ResultSet mockResultSet;
-
     PreparedStatement mockStatement;
     private SQLite sqLite;
 
     @BeforeEach
     void setUp() throws SQLException {
         mockConnection = Mockito.mock(Connection.class);
-
         mockResultSet = Mockito.mock(ResultSet.class);
-
         mockStatement = Mockito.mock(PreparedStatement.class);
 
         sqLite = new SQLite("user");
@@ -36,6 +33,7 @@ class SQLiteTest {
 
 
     @Test
+    @DisplayName("Should pass if createPerson is called")
     void createPerson() throws SQLException {
         // Arrange
         String sql = "Insert into users (name,age) values (?,?)";
@@ -49,20 +47,16 @@ class SQLiteTest {
         verify(mockStatement).setString(1, user.getName());
         verify(mockStatement).setInt(2, user.getAge());
         verify(mockStatement).executeUpdate();
-
     }
 
     @Test
+    @DisplayName("Should pass if createPerson throws SQLException")
     void createPerson_shouldThrowSQLException() throws SQLException {
         // Arrange
-        Connection mockConnection = mock(Connection.class);
-        PreparedStatement mockStatement = mock(PreparedStatement.class);
-        SQLite sqLite = new SQLite("user");
-        sqLite.conn = mockConnection;
-
         when(mockConnection.prepareStatement(anyString())).thenReturn(mockStatement);
         doThrow(SQLException.class).when(mockStatement).executeUpdate();
 
+        // Act
         User user = new User("Alice", 25);
 
         // Act and Assert
@@ -75,6 +69,7 @@ class SQLiteTest {
 
 
     @Test
+    @DisplayName("Should pass if readOneUser is called and returns an ArrayList of Todo objects")
     void readOneUser() throws SQLException {
         // Arrange
         int id = 1;
@@ -88,8 +83,6 @@ class SQLiteTest {
                 "                FROM users\n" +
                 "                inner join todo on users.id = todo.assignedTo\n" +
                 "                WHERE users.id = ?";
-        PreparedStatement mockStatement = Mockito.mock(PreparedStatement.class);
-        ResultSet mockResultSet = Mockito.mock(ResultSet.class);
 
         when(mockConnection.prepareStatement(sql)).thenReturn(mockStatement);
         when(mockStatement.executeQuery()).thenReturn(mockResultSet);
@@ -112,12 +105,10 @@ class SQLiteTest {
         verify(mockResultSet, times(2)).getString("text");
         verify(mockResultSet, times(2)).getBoolean("done");
 
-
         Todo todo1 = result.get(0);
         assertEquals(expectedTitle1, todo1.getTitle());
         assertEquals(expectedText1, todo1.getText());
         assertEquals(expectedDone1, todo1.isDone());
-
 
         Todo todo2 = result.get(1);
         assertEquals(expectedTitle2, todo2.getTitle());
@@ -126,18 +117,14 @@ class SQLiteTest {
     }
 
     @Test
+    @DisplayName("Should pass if readOneUser throws SQLException")
     void readOneUser_shouldThrowSQLException() throws SQLException {
         // Arrange
-        Connection mockConnection = mock(Connection.class);
-        PreparedStatement mockStatement = mock(PreparedStatement.class);
-        ResultSet mockResultSet = mock(ResultSet.class);
-        SQLite sqLite = new SQLite("user");
-        sqLite.conn = mockConnection;
-
         when(mockConnection.prepareStatement(anyString())).thenReturn(mockStatement);
         when(mockStatement.executeQuery()).thenReturn(mockResultSet);
         doThrow(SQLException.class).when(mockResultSet).next();
 
+        // Act
         int id = 1;
 
         // Act and Assert
@@ -148,9 +135,8 @@ class SQLiteTest {
         verify(mockResultSet).next();
     }
 
-
-
     @Test
+    @DisplayName("Should pass if readAllUsers is called and returns a String")
     void readAllUsers() throws SQLException {
         // Arrange
         String sql = "Select * from users";
@@ -182,14 +168,9 @@ class SQLiteTest {
     }
 
     @Test
+    @DisplayName("Should pass if readAllUsers throws SQLException")
     void readAllUsers_shouldThrowSQLException() throws SQLException {
         // Arrange
-        Connection mockConnection = mock(Connection.class);
-        PreparedStatement mockStatement = mock(PreparedStatement.class);
-        ResultSet mockResultSet = mock(ResultSet.class);
-        SQLite sqLite = new SQLite("user");
-        sqLite.conn = mockConnection;
-
         when(mockConnection.prepareStatement(anyString())).thenReturn(mockStatement);
         when(mockStatement.executeQuery()).thenReturn(mockResultSet);
         doThrow(SQLException.class).when(mockResultSet).next();
@@ -202,6 +183,7 @@ class SQLiteTest {
     }
 
     @Test
+    @DisplayName("Should pass if deleteUser is called")
     void deleteUser() throws SQLException {
         // Arrange
         String sql = "Delete from users where id = ?";
@@ -218,13 +200,9 @@ class SQLiteTest {
     }
 
     @Test
+    @DisplayName("Should pass if deleteUser throws SQLException")
     void deleteUser_shouldThrowSQLException() throws SQLException {
         // Arrange
-        Connection mockConnection = mock(Connection.class);
-        PreparedStatement mockStatement = mock(PreparedStatement.class);
-        SQLite sqLite = new SQLite("user");
-        sqLite.conn = mockConnection;
-
         when(mockConnection.prepareStatement(anyString())).thenReturn(mockStatement);
         doThrow(SQLException.class).when(mockStatement).executeUpdate();
 
@@ -236,6 +214,7 @@ class SQLiteTest {
     }
 
     @Test
+    @DisplayName("Should pass if updateUserAge is called")
     void updateUserAge() throws SQLException {
         // Arrange
         String sql = "Update users set age = ? where id = ?";
@@ -254,13 +233,9 @@ class SQLiteTest {
     }
 
     @Test
+    @DisplayName("Should pass if updateUserAge throws SQLException")
     void updateUserAge_shouldThrowSQLException() throws SQLException {
         // Arrange
-        Connection mockConnection = mock(Connection.class);
-        PreparedStatement mockStatement = mock(PreparedStatement.class);
-        SQLite sqLite = new SQLite("user");
-        sqLite.conn = mockConnection;
-
         when(mockConnection.prepareStatement(anyString())).thenReturn(mockStatement);
         doThrow(SQLException.class).when(mockStatement).executeUpdate();
 
@@ -273,6 +248,7 @@ class SQLiteTest {
     }
 
     @Test
+    @DisplayName("Should pass if updateUserName is called")
     void updateUserName() throws SQLException {
         // Arrange
         String sql = "Update users set name = ? where id = ?";
@@ -291,13 +267,9 @@ class SQLiteTest {
     }
 
     @Test
+    @DisplayName("Should pass if updateUserName throws SQLException")
     void updateUserName_shouldThrowSQLException() throws SQLException {
         // Arrange
-        Connection mockConnection = mock(Connection.class);
-        PreparedStatement mockStatement = mock(PreparedStatement.class);
-        SQLite sqLite = new SQLite("user");
-        sqLite.conn = mockConnection;
-
         when(mockConnection.prepareStatement(anyString())).thenReturn(mockStatement);
         doThrow(SQLException.class).when(mockStatement).executeUpdate();
 
@@ -310,6 +282,7 @@ class SQLiteTest {
     }
 
     @Test
+    @DisplayName("Should pass if createTodo is called")
     void createTodo() throws SQLException {
         // Arrange
         String sql = "Insert into todo (title, text, done, assignedTo) values (?,?,?,?)";
@@ -329,10 +302,10 @@ class SQLiteTest {
         verify(mockStatement).setBoolean(3, todo.isDone());
         verify(mockStatement).setInt(4, todo.getAssignedTo());
         verify(mockStatement).executeUpdate();
-
     }
 
     @Test
+    @DisplayName("Should pass if readOneTodo is called adn returns a todo")
     void readOneTodo() throws SQLException {
         // Arrange
         int id = 1;
@@ -366,9 +339,8 @@ class SQLiteTest {
         assertEquals(expectedResult, result);
     }
 
-
-
     @Test
+    @DisplayName("Should pass if readAllTodos is called and returns a list of todos")
     void readAllTodos() throws SQLException {
         // Arrange
         String sql = "Select id,title from todo";
@@ -400,10 +372,8 @@ class SQLiteTest {
         assertEquals(expectedResult, result);
     }
 
-
-
-
     @Test
+    @DisplayName("Should pass if deleteTodo is called")
     void deleteTodo() throws SQLException {
         // Arrange
         String sql = "Delete from todo where id = ?";
@@ -416,17 +386,12 @@ class SQLiteTest {
         verify(mockConnection).prepareStatement(sql);
         verify(mockStatement).setInt(1, id);
         verify(mockStatement).executeUpdate();
-
     }
 
     @Test
+    @DisplayName("Should pass if deleteTodo throws SQLException")
     void deleteTodo_shouldThrowSQLException() throws SQLException {
         // Arrange
-        Connection mockConnection = mock(Connection.class);
-        PreparedStatement mockStatement = mock(PreparedStatement.class);
-        SQLite sqLite = new SQLite("user");
-        sqLite.conn = mockConnection;
-
         when(mockConnection.prepareStatement(Mockito.anyString())).thenReturn(mockStatement);
         when(mockStatement.executeUpdate()).thenThrow(SQLException.class);
 
@@ -440,6 +405,7 @@ class SQLiteTest {
     }
 
     @Test
+    @DisplayName("Should pass if updateTodoDescription is called")
     void updateTodoDescription() throws SQLException {
         // Arrange
         String sql = "Update todo set text = ? where id = ?";
@@ -454,17 +420,12 @@ class SQLiteTest {
         verify(mockStatement).setString(1, text);
         verify(mockStatement).setInt(2, id);
         verify(mockStatement).executeUpdate();
-
     }
 
     @Test
+    @DisplayName("Should pass if updateTodoDescription throws SQLException")
     void updateTodoDescription_shouldThrowSQLException() throws SQLException {
         // Arrange
-        Connection mockConnection = mock(Connection.class);
-        PreparedStatement mockStatement = mock(PreparedStatement.class);
-        SQLite sqLite = new SQLite("user");
-        sqLite.conn = mockConnection;
-
         when(mockConnection.prepareStatement(Mockito.anyString())).thenReturn(mockStatement);
         when(mockStatement.executeUpdate()).thenThrow(SQLException.class);
 
@@ -480,6 +441,7 @@ class SQLiteTest {
     }
 
     @Test
+    @DisplayName("Should pass if updateTodoStatus is called")
     void updateTodoStatus() throws SQLException {
         // Arrange
         String sql = "Update todo set done = ? where id = ?";
@@ -494,17 +456,12 @@ class SQLiteTest {
         verify(mockStatement).setBoolean(1, done);
         verify(mockStatement).setInt(2, id);
         verify(mockStatement).executeUpdate();
-
     }
 
     @Test
+    @DisplayName("Should pass if updateTodoStatus throws SQLException")
     void updateTodoStatus_shouldThrowSQLException() throws SQLException {
         // Arrange
-        Connection mockConnection = mock(Connection.class);
-        PreparedStatement mockStatement = mock(PreparedStatement.class);
-        SQLite sqLite = new SQLite("user");
-        sqLite.conn = mockConnection;
-
         when(mockConnection.prepareStatement(Mockito.anyString())).thenReturn(mockStatement);
         when(mockStatement.executeUpdate()).thenThrow(SQLException.class);
 
