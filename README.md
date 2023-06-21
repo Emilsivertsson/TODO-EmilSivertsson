@@ -16,6 +16,7 @@
 - [Usage](#usage)
 - [Credits](#credits)
 - [License](#license)
+- [Tests](#tests)
 
 ## Installation
 Clone the repository to your local machine and run the application in your IDE.
@@ -86,8 +87,6 @@ if you choose back to main, you will get the main menu.
 
 #### If you choose exit, the application will stop.
 
-
-
 ## Credits
 This project has been checked by: 
 the following feedback was given:
@@ -97,7 +96,20 @@ ChatGPT was used to generate some of the more complex tests.
 
 Tutorials used:
 * [Complete JUnit & Mockito Tutorial Course: From Zero to Hero 2022](https://www.youtube.com/watch?v=0ZtU3X9n6tI&list=WL&index=19&t=329s)
+
 ## License
 MIT License
 
 ## Tests
+I have tried for maximum coverage, but some cases i did not know how to test.
+There is also a few public methods that i did not test, that my teacher said was ok not to test.
+these methods are:
+- CreateTables in SQLite class
+- The constructors in several classes
+- The Input class, since it contains a scanner, I therefor used my teachers technic to test FakeInput class instead.
+
+## CI on Github Actions
+The CI is set up to run the tests on every push to the main branch.
+The CI will also run the tests on every pull request to the main branch.
+the integration uses a workflow file that is located in the .github/workflows folder, written in YAML.
+its also depending on the information in the pom.xml file.
