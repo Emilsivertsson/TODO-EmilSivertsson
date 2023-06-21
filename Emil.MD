@@ -65,3 +65,9 @@ sql än no-sql så därför valde jag det eftersom att tiden var knapp.
 men jag har privata projekt som jag kommer jobba vidare med i sommar för att lära mig mer om MongoDB.<br>
 
 ### Vilka möjligheter ser du med de kunskaper du fått under kursen.
+
+
+Motivera varför du valt en specifik lösning.
+Lämna förslag på förbättringar av din kod.
+Lämna exempel på lösningar du valde att **inte** implementera
+Lämna förslag på förbättringar av din UI/UX design eller reflektera över den.
