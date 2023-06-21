@@ -59,10 +59,10 @@ Current scope:     <a href="../../index.html">all classes</a>
 </td>
 <td class="coverageStat">
   <span class="percent">
-    69,9%
+    89,4%
   </span>
   <span class="absValue">
-    (79/113)
+    (101/113)
   </span>
 </td>
 </tr>
@@ -123,8 +123,8 @@ Current scope:     <a href="../../index.html">all classes</a>
 <b class="fc">&nbsp;            stmt.setString(1, user.getName());</b>
 <b class="fc">&nbsp;            stmt.setInt(2, user.getAge());</b>
 <b class="fc">&nbsp;            stmt.executeUpdate();</b>
-<b class="nc">&nbsp;        }catch (SQLException e){</b>
-<b class="nc">&nbsp;            throw new SQLException(e.getMessage());</b>
+<b class="fc">&nbsp;        }catch (SQLException e){</b>
+<b class="fc">&nbsp;            throw new SQLException(e.getMessage());</b>
 <b class="fc">&nbsp;        }</b>
 &nbsp;    }
 &nbsp;
@@ -149,8 +149,8 @@ Current scope:     <a href="../../index.html">all classes</a>
 <b class="fc">&nbsp;                todos.add(todo);</b>
 <b class="fc">&nbsp;            }</b>
 <b class="fc">&nbsp;            return todos;</b>
-<b class="nc">&nbsp;        } catch (SQLException e){</b>
-<b class="nc">&nbsp;            throw new SQLException(e.getMessage());</b>
+<b class="fc">&nbsp;        } catch (SQLException e){</b>
+<b class="fc">&nbsp;            throw new SQLException(e.getMessage());</b>
 &nbsp;        }
 &nbsp;    }
 &nbsp;
@@ -167,8 +167,8 @@ Current scope:     <a href="../../index.html">all classes</a>
 &nbsp;                        +&quot;-----------------&quot; + &quot;\n&quot;;
 &nbsp;            }
 <b class="fc">&nbsp;            return result;</b>
-<b class="nc">&nbsp;        }catch (SQLException e){</b>
-<b class="nc">&nbsp;            throw new SQLException(e.getMessage());</b>
+<b class="fc">&nbsp;        }catch (SQLException e){</b>
+<b class="fc">&nbsp;            throw new SQLException(e.getMessage());</b>
 &nbsp;        }
 &nbsp;    }
 &nbsp;
@@ -177,8 +177,8 @@ Current scope:     <a href="../../index.html">all classes</a>
 <b class="fc">&nbsp;            PreparedStatement stmt = conn.prepareStatement(&quot;Delete from users where id = ?&quot;);</b>
 <b class="fc">&nbsp;            stmt.setInt(1, id);</b>
 <b class="fc">&nbsp;            stmt.executeUpdate();</b>
-<b class="nc">&nbsp;        }catch (SQLException e){</b>
-<b class="nc">&nbsp;            throw new SQLException(e.getMessage());</b>
+<b class="fc">&nbsp;        }catch (SQLException e){</b>
+<b class="fc">&nbsp;            throw new SQLException(e.getMessage());</b>
 <b class="fc">&nbsp;        }</b>
 &nbsp;    }
 &nbsp;
@@ -188,8 +188,8 @@ Current scope:     <a href="../../index.html">all classes</a>
 <b class="fc">&nbsp;            stmt.setInt(1, age);</b>
 <b class="fc">&nbsp;            stmt.setInt(2, id);</b>
 <b class="fc">&nbsp;            stmt.executeUpdate();</b>
-<b class="nc">&nbsp;        }catch (SQLException e){</b>
-<b class="nc">&nbsp;            throw new SQLException(e.getMessage());</b>
+<b class="fc">&nbsp;        }catch (SQLException e){</b>
+<b class="fc">&nbsp;            throw new SQLException(e.getMessage());</b>
 <b class="fc">&nbsp;        }</b>
 &nbsp;    }
 &nbsp;
@@ -199,8 +199,8 @@ Current scope:     <a href="../../index.html">all classes</a>
 <b class="fc">&nbsp;            stmt.setString(1, name);</b>
 <b class="fc">&nbsp;            stmt.setInt(2, id);</b>
 <b class="fc">&nbsp;            stmt.executeUpdate();</b>
-<b class="nc">&nbsp;        }catch (SQLException e){</b>
-<b class="nc">&nbsp;            throw new SQLException(e.getMessage());</b>
+<b class="fc">&nbsp;        }catch (SQLException e){</b>
+<b class="fc">&nbsp;            throw new SQLException(e.getMessage());</b>
 <b class="fc">&nbsp;        }</b>
 &nbsp;    }
 &nbsp;
@@ -213,8 +213,8 @@ Current scope:     <a href="../../index.html">all classes</a>
 <b class="fc">&nbsp;            stmt.setBoolean(3, todo.isDone());</b>
 <b class="fc">&nbsp;            stmt.setInt(4, todo.getAssignedTo());</b>
 <b class="fc">&nbsp;            stmt.executeUpdate();</b>
-<b class="nc">&nbsp;        } catch (SQLException e) {</b>
-<b class="nc">&nbsp;            throw new SQLException(e.getMessage());</b>
+<b class="fc">&nbsp;        } catch (SQLException e) {</b>
+<b class="fc">&nbsp;            throw new SQLException(e.getMessage());</b>
 <b class="fc">&nbsp;        }</b>
 &nbsp;
 &nbsp;
@@ -246,8 +246,8 @@ Current scope:     <a href="../../index.html">all classes</a>
 &nbsp;                        +&quot;-----------------&quot; + &quot;\n&quot;;
 &nbsp;            }
 <b class="fc">&nbsp;            return result;</b>
-<b class="nc">&nbsp;        } catch (SQLException e) {</b>
-<b class="nc">&nbsp;            throw new SQLException(e.getMessage());</b>
+<b class="fc">&nbsp;        } catch (SQLException e) {</b>
+<b class="fc">&nbsp;            throw new SQLException(e.getMessage());</b>
 &nbsp;        }
 &nbsp;    }
 &nbsp;
@@ -256,8 +256,8 @@ Current scope:     <a href="../../index.html">all classes</a>
 <b class="fc">&nbsp;            PreparedStatement stmt = conn.prepareStatement(&quot;Delete from todo where id = ?&quot;);</b>
 <b class="fc">&nbsp;            stmt.setInt(1, id);</b>
 <b class="fc">&nbsp;            stmt.executeUpdate();</b>
-<b class="nc">&nbsp;        } catch (SQLException e) {</b>
-<b class="nc">&nbsp;            throw new SQLException(e.getMessage());</b>
+<b class="fc">&nbsp;        } catch (SQLException e) {</b>
+<b class="fc">&nbsp;            throw new SQLException(e.getMessage());</b>
 <b class="fc">&nbsp;        }</b>
 &nbsp;    }
 &nbsp;
@@ -267,8 +267,8 @@ Current scope:     <a href="../../index.html">all classes</a>
 <b class="fc">&nbsp;            stmt.setString(1, description);</b>
 <b class="fc">&nbsp;            stmt.setInt(2, id);</b>
 <b class="fc">&nbsp;            stmt.executeUpdate();</b>
-<b class="nc">&nbsp;        } catch (SQLException e) {</b>
-<b class="nc">&nbsp;            throw new SQLException(e.getMessage());</b>
+<b class="fc">&nbsp;        } catch (SQLException e) {</b>
+<b class="fc">&nbsp;            throw new SQLException(e.getMessage());</b>
 <b class="fc">&nbsp;        }</b>
 &nbsp;    }
 &nbsp;
@@ -278,8 +278,8 @@ Current scope:     <a href="../../index.html">all classes</a>
 <b class="fc">&nbsp;            stmt.setBoolean(1, status);</b>
 <b class="fc">&nbsp;            stmt.setInt(2, id);</b>
 <b class="fc">&nbsp;            stmt.executeUpdate();</b>
-<b class="nc">&nbsp;        } catch (SQLException e) {</b>
-<b class="nc">&nbsp;            throw new SQLException(e.getMessage());</b>
+<b class="fc">&nbsp;        } catch (SQLException e) {</b>
+<b class="fc">&nbsp;            throw new SQLException(e.getMessage());</b>
 <b class="fc">&nbsp;        }</b>
 &nbsp;    }
 &nbsp;}
@@ -307,7 +307,7 @@ Current scope:     <a href="../../index.html">all classes</a>
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2023-06-21 13:49</div>
+    <div style="float:right;">generated on 2023-06-21 14:36</div>
 </div>
 </body>
 </html>
