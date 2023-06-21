@@ -7,9 +7,8 @@ import org.mockito.Mockito;
 
 import java.sql.*;
 import java.util.ArrayList;
-
-import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.anyString;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 class SQLiteTest {
@@ -53,6 +52,28 @@ class SQLiteTest {
         verify(mockStatement).executeUpdate();
 
     }
+
+    @Test
+    void createPerson_shouldThrowSQLException() throws SQLException {
+        // Arrange
+        Connection mockConnection = mock(Connection.class);
+        PreparedStatement mockStatement = mock(PreparedStatement.class);
+        SQLite sqLite = new SQLite("user");
+        sqLite.conn = mockConnection;
+
+        when(mockConnection.prepareStatement(anyString())).thenReturn(mockStatement);
+        doThrow(SQLException.class).when(mockStatement).executeUpdate();
+
+        User user = new User("Alice", 25);
+
+        // Act and Assert
+        assertThrows(SQLException.class, () -> sqLite.createPerson(user));
+        verify(mockConnection).prepareStatement(anyString());
+        verify(mockStatement).setString(1, user.getName());
+        verify(mockStatement).setInt(2, user.getAge());
+        verify(mockStatement).executeUpdate();
+    }
+
 
     @Test
     void readOneUser() throws SQLException {
@@ -105,6 +126,30 @@ class SQLiteTest {
         assertEquals(expectedDone2, todo2.isDone());
     }
 
+    @Test
+    void readOneUser_shouldThrowSQLException() throws SQLException {
+        // Arrange
+        Connection mockConnection = mock(Connection.class);
+        PreparedStatement mockStatement = mock(PreparedStatement.class);
+        ResultSet mockResultSet = mock(ResultSet.class);
+        SQLite sqLite = new SQLite("user");
+        sqLite.conn = mockConnection;
+
+        when(mockConnection.prepareStatement(anyString())).thenReturn(mockStatement);
+        when(mockStatement.executeQuery()).thenReturn(mockResultSet);
+        doThrow(SQLException.class).when(mockResultSet).next();
+
+        int id = 1;
+
+        // Act and Assert
+        assertThrows(SQLException.class, () -> sqLite.readOneUser(id));
+        verify(mockConnection).prepareStatement(anyString());
+        verify(mockStatement).setInt(1, id);
+        verify(mockStatement).executeQuery();
+        verify(mockResultSet).next();
+    }
+
+
 
     @Test
     void readAllUsers() throws SQLException {
@@ -138,6 +183,26 @@ class SQLiteTest {
     }
 
     @Test
+    void readAllUsers_shouldThrowSQLException() throws SQLException {
+        // Arrange
+        Connection mockConnection = mock(Connection.class);
+        PreparedStatement mockStatement = mock(PreparedStatement.class);
+        ResultSet mockResultSet = mock(ResultSet.class);
+        SQLite sqLite = new SQLite("user");
+        sqLite.conn = mockConnection;
+
+        when(mockConnection.prepareStatement(anyString())).thenReturn(mockStatement);
+        when(mockStatement.executeQuery()).thenReturn(mockResultSet);
+        doThrow(SQLException.class).when(mockResultSet).next();
+
+        // Act and Assert
+        assertThrows(SQLException.class, () -> sqLite.readAllUsers());
+        verify(mockConnection).prepareStatement(anyString());
+        verify(mockStatement).executeQuery();
+        verify(mockResultSet).next();
+    }
+
+    @Test
     void deleteUser() throws SQLException {
         // Arrange
         String sql = "Delete from users where id = ?";
@@ -151,6 +216,24 @@ class SQLiteTest {
         verify(mockStatement).setInt(1, id);
         verify(mockStatement).executeUpdate();
 
+    }
+
+    @Test
+    void deleteUser_shouldThrowSQLException() throws SQLException {
+        // Arrange
+        Connection mockConnection = mock(Connection.class);
+        PreparedStatement mockStatement = mock(PreparedStatement.class);
+        SQLite sqLite = new SQLite("user");
+        sqLite.conn = mockConnection;
+
+        when(mockConnection.prepareStatement(anyString())).thenReturn(mockStatement);
+        doThrow(SQLException.class).when(mockStatement).executeUpdate();
+
+        // Act and Assert
+        assertThrows(SQLException.class, () -> sqLite.deleteUser(1));
+        verify(mockConnection).prepareStatement(anyString());
+        verify(mockStatement).setInt(1, 1);
+        verify(mockStatement).executeUpdate();
     }
 
     @Test
@@ -172,6 +255,25 @@ class SQLiteTest {
     }
 
     @Test
+    void updateUserAge_shouldThrowSQLException() throws SQLException {
+        // Arrange
+        Connection mockConnection = mock(Connection.class);
+        PreparedStatement mockStatement = mock(PreparedStatement.class);
+        SQLite sqLite = new SQLite("user");
+        sqLite.conn = mockConnection;
+
+        when(mockConnection.prepareStatement(anyString())).thenReturn(mockStatement);
+        doThrow(SQLException.class).when(mockStatement).executeUpdate();
+
+        // Act and Assert
+        assertThrows(SQLException.class, () -> sqLite.updateUserAge(1, 30));
+        verify(mockConnection).prepareStatement(anyString());
+        verify(mockStatement).setInt(1, 30);
+        verify(mockStatement).setInt(2, 1);
+        verify(mockStatement).executeUpdate();
+    }
+
+    @Test
     void updateUserName() throws SQLException {
         // Arrange
         String sql = "Update users set name = ? where id = ?";
@@ -187,6 +289,25 @@ class SQLiteTest {
         verify(mockStatement).setInt(2, id);
         verify(mockStatement).executeUpdate();
 
+    }
+
+    @Test
+    void updateUserName_shouldThrowSQLException() throws SQLException {
+        // Arrange
+        Connection mockConnection = mock(Connection.class);
+        PreparedStatement mockStatement = mock(PreparedStatement.class);
+        SQLite sqLite = new SQLite("user");
+        sqLite.conn = mockConnection;
+
+        when(mockConnection.prepareStatement(anyString())).thenReturn(mockStatement);
+        doThrow(SQLException.class).when(mockStatement).executeUpdate();
+
+        // Act and Assert
+        assertThrows(SQLException.class, () -> sqLite.updateUserName(1, "Alice"));
+        verify(mockConnection).prepareStatement(anyString());
+        verify(mockStatement).setString(1, "Alice");
+        verify(mockStatement).setInt(2, 1);
+        verify(mockStatement).executeUpdate();
     }
 
     @Test
@@ -246,6 +367,8 @@ class SQLiteTest {
         assertEquals(expectedResult, result);
     }
 
+
+
     @Test
     void readAllTodos() throws SQLException {
         // Arrange
@@ -278,6 +401,9 @@ class SQLiteTest {
         assertEquals(expectedResult, result);
     }
 
+
+
+
     @Test
     void deleteTodo() throws SQLException {
         // Arrange
@@ -292,6 +418,26 @@ class SQLiteTest {
         verify(mockStatement).setInt(1, id);
         verify(mockStatement).executeUpdate();
 
+    }
+
+    @Test
+    void deleteTodo_shouldThrowSQLException() throws SQLException {
+        // Arrange
+        Connection mockConnection = mock(Connection.class);
+        PreparedStatement mockStatement = mock(PreparedStatement.class);
+        SQLite sqLite = new SQLite("user");
+        sqLite.conn = mockConnection;
+
+        when(mockConnection.prepareStatement(Mockito.anyString())).thenReturn(mockStatement);
+        when(mockStatement.executeUpdate()).thenThrow(SQLException.class);
+
+        int id = 1;
+
+        // Act and Assert
+        assertThrows(SQLException.class, () -> sqLite.deleteTodo(id));
+        verify(mockConnection).prepareStatement(Mockito.anyString());
+        verify(mockStatement).setInt(1, id);
+        verify(mockStatement).executeUpdate();
     }
 
     @Test
@@ -313,6 +459,28 @@ class SQLiteTest {
     }
 
     @Test
+    void updateTodoDescription_shouldThrowSQLException() throws SQLException {
+        // Arrange
+        Connection mockConnection = mock(Connection.class);
+        PreparedStatement mockStatement = mock(PreparedStatement.class);
+        SQLite sqLite = new SQLite("user");
+        sqLite.conn = mockConnection;
+
+        when(mockConnection.prepareStatement(Mockito.anyString())).thenReturn(mockStatement);
+        when(mockStatement.executeUpdate()).thenThrow(SQLException.class);
+
+        int id = 1;
+        String description = "Updated description";
+
+        // Act and Assert
+        assertThrows(SQLException.class, () -> sqLite.updateTodoDescription(id, description));
+        verify(mockConnection).prepareStatement(Mockito.anyString());
+        verify(mockStatement).setString(1, description);
+        verify(mockStatement).setInt(2, id);
+        verify(mockStatement).executeUpdate();
+    }
+
+    @Test
     void updateTodoStatus() throws SQLException {
         // Arrange
         String sql = "Update todo set done = ? where id = ?";
@@ -328,5 +496,27 @@ class SQLiteTest {
         verify(mockStatement).setInt(2, id);
         verify(mockStatement).executeUpdate();
 
+    }
+
+    @Test
+    void updateTodoStatus_shouldThrowSQLException() throws SQLException {
+        // Arrange
+        Connection mockConnection = mock(Connection.class);
+        PreparedStatement mockStatement = mock(PreparedStatement.class);
+        SQLite sqLite = new SQLite("user");
+        sqLite.conn = mockConnection;
+
+        when(mockConnection.prepareStatement(Mockito.anyString())).thenReturn(mockStatement);
+        when(mockStatement.executeUpdate()).thenThrow(SQLException.class);
+
+        int id = 1;
+        boolean status = true;
+
+        // Act and Assert
+        assertThrows(SQLException.class, () -> sqLite.updateTodoStatus(id, status));
+        verify(mockConnection).prepareStatement(Mockito.anyString());
+        verify(mockStatement).setBoolean(1, status);
+        verify(mockStatement).setInt(2, id);
+        verify(mockStatement).executeUpdate();
     }
 }

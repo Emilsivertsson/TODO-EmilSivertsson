@@ -36,7 +36,15 @@ class InputTest {
         assertNotEquals(expected, actual);
     }
 
+    @Test
+    public void inputNumber_InvalidInput() {
+        // Arrange
+        String value = "abc";
+        FakeInput fakeInput = new FakeInput();
 
+        // Act and Assert
+        assertThrows(NumberFormatException.class, () -> fakeInput.inputNumber(Integer.parseInt(value)));
+    }
 
 
     @Test
