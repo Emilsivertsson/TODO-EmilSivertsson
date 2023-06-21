@@ -155,4 +155,26 @@ class TodoTest {
         // Act
         assertThrows(IllegalArgumentException.class, () -> todo.setText(value));
     }
+
+    @Test
+    void testToString() {
+        // Arrange
+        int id = 1;
+        String title = "Hello";
+        String text = "Hello more";
+        boolean done = false;
+        todo.setId(id);
+
+        String expected = "id: " + id + "\n" +
+                "Title: " + title + "\n" +
+                "Description: " + text + "\n" +
+                "Done: " + done + "\n"
+                +"--------------------\n";
+
+        // Act
+        String actual = todo.toString();
+
+        // Assert
+        assertEquals(expected, actual);
+    }
 }

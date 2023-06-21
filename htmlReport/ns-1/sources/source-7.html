@@ -1,0 +1,188 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > Todo</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">org.CodeForPizza</a>
+</div>
+
+<h1>Coverage Summary for Class: Todo (org.CodeForPizza)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">Todo</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (12/12)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (23/23)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package org.CodeForPizza;
+&nbsp;
+&nbsp;public class Todo {
+&nbsp;
+&nbsp;    int id;
+&nbsp;
+&nbsp;    String title;
+&nbsp;    String text;
+&nbsp;
+&nbsp;    boolean done;
+&nbsp;
+&nbsp;    int assignedTo;
+&nbsp;
+<b class="fc">&nbsp;    public Todo(String title,String text) {</b>
+<b class="fc">&nbsp;        this.text = text;</b>
+<b class="fc">&nbsp;        this.title = title;</b>
+<b class="fc">&nbsp;        this.done = false;</b>
+&nbsp;
+&nbsp;    }
+&nbsp;
+<b class="fc">&nbsp;    public Todo() {</b>
+&nbsp;
+&nbsp;    }
+&nbsp;
+&nbsp;
+&nbsp;    public String getText() {
+<b class="fc">&nbsp;        return text;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;
+&nbsp;    public boolean isDone() {
+<b class="fc">&nbsp;        return done;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public void setDone(boolean done) {
+<b class="fc">&nbsp;        this.done = done;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public int getAssignedTo() {
+<b class="fc">&nbsp;        return assignedTo;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public void setAssignedTo(int assignedTo) {
+<b class="fc">&nbsp;        if(assignedTo &lt; 0 || assignedTo == 0){</b>
+<b class="fc">&nbsp;            throw new IllegalArgumentException(&quot;Id can not be negative or 0&quot;);</b>
+&nbsp;        }
+<b class="fc">&nbsp;        this.assignedTo = assignedTo;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public String getTitle() {
+<b class="fc">&nbsp;        return title;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public void setId(int id) {
+<b class="fc">&nbsp;        if(id &lt; 0 || id == 0){</b>
+<b class="fc">&nbsp;            throw new IllegalArgumentException(&quot;Id can not be negative or 0&quot;);</b>
+&nbsp;        }
+<b class="fc">&nbsp;        this.id = id;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public void setTitle(String title) {
+<b class="fc">&nbsp;        if(title.equals(&quot;&quot;)){</b>
+<b class="fc">&nbsp;            throw new IllegalArgumentException(&quot;Title must be at least 1 character long and can not be empty&quot;);</b>
+&nbsp;        }
+<b class="fc">&nbsp;        this.title = title;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public void setText(String text) {
+<b class="fc">&nbsp;        if(text.equals(&quot;&quot;)){</b>
+<b class="fc">&nbsp;            throw new IllegalArgumentException(&quot;Text must be at least 1 character long and can not be empty&quot;);</b>
+&nbsp;        }
+<b class="fc">&nbsp;        this.text=text;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public String toString() {
+<b class="fc">&nbsp;        return &quot;id: &quot; + id + &quot;\n&quot; +</b>
+&nbsp;                &quot;Title: &quot; + title + &quot;\n&quot; +
+&nbsp;                &quot;Description: &quot; + text + &quot;\n&quot; +
+&nbsp;                &quot;Done: &quot; + done + &quot;\n&quot;
+&nbsp;                +&quot;--------------------\n&quot;;
+&nbsp;    }
+&nbsp;}
+&nbsp;
+&nbsp;
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2023-06-21 13:49</div>
+</div>
+</body>
+</html>
