@@ -16,9 +16,6 @@ class UserFacadeTest {
     SQLite mockSQLite;
     UserFacad userFacad;
 
-    UserFacadeTest() {
-    }
-
     @BeforeEach
     void setUp() throws SQLException {
         mockSQLite = Mockito.mock(SQLite.class);

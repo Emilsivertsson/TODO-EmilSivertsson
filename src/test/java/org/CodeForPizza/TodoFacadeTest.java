@@ -15,8 +15,6 @@ class TodoFacadeTest {
     SQLite mockSQLite;
     TodoFacade todoFacade;
 
-    TodoFacadeTest(){
-    }
 
     @BeforeEach
     void setUp() throws SQLException {
