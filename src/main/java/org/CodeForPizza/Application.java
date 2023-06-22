@@ -74,7 +74,7 @@ public class Application {
     private void updateTodo() throws SQLException {
         int choice = input.inputNumber(Output.updateTodo());
         switch (choice) {
-            case 21 -> updateTodoDescription();
+            case 1 -> updateTodoDescription();
             case 2 -> updateTodoStatus();
             case 3 -> todoMeny();
             default -> System.out.println(Output.invalidInput());
