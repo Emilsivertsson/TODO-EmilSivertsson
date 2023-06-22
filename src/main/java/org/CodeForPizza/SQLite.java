@@ -25,7 +25,7 @@ public class SQLite implements SQLInterface {
 
     public boolean checkConnection() throws SQLException {
         try {
-            return !conn.isClosed();
+            return conn.isClosed();
         } catch (SQLException e) {
             throw new SQLException(e.getMessage());
         }

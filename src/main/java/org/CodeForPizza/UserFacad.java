@@ -15,7 +15,7 @@ public class UserFacad implements UserInterface{
 
     //check if user exists
     public boolean checkIfUserExist(int id) throws SQLException {
-        if (!db.checkConnection()) {
+        if (db.checkConnection()) {
             db.openConnection("user");
         }
         boolean userExist = db.checkIfUserExist(id);
@@ -25,7 +25,7 @@ public class UserFacad implements UserInterface{
 
     //check if users exists
     public boolean checkUsersExist() throws SQLException {
-        if (!db.checkConnection()) {
+        if (db.checkConnection()) {
             db.openConnection("user");
         }
         boolean usersExist = db.checkUsersExist();
@@ -36,7 +36,7 @@ public class UserFacad implements UserInterface{
 
     @Override
     public void create(String name, int age) throws SQLException {
-        if (!db.checkConnection()) {
+        if (db.checkConnection()) {
             db.openConnection("user");
         }
         User user = new User(name, age);
@@ -46,7 +46,7 @@ public class UserFacad implements UserInterface{
 
     @Override
     public ArrayList<Todo> read(int id) throws SQLException {
-        if (!db.checkConnection()){
+        if (db.checkConnection()){
             db.openConnection("user");
         }
         ArrayList<Todo> todos = db.readOneUser(id);
@@ -56,7 +56,7 @@ public class UserFacad implements UserInterface{
 
     @Override
     public String read() throws SQLException {
-        if (!db.checkConnection()) {
+        if (db.checkConnection()) {
             db.openConnection("user");
         }
         String users = db.readAllUsers();
@@ -65,7 +65,7 @@ public class UserFacad implements UserInterface{
     }
 
     public void delete(int id) throws SQLException {
-        if (!db.checkConnection()) {
+        if (db.checkConnection()) {
             db.openConnection("user");
         }
         db.deleteUser(id);
@@ -74,7 +74,7 @@ public class UserFacad implements UserInterface{
 
     @Override
     public void update(int id, int age) throws SQLException {
-        if (!db.checkConnection()) {
+        if (db.checkConnection()) {
             db.openConnection("user");
         }
         db.updateUserAge(id, age);
@@ -83,7 +83,7 @@ public class UserFacad implements UserInterface{
 
     @Override
     public void update(int id, String name) throws SQLException {
-        if (!db.checkConnection()) {
+        if (db.checkConnection()) {
             db.openConnection("user");
         }
         db.updateUserName(id, name);

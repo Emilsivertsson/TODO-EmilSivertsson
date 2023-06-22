@@ -97,9 +97,18 @@ public class Application {
     private void createTodo() throws SQLException{
         System.out.println(userFacad.read());
         int id = input.inputNumber(Output.askForId());
-        String title = input.inputString(Output.askForTitle());
-        String description = input.inputString(Output.askForDescription());
-        todoFacade.create(id, title, description);
+        ifUserExistsCreateTodo(id);
+    }
+
+    private void ifUserExistsCreateTodo(int id) throws SQLException {
+        if (!userFacad.checkIfUserExist(id)){
+            System.out.println(Output.noUser());
+            createTodo();
+        } else {
+            String title = input.inputString(Output.askForTitle());
+            String description = input.inputString(Output.askForDescription());
+            todoFacade.create(id, title, description);
+        }
     }
 
     private void updateTodo() throws SQLException {
@@ -128,8 +137,8 @@ public class Application {
     }
 
     private void ifTodoExistsUpdateStatus(int id) throws SQLException {
-        if (!todoFacade.checkTodoExist(id)) {
-            System.out.println(Output.noTodo());
+        if (userFacad.checkIfUserExist(id)) {
+            System.out.println(Output.noUser());
             updateTodoStatus();
         } else {
             int statusChoice = input.inputNumber(Output.askForDone());
