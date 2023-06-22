@@ -48,19 +48,34 @@ public class Application {
     }
 
     private void deleteTodo() throws SQLException {
-        System.out.println(todoFacade.read());
-        int id = input.inputNumber(Output.askForId());
-        todoFacade.delete(id);
+        if (!sqLite.checkTodosExist()){
+            System.out.println(Output.noTodos());
+            todoMeny();
+        } else {
+            System.out.println(todoFacade.read());
+            int id = input.inputNumber(Output.askForId());
+            todoFacade.delete(id);
+        }
     }
 
     private void showOneTodo() throws SQLException {
-        System.out.println(todoFacade.read());
-        int id = input.inputNumber(Output.askForId());
-        System.out.println(todoFacade.read(id));
+        if (!sqLite.checkTodosExist()){
+            System.out.println(Output.noTodos());
+            todoMeny();
+        } else {
+            System.out.println(todoFacade.read());
+            int id = input.inputNumber(Output.askForId());
+            System.out.println(todoFacade.read(id));
+        }
     }
 
     private void showAllTodos() throws SQLException {
-        System.out.println(todoFacade.read());
+        if (!sqLite.checkTodosExist()){
+            System.out.println(Output.noTodos());
+            todoMeny();
+        } else {
+            System.out.println(todoFacade.read());
+        }
     }
 
     private void createTodo() throws SQLException{
@@ -72,6 +87,15 @@ public class Application {
     }
 
     private void updateTodo() throws SQLException {
+        if (!sqLite.checkTodosExist()){
+            System.out.println(Output.noTodos());
+            todoMeny();
+        } else {
+            updateTodoMenu();
+        }
+    }
+
+    private void updateTodoMenu() throws SQLException {
         int choice = input.inputNumber(Output.updateTodo());
         switch (choice) {
             case 1 -> updateTodoDescription();
@@ -115,21 +139,55 @@ public class Application {
     }
 
     private void deleteUser() throws SQLException {
-        System.out.println(userFacad.read());
-        int id = input.inputNumber(Output.askForId());
-        userFacad.delete(id);
+        if (!sqLite.checkUsersExist()){
+            System.out.println(Output.noUsers());
+            userMenu();
+        } else {
+            System.out.println(userFacad.read());
+            int id = input.inputNumber(Output.askForId());
+            ifUserExistsDelete(id);
+
+        }
+    }
+
+    private void ifUserExistsDelete(int id) throws SQLException {
+        if (checkIfUserExists(id)) {
+            userFacad.delete(id);
+        } else {
+            System.out.println(Output.noUser());
+            deleteUser();
+        }
+    }
+
+    private boolean checkIfUserExists(int id) throws SQLException {
+       if (sqLite.checkIfUserExist(id)){
+           return true;
+       } else {
+           return false;
+       }
+
     }
 
     private void showOneUser() throws SQLException {
-        System.out.println(userFacad.read());
-        int id = input.inputNumber(Output.askForId());
-        System.out.println(userFacad.read(id));
+        if (!sqLite.checkUsersExist()){
+            System.out.println(Output.noUsers());
+            userMenu();
+        } else {
+            System.out.println(userFacad.read());
+            int id = input.inputNumber(Output.askForId());
+            System.out.println(userFacad.read(id));
+        }
     }
-
 
     private void showAllUsers() throws SQLException {
-        System.out.println(userFacad.read());
+        if (!sqLite.checkUsersExist()){
+            System.out.println(Output.noUsers());
+            userMenu();
+        } else {
+            System.out.println(userFacad.read());
+        }
     }
+
 
     private void createUser() throws SQLException {
         String name = input.inputString(Output.askForName());
@@ -138,6 +196,15 @@ public class Application {
     }
 
     private void updateUser() throws SQLException {
+        if (!sqLite.checkUsersExist()){
+            System.out.println(Output.noUsers());
+            userMenu();
+        } else {
+            updateUserMeny();
+        }
+    }
+
+    private void updateUserMeny() throws SQLException {
         int choice = input.inputNumber(Output.updateUser());
         switch (choice) {
             case 1 -> updateUserName();

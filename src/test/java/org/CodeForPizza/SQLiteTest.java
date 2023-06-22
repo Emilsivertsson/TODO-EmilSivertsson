@@ -189,6 +189,9 @@ class SQLiteTest {
         String sql = "Delete from users where id = ?";
         int id = 1;
 
+        PreparedStatement mockPreparedStatement = mock(PreparedStatement.class);
+        when(mockConnection.prepareStatement(sql)).thenReturn(mockPreparedStatement);
+
         // Act
         sqLite.deleteUser(id);
 
