@@ -6,7 +6,7 @@ import java.util.ArrayList;
 /**
  * this class handles the connection to the database and the queries.
  */
-public class SQLite {
+public class SQLite implements DbInterface {
 
     Connection conn = null;
 
@@ -18,6 +18,7 @@ public class SQLite {
         }
     }
 
+    @Override
     public void createTables() throws SQLException {
 
         String users = "CREATE TABLE IF NOT EXISTS users " +
@@ -42,6 +43,7 @@ public class SQLite {
         }
     }
 
+    @Override
     public void createPerson(User user) throws SQLException {
         try{
             PreparedStatement stmt = conn.prepareStatement("Insert into users (name,age) values (?,?)");
@@ -53,6 +55,7 @@ public class SQLite {
         }
     }
 
+    @Override
     public ArrayList<Todo> readOneUser(int id) throws SQLException {
         try{
             PreparedStatement stmt = conn.prepareStatement("SELECT users.name, users.age, todo.id, todo.title, todo.text, todo.done\n" +
@@ -78,6 +81,7 @@ public class SQLite {
         }
     }
 
+    @Override
     public String readAllUsers() throws SQLException {
         try{
             PreparedStatement stmt = conn.prepareStatement("Select * from users");
@@ -95,6 +99,7 @@ public class SQLite {
         }
     }
 
+    @Override
     public void deleteUser(int id) throws SQLException {
         try{
             PreparedStatement stmt = conn.prepareStatement("Delete from users where id = ?");
@@ -105,6 +110,7 @@ public class SQLite {
         }
     }
 
+    @Override
     public void updateUserAge(int id, int age) throws SQLException {
         try{
             PreparedStatement stmt = conn.prepareStatement("Update users set age = ? where id = ?");
@@ -116,6 +122,7 @@ public class SQLite {
         }
     }
 
+    @Override
     public void updateUserName(int id, String name) throws SQLException {
         try{
             PreparedStatement stmt = conn.prepareStatement("Update users set name = ? where id = ?");
@@ -127,6 +134,7 @@ public class SQLite {
         }
     }
 
+    @Override
     public void createTodo(Todo todo) throws SQLException {
         try {
             PreparedStatement stmt = conn.prepareStatement("Insert into todo (title, text, done, assignedTo) values (?,?,?,?)");
@@ -140,6 +148,7 @@ public class SQLite {
         }
     }
 
+    @Override
     public String readOneTodo(int id) throws SQLException {
         try{
             PreparedStatement stmt = conn.prepareStatement("Select title,text,done, assignedTo from todo where id = ?");
@@ -154,6 +163,7 @@ public class SQLite {
         }
     }
 
+    @Override
     public String readAllTodos() throws SQLException {
         try {
             PreparedStatement stmt = conn.prepareStatement("Select id,title from todo");
@@ -170,6 +180,7 @@ public class SQLite {
         }
     }
 
+    @Override
     public void deleteTodo(int id) throws SQLException {
         try {
             PreparedStatement stmt = conn.prepareStatement("Delete from todo where id = ?");
@@ -180,6 +191,7 @@ public class SQLite {
         }
     }
 
+    @Override
     public void updateTodoDescription(int id, String description) throws SQLException {
         try {
             PreparedStatement stmt = conn.prepareStatement("Update todo set text = ? where id = ?");
@@ -191,6 +203,7 @@ public class SQLite {
         }
     }
 
+    @Override
     public void updateTodoStatus(int id, boolean status) throws SQLException {
         try {
             PreparedStatement stmt = conn.prepareStatement("Update todo set done = ? where id = ?");
