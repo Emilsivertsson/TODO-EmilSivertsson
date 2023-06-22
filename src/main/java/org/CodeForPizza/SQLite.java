@@ -11,9 +11,30 @@ public class SQLite implements SQLInterface {
     Connection conn = null;
 
     public SQLite (String DBName) throws SQLException {
-        try{
+        openConnection(DBName);
+        createTables();
+    }
+
+    public void openConnection(String DBName) throws SQLException {
+        try {
             conn = DriverManager.getConnection("jdbc:sqlite:" + DBName + ".db");
-        } catch (SQLException e){
+        } catch (SQLException e) {
+            throw new SQLException(e.getMessage());
+        }
+    }
+
+    public boolean checkConnection() throws SQLException {
+        try {
+            return !conn.isClosed();
+        } catch (SQLException e) {
+            throw new SQLException(e.getMessage());
+        }
+    }
+
+    public void closeConnection() throws SQLException {
+        try {
+            conn.close();
+        } catch (SQLException e) {
             throw new SQLException(e.getMessage());
         }
     }
@@ -43,6 +64,39 @@ public class SQLite implements SQLInterface {
         }
     }
 
+    public boolean checkIfUserExist(int id) throws SQLException {
+        try {
+            PreparedStatement stmt = conn.prepareStatement("SELECT COUNT(*) AS count FROM users WHERE id = ?");
+            stmt.setInt(1, id);
+            ResultSet rs = stmt.executeQuery();
+
+            if (rs.next()) {
+                int count = rs.getInt("count");
+                return count > 0;
+            }
+        } catch (SQLException e) {
+            throw new SQLException(e.getMessage());
+        }
+
+        return false;
+    }
+
+    public boolean checkUsersExist() throws SQLException {
+        try {
+            PreparedStatement stmt = conn.prepareStatement("SELECT COUNT(*) AS count FROM users");
+            ResultSet rs = stmt.executeQuery();
+
+            if (rs.next()) {
+                int count = rs.getInt("count");
+                return count > 0;
+            }
+        } catch (SQLException e) {
+            throw new SQLException(e.getMessage());
+        }
+
+        return false;
+    }
+
     @Override
     public void createPerson(User user) throws SQLException {
         try{
@@ -66,6 +120,7 @@ public class SQLite implements SQLInterface {
             stmt.setInt(1, id);
             ResultSet rs = stmt.executeQuery();
             ArrayList<Todo> todos = new ArrayList<>();
+
 
             while (rs.next()) {
                 Todo todo = new Todo();
@@ -102,6 +157,10 @@ public class SQLite implements SQLInterface {
     @Override
     public void deleteUser(int id) throws SQLException {
         try{
+            PreparedStatement deleteTodosStmt = conn.prepareStatement("DELETE FROM todo WHERE assignedTo = ?");
+            deleteTodosStmt.setInt(1, id);
+            deleteTodosStmt.executeUpdate();
+
             PreparedStatement stmt = conn.prepareStatement("Delete from users where id = ?");
             stmt.setInt(1, id);
             stmt.executeUpdate();
@@ -132,6 +191,38 @@ public class SQLite implements SQLInterface {
         }catch (SQLException e){
             throw new SQLException(e.getMessage());
         }
+    }
+
+    public boolean checkIfTodoExist(int id) throws SQLException {
+        try {
+            PreparedStatement stmt = conn.prepareStatement("SELECT COUNT(*) AS count FROM todo WHERE id = ?");
+            stmt.setInt(1, id);
+            ResultSet rs = stmt.executeQuery();
+
+            if (rs.next()) {
+                int count = rs.getInt("count");
+                return count > 0;
+            }
+        } catch (SQLException e) {
+            throw new SQLException(e.getMessage());
+        }
+
+        return false;
+    }
+
+    public boolean checkTodosExist() throws SQLException {
+        try {
+            PreparedStatement stmt = conn.prepareStatement("SELECT COUNT(*) AS count FROM todo");
+            ResultSet rs = stmt.executeQuery();
+
+            if (rs.next()) {
+                int count = rs.getInt("count");
+                return count > 0;
+            }
+        } catch (SQLException e) {
+            throw new SQLException(e.getMessage());
+        }
+        return false;
     }
 
     @Override

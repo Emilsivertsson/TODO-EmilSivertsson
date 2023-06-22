@@ -8,11 +8,11 @@ import java.util.Scanner;
  * The methods also checks if the input is valid.
  * If the input is not valid, the method will call itself again.
  */
-public class Input {
+public class Input implements InputInterface {
 
     static Scanner scanner = new Scanner(System.in);
 
-
+    @Override
     public int inputNumber(String prompt) {
         System.out.println(prompt);
         try {
@@ -21,13 +21,11 @@ public class Input {
             System.out.println(Output.invalidInput());
             return inputNumber(prompt);
         }
-
     }
 
+    @Override
     public String inputString(String prompt) {
         System.out.println(prompt);
         return scanner.nextLine();
     }
-
-
 }

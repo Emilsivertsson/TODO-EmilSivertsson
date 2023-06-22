@@ -103,4 +103,20 @@ public class Output {
     static String askForTitle() {
         return "What is the title of the todo?";
     }
+
+    static String noUsers() {
+       return "No users exist in the database";
+    }
+
+    static String noTodos() {
+        return "No todos exist in the database";
+    }
+
+    public static String noUser() {
+        return "No user with that id exists";
+    }
+
+    public static String noTodo() {
+        return "No todo with that id exists";
+    }
 }
