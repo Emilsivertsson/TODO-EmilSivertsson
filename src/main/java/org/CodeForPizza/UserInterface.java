@@ -3,6 +3,9 @@ package org.CodeForPizza;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+/**
+ * this interface is implements methods create, read, update and delete users.
+ */
 public interface UserInterface {
 
     void create(String name, int age) throws SQLException;

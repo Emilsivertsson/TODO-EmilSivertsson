@@ -1,5 +1,8 @@
 package org.CodeForPizza;
 
+/**
+ * this interface is implements methods create, read, update and delete todos.
+ */
 public interface TodoInterface {
 
     void create(int userId,String title, String text) throws Exception;

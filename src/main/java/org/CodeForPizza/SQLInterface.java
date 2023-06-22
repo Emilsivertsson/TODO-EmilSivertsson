@@ -3,6 +3,9 @@ package org.CodeForPizza;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+/**
+ * this interface is implements methods for the SQL database.
+ */
 public interface SQLInterface {
 
     void createTables() throws SQLException;
