@@ -17,5 +17,7 @@ jobs:
       with:
         java-version: '17'
         distribution: 'temurin'
-    - name: Build with Maven
+    - name: Clean the tests
+      run: mvn clean test
+    - name: Build and test with Maven
       run: mvn -B test package --file pom.xml
