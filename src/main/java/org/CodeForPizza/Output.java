@@ -115,4 +115,8 @@ public class Output {
     public static String noUser() {
         return "No user with that id exists";
     }
+
+    public static String noTodo() {
+        return "No todo with that id exists";
+    }
 }

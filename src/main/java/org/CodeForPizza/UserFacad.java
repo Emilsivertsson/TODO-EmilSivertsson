@@ -26,6 +26,25 @@ public class UserFacad implements UserInterface{
     	db.closeConnection();
     }
 
+    //check if user exists
+    public boolean checkIfUserExist(int id) throws SQLException {
+        if (!db.checkConnection()) {
+            db.openConnection("user");
+        }
+        boolean userExist = db.checkIfUserExist(id);
+        db.closeConnection();
+        return userExist;
+    }
+
+    //check if users exists
+    public boolean checkUsersExist() throws SQLException {
+        if (!db.checkConnection()) {
+            db.openConnection("user");
+        }
+        boolean usersExist = db.checkUsersExist();
+        db.closeConnection();
+        return usersExist;
+    }
 
 
     @Override

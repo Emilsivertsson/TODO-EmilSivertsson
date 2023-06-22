@@ -12,6 +12,7 @@ public class SQLite implements SQLInterface {
 
     public SQLite (String DBName) throws SQLException {
         openConnection(DBName);
+        createTables();
     }
 
     public void openConnection(String DBName) throws SQLException {
@@ -190,6 +191,23 @@ public class SQLite implements SQLInterface {
         }catch (SQLException e){
             throw new SQLException(e.getMessage());
         }
+    }
+
+    public boolean checkIfTodoExist(int id) throws SQLException {
+        try {
+            PreparedStatement stmt = conn.prepareStatement("SELECT COUNT(*) AS count FROM todo WHERE id = ?");
+            stmt.setInt(1, id);
+            ResultSet rs = stmt.executeQuery();
+
+            if (rs.next()) {
+                int count = rs.getInt("count");
+                return count > 0;
+            }
+        } catch (SQLException e) {
+            throw new SQLException(e.getMessage());
+        }
+
+        return false;
     }
 
     public boolean checkTodosExist() throws SQLException {

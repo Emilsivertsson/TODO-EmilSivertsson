@@ -25,6 +25,25 @@ public class TodoFacade implements TodoInterface {
     	db.closeConnection();
     }
 
+
+    public boolean checkTodoExist(int id) throws SQLException {
+        if (!db.checkConnection()) {
+            db.openConnection("user");
+        }
+        boolean todoExist = db.checkIfTodoExist(id);
+        db.closeConnection();
+        return todoExist;
+    }
+
+    public boolean checkTodosExist() throws SQLException {
+        if (!db.checkConnection()) {
+            db.openConnection("user");
+        }
+        boolean todosExist = db.checkTodosExist();
+        db.closeConnection();
+        return todosExist;
+    }
+
     @Override
     public void create(int userId,String title, String text) throws SQLException {
         if (!db.checkConnection()) {
