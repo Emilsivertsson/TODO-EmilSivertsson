@@ -10,21 +10,7 @@ public class TodoFacade implements TodoInterface {
     SQLite db = new SQLite("user");
 
     public TodoFacade() throws SQLException {
-        this.db = db;
     }
-
-    public Boolean isConnectionOpen() throws SQLException {
-    	return db.checkConnection();
-    }
-
-    public void openConnection() throws SQLException {
-    	db.openConnection("user");
-    }
-
-    public void closeConnection() throws SQLException {
-    	db.closeConnection();
-    }
-
 
     public boolean checkTodoExist(int id) throws SQLException {
         if (!db.checkConnection()) {
@@ -41,7 +27,7 @@ public class TodoFacade implements TodoInterface {
         }
         boolean todosExist = db.checkTodosExist();
         db.closeConnection();
-        return todosExist;
+        return !todosExist;
     }
 
     @Override

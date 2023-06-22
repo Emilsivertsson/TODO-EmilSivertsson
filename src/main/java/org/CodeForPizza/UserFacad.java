@@ -11,19 +11,6 @@ public class UserFacad implements UserInterface{
     SQLite db = new SQLite("user");
 
     public UserFacad() throws SQLException {
-        this.db = db;
-    }
-
-    public Boolean isConnectionOpen() throws SQLException {
-    	return db.checkConnection();
-    }
-
-    public void openConnection() throws SQLException {
-    	db.openConnection("user");
-    }
-
-    public void closeConnection() throws SQLException {
-    	db.closeConnection();
     }
 
     //check if user exists
