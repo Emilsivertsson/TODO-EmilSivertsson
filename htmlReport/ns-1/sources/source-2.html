@@ -59,10 +59,10 @@ Current scope:     <a href="../../index.html">all classes</a>
 </td>
 <td class="coverageStat">
   <span class="percent">
-    60%
+    66,7%
   </span>
   <span class="absValue">
-    (3/5)
+    (6/9)
   </span>
 </td>
 </tr>
@@ -75,23 +75,22 @@ Current scope:     <a href="../../index.html">all classes</a>
 
 <pre>
 <code class="sourceCode" id="sourceCode">&nbsp;package org.CodeForPizza;
-&nbsp;
+&nbsp;/**
+<b class="fc">&nbsp; * This class is used to fake user input in the tests.</b>
+&nbsp; */
 <b class="fc">&nbsp;public class FakeInput {</b>
 &nbsp;
-&nbsp;    public int inputNumber(int value) {
-&nbsp;        try {
+<b class="fc">&nbsp;    public int inputNumber(int value) {</b>
+<b class="nc">&nbsp;        try {</b>
 <b class="fc">&nbsp;            return value;</b>
 <b class="nc">&nbsp;        } catch (NumberFormatException e) {</b>
 <b class="nc">&nbsp;            throw new NumberFormatException(&quot;Please input a number&quot;);</b>
 &nbsp;        }
 &nbsp;    }
 &nbsp;
-&nbsp;
-&nbsp;    public String inputString(String prompt) {
+<b class="fc">&nbsp;    public String inputString(String prompt) {</b>
 <b class="fc">&nbsp;        return prompt;</b>
 &nbsp;    }
-&nbsp;
-&nbsp;
 &nbsp;}
 </code>
 </pre>
@@ -116,7 +115,7 @@ Current scope:     <a href="../../index.html">all classes</a>
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2023-06-21 15:25</div>
+    <div style="float:right;">generated on 2023-06-22 23:34</div>
 </div>
 </body>
 </html>

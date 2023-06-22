@@ -62,7 +62,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     100%
   </span>
   <span class="absValue">
-    (17/17)
+    (28/28)
   </span>
 </td>
 </tr>
@@ -79,6 +79,9 @@ Current scope:     <a href="../../index.html">all classes</a>
 &nbsp;
 &nbsp;import java.util.ArrayList;
 &nbsp;
+&nbsp;/**
+&nbsp; * This class is to create and handle users.
+&nbsp; */
 &nbsp;public class User{
 &nbsp;
 &nbsp;    int id;
@@ -86,37 +89,38 @@ Current scope:     <a href="../../index.html">all classes</a>
 &nbsp;    String name;
 &nbsp;
 &nbsp;    int age;
-&nbsp;
-&nbsp;    ArrayList&lt;Todo&gt; todos;
-&nbsp;
+<b class="fc">&nbsp;</b>
+<b class="fc">&nbsp;    ArrayList&lt;Todo&gt; todos;</b>
+<b class="fc">&nbsp;</b>
 <b class="fc">&nbsp;    public User(String name, int age) {</b>
 <b class="fc">&nbsp;        this.name = name;</b>
 <b class="fc">&nbsp;        this.age = age;</b>
 <b class="fc">&nbsp;        todos = new ArrayList&lt;&gt;();</b>
-&nbsp;    }
+<b class="fc">&nbsp;    }</b>
 &nbsp;
 &nbsp;    public String getName() {
 <b class="fc">&nbsp;        return name;</b>
-&nbsp;    }
-&nbsp;
+<b class="fc">&nbsp;    }</b>
+<b class="fc">&nbsp;</b>
 &nbsp;    public void setName(String name) {
 <b class="fc">&nbsp;        if(name == null || name.isEmpty()){</b>
 <b class="fc">&nbsp;            throw new IllegalArgumentException(&quot;Name can not be null or empty&quot;);</b>
 &nbsp;        }
 <b class="fc">&nbsp;        this.name = name;</b>
-&nbsp;    }
+<b class="fc">&nbsp;    }</b>
 &nbsp;
 &nbsp;    public int getAge() {
 <b class="fc">&nbsp;        return age;</b>
-&nbsp;    }
-&nbsp;    public void setAge(int age) {
+<b class="fc">&nbsp;    }</b>
+&nbsp;
+<b class="fc">&nbsp;    public void setAge(int age) {</b>
 <b class="fc">&nbsp;        if(age &lt; 0 || age == 0){</b>
 <b class="fc">&nbsp;            throw new IllegalArgumentException(&quot;Age can not be negative or 0&quot;);</b>
 &nbsp;        }
 <b class="fc">&nbsp;        this.age = age;</b>
-&nbsp;    }
+<b class="fc">&nbsp;    }</b>
 &nbsp;
-&nbsp;    public void setId(int id) {
+<b class="fc">&nbsp;    public void setId(int id) {</b>
 <b class="fc">&nbsp;        if(id &lt; 0 || id == 0){</b>
 <b class="fc">&nbsp;            throw new IllegalArgumentException(&quot;Id can not be negative or 0&quot;);</b>
 &nbsp;        }
@@ -130,7 +134,6 @@ Current scope:     <a href="../../index.html">all classes</a>
 &nbsp;    public ArrayList&lt;Todo&gt; getTodos() {
 <b class="fc">&nbsp;        return todos;</b>
 &nbsp;    }
-&nbsp;
 &nbsp;}
 &nbsp;
 </code>
@@ -156,7 +159,7 @@ Current scope:     <a href="../../index.html">all classes</a>
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2023-06-21 15:25</div>
+    <div style="float:right;">generated on 2023-06-22 23:34</div>
 </div>
 </body>
 </html>

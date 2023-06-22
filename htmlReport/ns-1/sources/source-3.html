@@ -62,7 +62,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/9)
+    (0/15)
   </span>
 </td>
 </tr>
@@ -78,38 +78,32 @@ Current scope:     <a href="../../index.html">all classes</a>
 &nbsp;
 &nbsp;import java.util.Scanner;
 &nbsp;
-<b class="nc">&nbsp;public class Input {</b>
+<b class="nc">&nbsp;/**</b>
+&nbsp; * This class is used to get input from the user
+<b class="nc">&nbsp; * The methods takes a prompt as a parameter, and returns the input from the user.</b>
+&nbsp; * The methods also checks if the input is valid.
+&nbsp; * If the input is not valid, the method will call itself again.
+&nbsp; */
+<b class="nc">&nbsp;public class Input implements InputInterface {</b>
 &nbsp;
 <b class="nc">&nbsp;    static Scanner scanner = new Scanner(System.in);</b>
 &nbsp;
-&nbsp;
-&nbsp;    /**
-&nbsp;     * This method is used to get a Integer from the user
-&nbsp;     * @param prompt to show the user
-&nbsp;     * @return the string the user input
-&nbsp;     */
-&nbsp;    public int inputNumber(String prompt) {
+&nbsp;    @Override
+<b class="nc">&nbsp;    public int inputNumber(String prompt) {</b>
 <b class="nc">&nbsp;        System.out.println(prompt);</b>
-&nbsp;        try {
+<b class="nc">&nbsp;        try {</b>
 <b class="nc">&nbsp;            return Integer.parseInt(scanner.nextLine());</b>
 <b class="nc">&nbsp;        } catch (NumberFormatException e) {</b>
 <b class="nc">&nbsp;            System.out.println(Output.invalidInput());</b>
 <b class="nc">&nbsp;            return inputNumber(prompt);</b>
 &nbsp;        }
-&nbsp;
 &nbsp;    }
 &nbsp;
-&nbsp;    /**
-&nbsp;     * This method is used to get a string from the user
-&nbsp;     * @param prompt to show the user
-&nbsp;     * @return the string the user input
-&nbsp;     */
+&nbsp;    @Override
 &nbsp;    public String inputString(String prompt) {
 <b class="nc">&nbsp;        System.out.println(prompt);</b>
 <b class="nc">&nbsp;        return scanner.nextLine();</b>
 &nbsp;    }
-&nbsp;
-&nbsp;
 &nbsp;}
 </code>
 </pre>
@@ -134,7 +128,7 @@ Current scope:     <a href="../../index.html">all classes</a>
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2023-06-21 15:25</div>
+    <div style="float:right;">generated on 2023-06-22 23:34</div>
 </div>
 </body>
 </html>

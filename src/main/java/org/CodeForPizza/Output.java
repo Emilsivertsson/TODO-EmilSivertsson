@@ -112,11 +112,11 @@ public class Output {
         return "No todos exist in the database";
     }
 
-    public static String noUser() {
+    static String noUser() {
         return "No user with that id exists";
     }
 
-    public static String noTodo() {
+    static String noTodo() {
         return "No todo with that id exists";
     }
 }

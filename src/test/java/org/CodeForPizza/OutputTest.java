@@ -257,4 +257,56 @@ class OutputTest {
         // Assert
         assertEquals(expected, actual);
     }
+
+    @Test
+    @DisplayName("Should pass if the No users is correct")
+    void noUsers() {
+        // Arrange
+        String expected = "No users exist in the database";
+
+        // Act
+        String actual = Output.noUsers();
+
+        // Assert
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    @DisplayName("Should pass if the no todos is correct")
+    void noTodos() {
+        // Arrange
+        String expected = "No todos exist in the database";
+
+        // Act
+        String actual = Output.noTodos();
+
+        // Assert
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    @DisplayName("Should pass if the no user is correct")
+    void noUser() {
+        // Arrange
+        String expected = "No user with that id exists";
+
+        // Act
+        String actual = Output.noUser();
+
+        // Assert
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    @DisplayName("Should pass if the no todo is correct")
+    void noTodo() {
+        // Arrange
+        String expected = "No todo with that id exists";
+
+        // Act
+        String actual = Output.noTodo();
+
+        // Assert
+        assertEquals(expected, actual);
+    }
 }
