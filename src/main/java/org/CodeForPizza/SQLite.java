@@ -6,7 +6,7 @@ import java.util.ArrayList;
 /**
  * this class handles the connection to the database and the queries.
  */
-public class SQLite implements DbInterface {
+public class SQLite implements SQLInterface {
 
     Connection conn = null;
 

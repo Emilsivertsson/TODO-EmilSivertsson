@@ -3,7 +3,7 @@ package org.CodeForPizza;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-public interface DbInterface {
+public interface SQLInterface {
 
     void createTables() throws SQLException;
     void createPerson(User user) throws SQLException;
