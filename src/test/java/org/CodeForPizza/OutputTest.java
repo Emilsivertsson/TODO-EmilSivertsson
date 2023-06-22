@@ -8,11 +8,8 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class OutputTest {
 
-    Output output;
-
     @BeforeEach
     void setUp() {
-        output = new Output();
     }
 
     @Test
