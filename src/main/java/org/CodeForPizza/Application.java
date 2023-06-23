@@ -46,7 +46,7 @@ public class Application {
     }
 
     private void deleteTodo() throws SQLException {
-        if (!todoFacade.checkTodosExist()){
+        if (todoFacade.checkTodosExist()){
             System.out.println(Output.noTodos());
             todoMeny();
         } else {
@@ -58,15 +58,15 @@ public class Application {
 
     private void ifTodoExistsDelete(int id) throws SQLException {
         if (todoFacade.checkTodoExist(id)) {
-            todoFacade.delete(id);
-        } else {
             System.out.println(Output.noTodo());
             deleteTodo();
+        } else {
+            todoFacade.delete(id);
         }
     }
 
     private void showOneTodo() throws SQLException {
-        if (!todoFacade.checkTodosExist()){
+        if (todoFacade.checkTodosExist()){
             System.out.println(Output.noTodos());
             todoMeny();
         } else {
@@ -78,15 +78,15 @@ public class Application {
 
     private void ifTodoExistsShowOneTodo(int id) throws SQLException {
         if (todoFacade.checkTodoExist(id)) {
-            System.out.println(todoFacade.read(id));
-        } else {
             System.out.println(Output.noTodo());
             showOneTodo();
+        } else {
+            System.out.println(todoFacade.read(id));
         }
     }
 
     private void showAllTodos() throws SQLException {
-        if (!todoFacade.checkTodosExist()){
+        if (todoFacade.checkTodosExist()){
             System.out.println(Output.noTodos());
             todoMeny();
         } else {
@@ -101,7 +101,7 @@ public class Application {
     }
 
     private void ifUserExistsCreateTodo(int id) throws SQLException {
-        if (!userFacad.checkIfUserExist(id)){
+        if (userFacad.checkIfUserExist(id)){
             System.out.println(Output.noUser());
             createTodo();
         } else {
@@ -112,7 +112,7 @@ public class Application {
     }
 
     private void updateTodo() throws SQLException {
-        if (!todoFacade.checkTodosExist()){
+        if (todoFacade.checkTodosExist()){
             System.out.println(Output.noTodos());
             todoMeny();
         } else {
@@ -137,8 +137,8 @@ public class Application {
     }
 
     private void ifTodoExistsUpdateStatus(int id) throws SQLException {
-        if (userFacad.checkIfUserExist(id)) {
-            System.out.println(Output.noUser());
+        if (userFacad.db.checkIfTodoExist(id)) {
+            System.out.println(Output.noTodo());
             updateTodoStatus();
         } else {
             int statusChoice = input.inputNumber(Output.askForDone());
@@ -164,7 +164,7 @@ public class Application {
     }
 
     private void ifTodoExistsUpdateDescription(int id) throws SQLException {
-        if (!todoFacade.checkTodoExist(id)) {
+        if (todoFacade.checkTodoExist(id)) {
             System.out.println(Output.noTodo());
             updateTodoDescription();
         } else {
@@ -187,7 +187,7 @@ public class Application {
     }
 
     private void deleteUser() throws SQLException {
-        if (!userFacad.checkUsersExist()){
+        if (userFacad.checkUsersExist()){
             System.out.println(Output.noUsers());
             userMenu();
         } else {
@@ -199,16 +199,16 @@ public class Application {
 
     private void ifUserExistsDelete(int id) throws SQLException {
         if(userFacad.checkIfUserExist(id)){
-            userFacad.delete(id);
-        } else {
             System.out.println(Output.noUser());
             deleteUser();
+        } else {
+            userFacad.delete(id);
         }
     }
 
 
     private void showOneUser() throws SQLException {
-        if (!userFacad.checkUsersExist()){
+        if (userFacad.checkUsersExist()){
             System.out.println(Output.noUsers());
             userMenu();
         } else {
@@ -220,15 +220,15 @@ public class Application {
 
     private void ifUserExistsShowOneUser(int id) throws SQLException {
         if (userFacad.checkIfUserExist(id)) {
-            System.out.println(userFacad.read(id));
-        } else {
             System.out.println(Output.noUser());
             showOneUser();
+        } else {
+            System.out.println(userFacad.read(id));
         }
     }
 
     private void showAllUsers() throws SQLException {
-        if (!userFacad.checkUsersExist()){
+        if (userFacad.checkUsersExist()){
             System.out.println(Output.noUsers());
             userMenu();
         } else {
@@ -244,7 +244,7 @@ public class Application {
     }
 
     private void updateUser() throws SQLException {
-        if (!userFacad.checkUsersExist()){
+        if (userFacad.checkUsersExist()){
             System.out.println(Output.noUsers());
             userMenu();
         } else {
@@ -270,11 +270,11 @@ public class Application {
 
     private void ifUserExistsUpdateAge(int id) throws SQLException {
         if (userFacad.checkIfUserExist(id)) {
-            int age = input.inputNumber(Output.askForNewAge());
-            userFacad.update(id, age);
-        } else {
             System.out.println(Output.noUser());
             updateUserAge();
+        } else {
+            int age = input.inputNumber(Output.askForNewAge());
+            userFacad.update(id, age);
         }
     }
 
@@ -286,11 +286,11 @@ public class Application {
 
     private void ifUserExistsUpdateName(int id) throws SQLException {
         if (userFacad.checkIfUserExist(id)) {
-            String name = input.inputString(Output.askForNewName());
-            userFacad.update(id, name);
-        } else {
             System.out.println(Output.noUser());
             updateUserName();
+        } else {
+            String name = input.inputString(Output.askForNewName());
+            userFacad.update(id, name);
         }
     }
 }

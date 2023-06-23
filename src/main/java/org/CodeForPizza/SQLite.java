@@ -13,6 +13,7 @@ public class SQLite implements SQLInterface {
     public SQLite (String DBName) throws SQLException {
         openConnection(DBName);
         createTables();
+        closeConnection();
     }
 
     public void openConnection(String DBName) throws SQLException {
@@ -72,13 +73,13 @@ public class SQLite implements SQLInterface {
 
             if (rs.next()) {
                 int count = rs.getInt("count");
-                return count > 0;
+                return count <= 0;
             }
         } catch (SQLException e) {
             throw new SQLException(e.getMessage());
         }
 
-        return false;
+        return true;
     }
 
     public boolean checkUsersExist() throws SQLException {
@@ -88,13 +89,13 @@ public class SQLite implements SQLInterface {
 
             if (rs.next()) {
                 int count = rs.getInt("count");
-                return count > 0;
+                return count <= 0;
             }
         } catch (SQLException e) {
             throw new SQLException(e.getMessage());
         }
 
-        return false;
+        return true;
     }
 
     @Override
@@ -201,13 +202,13 @@ public class SQLite implements SQLInterface {
 
             if (rs.next()) {
                 int count = rs.getInt("count");
-                return count > 0;
+                return count <= 0;
             }
         } catch (SQLException e) {
             throw new SQLException(e.getMessage());
         }
 
-        return false;
+        return true;
     }
 
     public boolean checkTodosExist() throws SQLException {
@@ -217,12 +218,12 @@ public class SQLite implements SQLInterface {
 
             if (rs.next()) {
                 int count = rs.getInt("count");
-                return count > 0;
+                return count <= 0;
             }
         } catch (SQLException e) {
             throw new SQLException(e.getMessage());
         }
-        return false;
+        return true;
     }
 
     @Override
