@@ -1,10 +1,14 @@
 package org.CodeForPizza;
 
+import java.sql.SQLException;
+
 /**
  * this interface is implements methods create, read, update and delete todos.
  */
 public interface TodoInterface {
 
+    boolean checkTodoExist(int id) throws SQLException;
+    boolean checkTodosExist() throws SQLException;
     void create(int userId,String title, String text) throws Exception;
     String read(int id) throws Exception;
     String read() throws Exception;

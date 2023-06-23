@@ -62,7 +62,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     100%
   </span>
   <span class="absValue">
-    (40/40)
+    (23/23)
   </span>
 </td>
 </tr>
@@ -87,14 +87,14 @@ Current scope:     <a href="../../index.html">all classes</a>
 &nbsp;    String text;
 &nbsp;
 &nbsp;    boolean done;
-<b class="fc">&nbsp;</b>
-<b class="fc">&nbsp;    int assignedTo;</b>
-<b class="fc">&nbsp;</b>
+&nbsp;
+&nbsp;    int assignedTo;
+&nbsp;
 <b class="fc">&nbsp;    public Todo(String title,String text) {</b>
 <b class="fc">&nbsp;        this.text = text;</b>
 <b class="fc">&nbsp;        this.title = title;</b>
 <b class="fc">&nbsp;        this.done = false;</b>
-<b class="fc">&nbsp;    }</b>
+&nbsp;    }
 &nbsp;
 <b class="fc">&nbsp;    public Todo() {</b>
 &nbsp;    }
@@ -105,52 +105,52 @@ Current scope:     <a href="../../index.html">all classes</a>
 &nbsp;
 &nbsp;    public boolean isDone() {
 <b class="fc">&nbsp;        return done;</b>
-<b class="fc">&nbsp;    }</b>
+&nbsp;    }
 &nbsp;
 &nbsp;    public void setDone(boolean done) {
 <b class="fc">&nbsp;        this.done = done;</b>
-<b class="fc">&nbsp;    }</b>
+&nbsp;    }
 &nbsp;
 &nbsp;    public int getAssignedTo() {
 <b class="fc">&nbsp;        return assignedTo;</b>
-<b class="fc">&nbsp;    }</b>
+&nbsp;    }
 &nbsp;
 &nbsp;    public void setAssignedTo(int assignedTo) {
 <b class="fc">&nbsp;        if(assignedTo &lt; 0 || assignedTo == 0){</b>
 <b class="fc">&nbsp;            throw new IllegalArgumentException(&quot;Id can not be negative or 0&quot;);</b>
-<b class="fc">&nbsp;        }</b>
+&nbsp;        }
 <b class="fc">&nbsp;        this.assignedTo = assignedTo;</b>
-<b class="fc">&nbsp;    }</b>
+&nbsp;    }
 &nbsp;
 &nbsp;    public String getTitle() {
 <b class="fc">&nbsp;        return title;</b>
-<b class="fc">&nbsp;    }</b>
+&nbsp;    }
 &nbsp;
 &nbsp;    public void setId(int id) {
 <b class="fc">&nbsp;        if(id &lt; 0 || id == 0){</b>
 <b class="fc">&nbsp;            throw new IllegalArgumentException(&quot;Id can not be negative or 0&quot;);</b>
-<b class="fc">&nbsp;        }</b>
+&nbsp;        }
 <b class="fc">&nbsp;        this.id = id;</b>
-<b class="fc">&nbsp;    }</b>
+&nbsp;    }
 &nbsp;
 &nbsp;    public void setTitle(String title) {
 <b class="fc">&nbsp;        if(title.equals(&quot;&quot;)){</b>
 <b class="fc">&nbsp;            throw new IllegalArgumentException(&quot;Title must be at least 1 character long and can not be empty&quot;);</b>
-<b class="fc">&nbsp;        }</b>
+&nbsp;        }
 <b class="fc">&nbsp;        this.title = title;</b>
-<b class="fc">&nbsp;    }</b>
+&nbsp;    }
 &nbsp;
 &nbsp;    public void setText(String text) {
 <b class="fc">&nbsp;        if(text.equals(&quot;&quot;)){</b>
 <b class="fc">&nbsp;            throw new IllegalArgumentException(&quot;Text must be at least 1 character long and can not be empty&quot;);</b>
-<b class="fc">&nbsp;        }</b>
+&nbsp;        }
 <b class="fc">&nbsp;        this.text=text;</b>
-<b class="fc">&nbsp;    }</b>
+&nbsp;    }
 &nbsp;
 &nbsp;    @Override
 &nbsp;    public String toString() {
 <b class="fc">&nbsp;        return &quot;id: &quot; + id + &quot;\n&quot; +</b>
-<b class="fc">&nbsp;                &quot;Title: &quot; + title + &quot;\n&quot; +</b>
+&nbsp;                &quot;Title: &quot; + title + &quot;\n&quot; +
 &nbsp;                &quot;Description: &quot; + text + &quot;\n&quot; +
 &nbsp;                &quot;Done: &quot; + done + &quot;\n&quot;
 &nbsp;                +&quot;--------------------\n&quot;;
@@ -181,7 +181,7 @@ Current scope:     <a href="../../index.html">all classes</a>
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2023-06-22 23:34</div>
+    <div style="float:right;">generated on 2023-06-23 22:35</div>
 </div>
 </body>
 </html>

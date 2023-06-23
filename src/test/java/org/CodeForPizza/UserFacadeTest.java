@@ -10,6 +10,7 @@ import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 class UserFacadeTest {
 
@@ -41,7 +42,7 @@ class UserFacadeTest {
     @DisplayName("Should pass if readAllUsers is correct string")
     void read() throws SQLException {
         // Arrange
-        Mockito.when(mockSQLite.readAllUsers()).thenReturn("Hello");
+        when(mockSQLite.readAllUsers()).thenReturn("Hello");
 
         // Act
         String actual = userFacad.read();
@@ -59,7 +60,7 @@ class UserFacadeTest {
         todos.add(new Todo());
         todos.add(new Todo());
 
-        Mockito.when(mockSQLite.readOneUser(1)).thenReturn(todos);
+        when(mockSQLite.readOneUser(1)).thenReturn(todos);
 
         // Act
         ArrayList<Todo> actual = userFacad.read(1);
@@ -108,5 +109,48 @@ class UserFacadeTest {
 
         // Assert
         verify(mockSQLite).updateUserName(userId, "Emil");
+    }
+
+    @Test
+    @DisplayName("Should pass if checkIfUserExist returns true")
+    void checkIfUserExist() throws SQLException {
+        // Arrange
+        int id = 1;
+        boolean expectedExistence = true;
+
+        when(mockSQLite.checkConnection()).thenReturn(true);
+        when(mockSQLite.checkIfUserExist(id)).thenReturn(expectedExistence);
+
+        // Act
+        boolean actualExistence = userFacad.checkIfUserExist(id);
+
+        // Assert
+        verify(mockSQLite).checkConnection();
+        verify(mockSQLite).openConnection("user");
+        verify(mockSQLite).checkIfUserExist(id);
+        verify(mockSQLite).closeConnection();
+
+        assertEquals(expectedExistence, actualExistence);
+    }
+
+    @Test
+    @DisplayName("Should pass if checkUsersExist returns true")
+    void checkUsersExist() throws SQLException {
+        // Arrange
+        boolean expectedExistence = true;
+
+        when(mockSQLite.checkConnection()).thenReturn(true);
+        when(mockSQLite.checkUsersExist()).thenReturn(expectedExistence);
+
+        // Act
+        boolean actualExistence = userFacad.checkUsersExist();
+
+        // Assert
+        verify(mockSQLite).checkConnection();
+        verify(mockSQLite).openConnection("user");
+        verify(mockSQLite).checkUsersExist();
+        verify(mockSQLite).closeConnection();
+
+        assertEquals(expectedExistence, actualExistence);
     }
 }

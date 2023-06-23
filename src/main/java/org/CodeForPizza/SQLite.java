@@ -6,7 +6,7 @@ import java.util.ArrayList;
 /**
  * this class handles the connection to the database and the queries.
  */
-public class SQLite implements SQLInterface {
+public class SQLite implements SQLInterface, ConnectionInterface {
 
     Connection conn = null;
 
@@ -16,6 +16,7 @@ public class SQLite implements SQLInterface {
         closeConnection();
     }
 
+    @Override
     public void openConnection(String DBName) throws SQLException {
         try {
             conn = DriverManager.getConnection("jdbc:sqlite:" + DBName + ".db");
@@ -24,6 +25,7 @@ public class SQLite implements SQLInterface {
         }
     }
 
+    @Override
     public boolean checkConnection() throws SQLException {
         try {
             return conn.isClosed();
@@ -32,6 +34,7 @@ public class SQLite implements SQLInterface {
         }
     }
 
+    @Override
     public void closeConnection() throws SQLException {
         try {
             conn.close();
@@ -65,6 +68,7 @@ public class SQLite implements SQLInterface {
         }
     }
 
+    @Override
     public boolean checkIfUserExist(int id) throws SQLException {
         try {
             PreparedStatement stmt = conn.prepareStatement("SELECT COUNT(*) AS count FROM users WHERE id = ?");
@@ -82,6 +86,7 @@ public class SQLite implements SQLInterface {
         return true;
     }
 
+    @Override
     public boolean checkUsersExist() throws SQLException {
         try {
             PreparedStatement stmt = conn.prepareStatement("SELECT COUNT(*) AS count FROM users");
@@ -194,6 +199,7 @@ public class SQLite implements SQLInterface {
         }
     }
 
+    @Override
     public boolean checkIfTodoExist(int id) throws SQLException {
         try {
             PreparedStatement stmt = conn.prepareStatement("SELECT COUNT(*) AS count FROM todo WHERE id = ?");
@@ -211,6 +217,7 @@ public class SQLite implements SQLInterface {
         return true;
     }
 
+    @Override
     public boolean checkTodosExist() throws SQLException {
         try {
             PreparedStatement stmt = conn.prepareStatement("SELECT COUNT(*) AS count FROM todo");

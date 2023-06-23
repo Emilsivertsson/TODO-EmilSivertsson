@@ -13,7 +13,7 @@ public class UserFacad implements UserInterface{
     public UserFacad() throws SQLException {
     }
 
-    //check if user exists
+    @Override
     public boolean checkIfUserExist(int id) throws SQLException {
         if (db.checkConnection()) {
             db.openConnection("user");
@@ -23,7 +23,7 @@ public class UserFacad implements UserInterface{
         return userExist;
     }
 
-    //check if users exists
+    @Override
     public boolean checkUsersExist() throws SQLException {
         if (db.checkConnection()) {
             db.openConnection("user");

@@ -8,7 +8,7 @@ import org.mockito.Mockito;
 import java.sql.SQLException;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.*;
 
 class TodoFacadeTest {
 
@@ -42,7 +42,7 @@ class TodoFacadeTest {
     @DisplayName("should pass if readAll returns correct string")
     void readAll() throws SQLException {
         // Arrange
-        Mockito.when(mockSQLite.readAllTodos()).thenReturn("Hello");
+        when(mockSQLite.readAllTodos()).thenReturn("Hello");
 
         // Act
         String actual = todoFacade.read();
@@ -55,7 +55,7 @@ class TodoFacadeTest {
     @DisplayName("should pass if readOne returns correct string")
     void ReadOne() throws SQLException {
         // Arrange
-        Mockito.when(mockSQLite.readOneTodo(1)).thenReturn("Hello");
+        when(mockSQLite.readOneTodo(1)).thenReturn("Hello");
 
         // Act
         String actual = todoFacade.read(1);
@@ -104,4 +104,48 @@ class TodoFacadeTest {
         // Assert
         verify(mockSQLite).updateTodoStatus(1, true);
     }
+
+    @Test
+    @DisplayName("should pass if TodoExists is true")
+    void checkTodoExist() throws SQLException {
+        // Arrange
+        int id = 1;
+        boolean expectedExistence = true;
+
+        when(mockSQLite.checkConnection()).thenReturn(true);
+        when(mockSQLite.checkIfTodoExist(id)).thenReturn(expectedExistence);
+
+        // Act
+        boolean actualExistence = todoFacade.checkTodoExist(id);
+
+        // Assert
+        verify(mockSQLite).checkConnection();
+        verify(mockSQLite).openConnection("user");
+        verify(mockSQLite).checkIfTodoExist(id);
+        verify(mockSQLite).closeConnection();
+
+        assertEquals(expectedExistence, actualExistence);
+    }
+
+    @Test
+    @DisplayName("should pass if TodosExist is true")
+    void checkTodosExist() throws SQLException {
+        // Arrange
+        boolean expectedExistence = true;
+
+        when(mockSQLite.checkConnection()).thenReturn(true);
+        when(mockSQLite.checkTodosExist()).thenReturn(expectedExistence);
+
+        // Act
+        boolean actualExistence = todoFacade.checkTodosExist();
+
+        // Assert
+        verify(mockSQLite).checkConnection();
+        verify(mockSQLite).openConnection("user");
+        verify(mockSQLite).checkTodosExist();
+        verify(mockSQLite).closeConnection();
+
+        assertEquals(expectedExistence, actualExistence);
+    }
+
 }

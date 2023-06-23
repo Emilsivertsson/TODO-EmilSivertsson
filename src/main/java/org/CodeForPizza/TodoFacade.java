@@ -12,6 +12,7 @@ public class TodoFacade implements TodoInterface {
     public TodoFacade() throws SQLException {
     }
 
+    @Override
     public boolean checkTodoExist(int id) throws SQLException {
         if (db.checkConnection()) {
             db.openConnection("user");
@@ -21,6 +22,7 @@ public class TodoFacade implements TodoInterface {
         return todoExist;
     }
 
+    @Override
     public boolean checkTodosExist() throws SQLException {
         if (db.checkConnection()) {
             db.openConnection("user");

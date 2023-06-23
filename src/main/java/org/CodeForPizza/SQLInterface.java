@@ -8,6 +8,8 @@ import java.util.ArrayList;
  */
 public interface SQLInterface {
 
+    boolean checkIfUserExist(int id) throws SQLException;
+    boolean checkUsersExist() throws SQLException;
     void createTables() throws SQLException;
     void createPerson(User user) throws SQLException;
     ArrayList<Todo> readOneUser(int id) throws SQLException;
@@ -15,6 +17,8 @@ public interface SQLInterface {
     void deleteUser(int id) throws SQLException;
     void updateUserAge(int id, int age) throws SQLException;
     void updateUserName(int id, String name) throws SQLException;
+    boolean checkIfTodoExist(int id) throws SQLException;
+    boolean checkTodosExist() throws SQLException;
     void createTodo(Todo todo) throws SQLException;
     String readOneTodo(int id) throws SQLException;
     String readAllTodos() throws SQLException;

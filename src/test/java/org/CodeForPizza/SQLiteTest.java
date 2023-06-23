@@ -16,6 +16,7 @@ class SQLiteTest {
     Connection mockConnection;
     ResultSet mockResultSet;
     PreparedStatement mockStatement;
+    DriverManager mockDriverManager;
     private SQLite sqLite;
 
     @BeforeEach
@@ -23,6 +24,7 @@ class SQLiteTest {
         mockConnection = Mockito.mock(Connection.class);
         mockResultSet = Mockito.mock(ResultSet.class);
         mockStatement = Mockito.mock(PreparedStatement.class);
+        mockDriverManager = Mockito.mock(DriverManager.class);
 
         sqLite = new SQLite("user");
         sqLite.conn = mockConnection;
@@ -477,5 +479,147 @@ class SQLiteTest {
         verify(mockStatement).setBoolean(1, status);
         verify(mockStatement).setInt(2, id);
         verify(mockStatement).executeUpdate();
+    }
+
+
+    @Test
+    @DisplayName("Should pass if updateTodoAssignee is called")
+    void testCheckConnectionWhenClosed() throws SQLException {
+        // Arrange
+        when(mockConnection.isClosed()).thenReturn(true);
+
+        // Act
+        boolean isConnected = sqLite.checkConnection();
+
+        // Assert
+        assertTrue(isConnected);
+        verify(mockConnection).isClosed();
+    }
+
+    @Test
+    @DisplayName("Should pass if checkConnection returns false")
+    void testCheckConnectionWhenOpen() throws SQLException {
+        // Arrange
+        when(mockConnection.isClosed()).thenReturn(false);
+
+        // Act
+        boolean isConnected = sqLite.checkConnection();
+
+        // Assert
+        assertFalse(isConnected);
+        verify(mockConnection).isClosed();
+    }
+
+    @Test
+    @DisplayName("Should pass if closeConnection is called")
+    void closeConnection() throws SQLException {
+        // Act
+        sqLite.closeConnection();
+
+        // Assert
+        verify(mockConnection).close();
+    }
+
+    @Test
+    @DisplayName("Should pass if checkIfUserExist returns false")
+    void checkIfUserExist() throws SQLException {
+        // Arrange
+        int userId = 1;
+        when(mockConnection.prepareStatement(anyString())).thenReturn(mockStatement);
+        when(mockStatement.executeQuery()).thenReturn(mockResultSet);
+        when(mockResultSet.next()).thenReturn(false);
+        when(mockResultSet.getInt("count")).thenReturn(1);
+
+        // Act
+        boolean result = sqLite.checkIfUserExist(userId);
+
+        // Assert
+        assertTrue(result);
+        verify(mockConnection).prepareStatement("SELECT COUNT(*) AS count FROM users WHERE id = ?");
+        verify(mockStatement).setInt(1, userId);
+        verify(mockStatement).executeQuery();
+        verify(mockResultSet).next();
+
+    }
+
+    @Test
+    @DisplayName("Should pass if checkIfUserExist returns true")
+    void checkUsersExist() throws SQLException {
+        // Arrange
+        when(mockConnection.prepareStatement(anyString())).thenReturn(mockStatement);
+        when(mockStatement.executeQuery()).thenReturn(mockResultSet);
+        when(mockResultSet.next()).thenReturn(true);
+        when(mockResultSet.getInt("count")).thenReturn(0);
+
+        // Act
+        boolean result = sqLite.checkUsersExist();
+
+        // Assert
+        assertTrue(result);
+
+        // Verify mock interactions
+        verify(mockConnection).prepareStatement("SELECT COUNT(*) AS count FROM users");
+        verify(mockStatement).executeQuery();
+        verify(mockResultSet).next();
+        verify(mockResultSet).getInt("count");
+        verifyNoMoreInteractions(mockStatement, mockResultSet);
+    }
+
+    @Test
+    @DisplayName("Should pass if checkIfUserExist throws SQLException")
+    public void testCheckIfUserExist_SQLExceptionThrown() throws SQLException {
+        // Arrange
+        int userId = 1;
+        String errorMessage = "Error executing SQL query.";
+        when(mockConnection.prepareStatement(anyString())).thenReturn(mockStatement);
+        when(mockStatement.executeQuery()).thenThrow(new SQLException(errorMessage));
+
+        // Act & Assert
+        try {
+            sqLite.checkIfUserExist(userId);
+        } catch (SQLException e) {
+            assertTrue(e.getMessage().contains(errorMessage));
+        }
+        verify(mockConnection).prepareStatement("SELECT COUNT(*) AS count FROM users WHERE id = ?");
+        verify(mockStatement).setInt(1, userId);
+        verify(mockStatement).executeQuery();
+        verifyNoMoreInteractions(mockResultSet);
+    }
+
+
+    @Test
+    @DisplayName("Should pass if checkIfTodoExist is called")
+    void checkIfTodoExist() throws SQLException {
+        // Arrange
+        when(mockConnection.prepareStatement(anyString())).thenReturn(mockStatement);
+        when(mockStatement.executeQuery()).thenReturn(mockResultSet);
+        when(mockResultSet.next()).thenReturn(true);
+        when(mockResultSet.getInt("count")).thenReturn(1);
+
+        // Act
+        boolean result = sqLite.checkIfTodoExist(1);
+
+        // Assert
+        assertFalse(result);
+        verify(mockStatement).setInt(1, 1);
+        verify(mockResultSet).getInt("count");
+
+    }
+
+    @Test
+    @DisplayName("Should pass if checkIfTodoExist throws SQLException")
+    void checkTodosExist() throws SQLException {
+        // Arrange
+        when(mockConnection.prepareStatement(anyString())).thenReturn(mockStatement);
+        when(mockStatement.executeQuery()).thenReturn(mockResultSet);
+        when(mockResultSet.next()).thenReturn(true);
+        when(mockResultSet.getInt("count")).thenReturn(1);
+
+        // Act
+        boolean result = sqLite.checkTodosExist();
+
+        // Assert
+        assertFalse(result);
+
     }
 }
