@@ -3,10 +3,10 @@
 # Todo List
 
 ## Description
-- This was a weekly challenge to create a ToDo application, with tests in Junit and a CI using Github Actions.
+- This was a weekly challenge to create a ToDo application, with tests in Junit and a CI using GitHub Actions.
 - The application is a simple ToDo list, where you can add, remove and mark tasks as done.
 - The application lets several users use the same list, and each user can see their own tasks.
-- The tests lets us check that the application works without using the SQLite database.
+- The tests let us check that the application works without using the SQLite database.
 - The CI lets us check that the tests works, before merging the code to the main branch.
 
 ## Table of Contents (Optional)
@@ -14,7 +14,7 @@
 - [Installation](#installation)
 - [Packages used](#packages-used)
 - [Usage](#usage)
-- [Credits](#credits)
+- [Credits and professional feedback](#Credit sand professional feedback)
 - [License](#license)
 - [Tests](#tests)
 
@@ -32,6 +32,7 @@ SQLite JDBC  3.42.0.0
 - User
 - TODO
 - Exit
+
 
 #### If you choose User, you will get the following choice:
 - Create new user
@@ -76,7 +77,7 @@ If you choose Show one todo and its info, you will be asked to enter a todo-id.
 The application will then show the Todo with all its information.
 
 If you choose Update a Todo, you will be asked to enter a todo-id.
-Then you will get a choice to update that Todos description och if its done or not.
+Then you will get a choice to update that Todos description och if it's done or not.
 You will be asked to enter the new information, and the application will then update the Todo with the given information.
 
 if you choose Delete a Todo, you will be asked to enter a todo-id.
@@ -87,12 +88,13 @@ if you choose back to main, you will get the main menu.
 
 #### If you choose exit, the application will stop.
 
-## Credits
+## Credits and professional feedback
 This project has been checked by: Wakana and Johan Romeo.
-the following feedback was given:
-Wakana:
 
-Johan: 
+The following feedback was given:
+#### Wakana:
+
+#### Johan: 
 
 
 ChatGPT was used to generate some of the more complex tests.
@@ -104,16 +106,15 @@ Tutorials used:
 MIT License
 
 ## Tests
-I have tried for maximum coverage, but some cases i did not know how to test.
-There is also a few public methods that i did not test, that my teacher said was ok not to test.
+I have tried for maximum coverage, but some Exception-cases I did not know how to test.
+There is also a few public methods that I did not test, that my teacher said was ok not to test.
 these methods are:
 - CreateTables in SQLite class
 - The constructors in several classes
 - The Input class, since it contains a scanner, I therefor used my teachers technic to test FakeInput class instead.
-- I was not able to test some of the Exceptions, in the SQLite class, since i did not know how to test them.
 
-## CI on Github Actions
+## CI on GitHub Actions
 The CI is set up to run the tests on every push to the main branch.
 The CI will also run the tests on every pull request to the main branch.
-the integration uses a workflow file that is located in the .github/workflows folder, written in YAML.
-its also depending on the information in the pom.xml file.
+the integration uses a workflow file that is located in the .gitHub/workflows folder, written in YAML.
+what actions the CI takes also depends on the information in the pom.xml file.
