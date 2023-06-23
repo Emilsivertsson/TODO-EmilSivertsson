@@ -81,10 +81,11 @@ class SQLiteTest {
         String expectedTitle2 = "Task 2";
         String expectedText2 = "Complete task 2";
         boolean expectedDone2 = true;
-        String sql = "SELECT users.name, users.age, todo.id, todo.title, todo.text, todo.done\n" +
-                "                FROM users\n" +
-                "                inner join todo on users.id = todo.assignedTo\n" +
-                "                WHERE users.id = ?";
+        String sql = """
+                SELECT users.name, users.age, todo.id, todo.title, todo.text, todo.done
+                                FROM users
+                                inner join todo on users.id = todo.assignedTo
+                                WHERE users.id = ?""";
 
         when(mockConnection.prepareStatement(sql)).thenReturn(mockStatement);
         when(mockStatement.executeQuery()).thenReturn(mockResultSet);
@@ -162,10 +163,10 @@ class SQLiteTest {
         verify(mockResultSet).getString("name");
         verify(mockResultSet).getInt("age");
 
-        String expectedResult = "1 " +
-                "Alice " +
-                "25\n" +
-                "-----------------\n";
+        String expectedResult = """
+                1 Alice 25
+                -----------------
+                """;
         assertEquals(expectedResult, result);
     }
 
@@ -336,10 +337,11 @@ class SQLiteTest {
         verify(mockResultSet).getBoolean("done");
         verify(mockResultSet).getInt("assignedTo");
 
-        String expectedResult = "Title: Todo Title\n" +
-                "Description: Todo Text\n" +
-                "Completed: true\n" +
-                "Assigned to: 1";
+        String expectedResult = """
+                Title: Todo Title
+                Description: Todo Text
+                Completed: true
+                Assigned to: 1""";
 
         assertEquals(expectedResult, result);
     }
@@ -367,12 +369,14 @@ class SQLiteTest {
         verify(mockResultSet, Mockito.times(2)).getInt("id");
         verify(mockResultSet, Mockito.times(2)).getString("title");
 
-        String expectedResult = "Id: 1\n" +
-                "Title: Todo 1\n" +
-                "-----------------\n" +
-                "Id: 2\n" +
-                "Title: Todo 2\n" +
-                "-----------------\n";
+        String expectedResult = """
+                Id: 1
+                Title: Todo 1
+                -----------------
+                Id: 2
+                Title: Todo 2
+                -----------------
+                """;
 
         assertEquals(expectedResult, result);
     }
