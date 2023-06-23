@@ -7,7 +7,7 @@ import java.util.ArrayList;
  * this interface is implements methods create, read, update and delete users.
  */
 public interface UserInterface {
-
+    void CheckIfConnection() throws SQLException;
     boolean checkIfUserExist(int id) throws SQLException;
     boolean checkUsersExist() throws SQLException;
     void create(String name, int age) throws SQLException;

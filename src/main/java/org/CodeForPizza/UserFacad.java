@@ -14,10 +14,15 @@ public class UserFacad implements UserInterface{
     }
 
     @Override
-    public boolean checkIfUserExist(int id) throws SQLException {
+    public void CheckIfConnection() throws SQLException {
         if (db.checkConnection()) {
             db.openConnection("user");
         }
+    }
+
+    @Override
+    public boolean checkIfUserExist(int id) throws SQLException {
+        CheckIfConnection();
         boolean userExist = db.checkIfUserExist(id);
         db.closeConnection();
         return userExist;
@@ -25,20 +30,15 @@ public class UserFacad implements UserInterface{
 
     @Override
     public boolean checkUsersExist() throws SQLException {
-        if (db.checkConnection()) {
-            db.openConnection("user");
-        }
+        CheckIfConnection();
         boolean usersExist = db.checkUsersExist();
         db.closeConnection();
         return usersExist;
     }
 
-
     @Override
     public void create(String name, int age) throws SQLException {
-        if (db.checkConnection()) {
-            db.openConnection("user");
-        }
+        CheckIfConnection();
         User user = new User(name, age);
         db.createPerson(user);
         db.closeConnection();
@@ -46,9 +46,7 @@ public class UserFacad implements UserInterface{
 
     @Override
     public ArrayList<Todo> read(int id) throws SQLException {
-        if (db.checkConnection()){
-            db.openConnection("user");
-        }
+        CheckIfConnection();
         ArrayList<Todo> todos = db.readOneUser(id);
         db.closeConnection();
         return todos;
@@ -56,36 +54,28 @@ public class UserFacad implements UserInterface{
 
     @Override
     public String read() throws SQLException {
-        if (db.checkConnection()) {
-            db.openConnection("user");
-        }
+        CheckIfConnection();
         String users = db.readAllUsers();
         db.closeConnection();
         return users;
     }
 
     public void delete(int id) throws SQLException {
-        if (db.checkConnection()) {
-            db.openConnection("user");
-        }
+        CheckIfConnection();
         db.deleteUser(id);
         db.closeConnection();
     }
 
     @Override
     public void update(int id, int age) throws SQLException {
-        if (db.checkConnection()) {
-            db.openConnection("user");
-        }
+        CheckIfConnection();
         db.updateUserAge(id, age);
         db.closeConnection();
     }
 
     @Override
     public void update(int id, String name) throws SQLException {
-        if (db.checkConnection()) {
-            db.openConnection("user");
-        }
+        CheckIfConnection();
         db.updateUserName(id, name);
         db.closeConnection();
     }

@@ -6,7 +6,7 @@ import java.sql.SQLException;
  * this interface is implements methods create, read, update and delete todos.
  */
 public interface TodoInterface {
-
+    void checkIfConnection() throws SQLException;
     boolean checkTodoExist(int id) throws SQLException;
     boolean checkTodosExist() throws SQLException;
     void create(int userId,String title, String text) throws Exception;

@@ -13,10 +13,15 @@ public class TodoFacade implements TodoInterface {
     }
 
     @Override
-    public boolean checkTodoExist(int id) throws SQLException {
+    public void checkIfConnection() throws SQLException {
         if (db.checkConnection()) {
             db.openConnection("user");
         }
+    }
+
+    @Override
+    public boolean checkTodoExist(int id) throws SQLException {
+        checkIfConnection();
         boolean todoExist = db.checkIfTodoExist(id);
         db.closeConnection();
         return todoExist;
@@ -24,9 +29,7 @@ public class TodoFacade implements TodoInterface {
 
     @Override
     public boolean checkTodosExist() throws SQLException {
-        if (db.checkConnection()) {
-            db.openConnection("user");
-        }
+        checkIfConnection();
         boolean todosExist = db.checkTodosExist();
         db.closeConnection();
         return todosExist;
@@ -34,9 +37,7 @@ public class TodoFacade implements TodoInterface {
 
     @Override
     public void create(int userId,String title, String text) throws SQLException {
-        if (db.checkConnection()) {
-            db.openConnection("user");
-        }
+        checkIfConnection();
         Todo todo = new Todo(title, text);
         todo.setDone(false);
         todo.setAssignedTo(userId);
@@ -46,9 +47,7 @@ public class TodoFacade implements TodoInterface {
 
     @Override
     public String read(int id) throws SQLException {
-        if (db.checkConnection()) {
-            db.openConnection("user");
-        }
+        checkIfConnection();
         String todo = db.readOneTodo(id);
         db.closeConnection();
         return todo;
@@ -56,9 +55,7 @@ public class TodoFacade implements TodoInterface {
 
     @Override
     public String read() throws SQLException {
-        if (db.checkConnection()) {
-            db.openConnection("user");
-        }
+        checkIfConnection();
         String todos = db.readAllTodos();
         db.closeConnection();
         return todos;
@@ -66,27 +63,21 @@ public class TodoFacade implements TodoInterface {
 
     @Override
     public void delete(int id) throws SQLException {
-        if (db.checkConnection()) {
-            db.openConnection("user");
-        }
+        checkIfConnection();
         db.deleteTodo(id);
         db.closeConnection();
     }
 
     @Override
     public void update(int id, String description) throws SQLException {
-        if (db.checkConnection()) {
-            db.openConnection("user");
-        }
+        checkIfConnection();
         db.updateTodoDescription(id , description);
         db.closeConnection();
     }
 
     @Override
     public void update(int id, boolean status) throws SQLException {
-        if (db.checkConnection()) {
-            db.openConnection("user");
-        }
+        checkIfConnection();
         db.updateTodoStatus(id, status);
         db.closeConnection();
     }

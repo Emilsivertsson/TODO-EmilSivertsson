@@ -88,8 +88,11 @@ if you choose back to main, you will get the main menu.
 #### If you choose exit, the application will stop.
 
 ## Credits
-This project has been checked by: 
+This project has been checked by: Wakana and Johan Romeo.
 the following feedback was given:
+Wakana:
+
+Johan: 
 
 
 ChatGPT was used to generate some of the more complex tests.
@@ -107,6 +110,7 @@ these methods are:
 - CreateTables in SQLite class
 - The constructors in several classes
 - The Input class, since it contains a scanner, I therefor used my teachers technic to test FakeInput class instead.
+- I was not able to test some of the Exceptions, in the SQLite class, since i did not know how to test them.
 
 ## CI on Github Actions
 The CI is set up to run the tests on every push to the main branch.
