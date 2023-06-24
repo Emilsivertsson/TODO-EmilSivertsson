@@ -98,6 +98,9 @@ Man skulle kunna säga att det var här jag insåg värdet i en Singelton design
 - Min kontroll av om det finns Users eller Todos, borde legat redan i första menyn, och om det inte fanns <br>
 några att visa så skulle en alternativ meny visas, där användaren bara kan skapa en ny User eller Todo.<br>
 - Jag borde haft en PressTOContinue funktion som jag kunde ha använt i alla utskrifter.<br>
+- Om programet skulle växa och bli större, så skulle jag vilja att man använda något annat än det unika ide´t att söka på, <br>
+till exempel namn eller email. om man då klickade sig fram genom en GUI och inte behövre skriva in id, så skulle det vara <br>
+smidigare. man skulle då slippa att siffrorna med tiden kommer bli väldigt höga.<br>
 
 ### Lämna exempel på lösningar du valde att **inte** implementera
 - Jag övervägde att använda Objekt mer i applikationen. Till ex, att när en Todo ska visas så hämtas informationen och <br>

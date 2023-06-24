@@ -69,6 +69,7 @@ public class Application {
             deleteTodo();
         } else {
             todoFacade.delete(id);
+            System.out.println(Output.todoDeleted());
         }
     }
 
@@ -115,6 +116,7 @@ public class Application {
             title = askForTitle();
             description = askForDescription();
             todoFacade.create(id, title, description);
+            System.out.println(Output.todoCreated());
 
         }
     }
@@ -163,13 +165,14 @@ public class Application {
     }
 
     private void ifTodoExistsUpdateStatus(int id) throws SQLException {
-        if (userFacad.db.checkIfTodoExist(id)) {
+        if (todoFacade.checkTodoExist(id)) {
             System.out.println(Output.noTodo());
             updateTodoStatus();
         } else {
             int statusChoice = input.inputNumber(Output.askForDone());
             boolean status = statusChoice(statusChoice);
             todoFacade.update(id, status);
+            System.out.println(Output.todoStatusUpdated());
         }
     }
 
@@ -196,6 +199,7 @@ public class Application {
         } else {
             String description = input.inputString(Output.askForNewDescription());
             todoFacade.update(id, description);
+            System.out.println(Output.todoDescriptionUpdated());
         }
     }
 
@@ -229,6 +233,7 @@ public class Application {
             deleteUser();
         } else {
             userFacad.delete(id);
+            System.out.println(Output.userDeleted());
         }
     }
 
@@ -267,6 +272,7 @@ public class Application {
         name = askForName();
         age = askForAge();
         userFacad.create(name, age);
+        System.out.println(Output.userCreated());
     }
 
     private int askForAge() {
@@ -319,6 +325,7 @@ public class Application {
         } else {
             age = input.inputNumber(Output.askForNewAge());
             userFacad.update(id, age);
+            System.out.println(Output.userAgeUpdated());
         }
     }
 
@@ -335,6 +342,7 @@ public class Application {
         } else {
             name = input.inputString(Output.askForNewName());
             userFacad.update(id, name);
+            System.out.println(Output.userNameUpdated());
         }
     }
 }

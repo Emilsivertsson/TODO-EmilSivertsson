@@ -135,4 +135,36 @@ public class Output {
     public static String descriptionCantBeEmpty() {
         return "Description can't be empty";
     }
+
+    public static String userNameUpdated() {
+        return "User name updated";
+    }
+
+    public static String userAgeUpdated() {
+        return "User age updated";
+    }
+
+    public static String userCreated() {
+        return "User created";
+    }
+
+    public static String userDeleted() {
+        return "User deleted";
+    }
+
+    public static String todoDescriptionUpdated() {
+        return "Todo description updated";
+    }
+
+    public static String todoStatusUpdated() {
+        return "Todo status updated";
+    }
+
+    public static String todoCreated() {
+        return "Todo created";
+    }
+
+    public static String todoDeleted() {
+        return "Todo deleted";
+    }
 }
