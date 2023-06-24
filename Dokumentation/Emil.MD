@@ -32,7 +32,7 @@ Det här är det jag gjorde till planeringen.<br>
 ![Basic flow](Planing%2FbasicFlow.jpg)
 
 #### Andra Flowcharten
-![basicFlowchart](Planing%2Ffirstflow.jpg)
+![firstFlowchart](Planing%2Ffirstflow.jpg)
 
 #### UML
 ![UML](Planing%2Fuml.jpg)
