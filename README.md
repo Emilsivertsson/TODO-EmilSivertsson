@@ -14,7 +14,8 @@
 - [Installation](#installation)
 - [Packages used](#packages-used)
 - [Usage](#usage)
-- [Credits and professional feedback](#Credit sand professional feedback)
+- [Feedback](#feedback)
+- [Credits](#credits)
 - [License](#license)
 - [Tests](#tests)
 
@@ -88,16 +89,25 @@ if you choose back to main, you will get the main menu.
 
 #### If you choose exit, the application will stop.
 
-## Credits and professional feedback
-This project has been checked by: Wakana and Johan Romeo.
+### Feedback
+This project has been checked by: Wakana Sugihara and Johan Romeo.
 
 The following feedback was given:
+
 #### Wakana:
+She found 3 bugs in the application:
+- One of the menus had a typo that made the application loop.
+- when Updating a Todo status the application crashed, because i had called the wrong method,<br>
+so when trying to update the connection to the database was not open. <br>
+- When creating users or todos the application accepted empty strings, and created a user or todo with an empty name or title.<br>
+all of these bugs have been fixed.
 
-#### Johan: 
+#### Johan:
 
 
-ChatGPT was used to generate some of the more complex tests.
+## Credits
+Co-pilot was present during the making of this application.<br>
+ChatGPT was used to generate some of the more complex tests. <br>
 
 Tutorials used:
 * [Complete JUnit & Mockito Tutorial Course: From Zero to Hero 2022](https://www.youtube.com/watch?v=0ZtU3X9n6tI&list=WL&index=19&t=329s)

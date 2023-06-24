@@ -26,15 +26,20 @@ Min plan är att ha följande:<br>
 - Output klass som hanterar all output till användaren.<br>
 - Application klass som hanterar applikationen.<br>
 
-#### Skisser (exempelvis)
+Det här är det jag gjorde till planeringen.<br>
 
-#### Hur du tänker försöka lösa uppgiften.(exempelvis)
+#### Första Flowcharten
+![Basic flow](Planing%2FbasicFlow.jpg)
 
-#### Pseudokod.(exempelvis)
+#### Andra Flowcharten
+![basicFlowchart](Planing%2Ffirstflow.jpg)
 
-#### Diagram.(exempelvis)
+#### UML
+![UML](Planing%2Fuml.jpg)
 
-### Jira/Trello/Github Project och projekthantering enligt Scrum/Kanban
+#### Board
+![Board](Planing%2Fboard.jpg)
+
 
 ## Arbetet och dess genomförande
 
