@@ -58,8 +58,8 @@ public class Todo {
     }
 
     public void setTitle(String title) {
-        if(title.equals("")){
-            throw new IllegalArgumentException("Title must be at least 1 character long and can not be empty");
+        if(title.isEmpty()){
+            throw new IllegalArgumentException("Title can not be empty");
         }
         this.title = title;
     }

@@ -13,6 +13,13 @@ public class Application {
     UserFacad userFacad = new UserFacad();
     TodoFacade todoFacade = new TodoFacade();
 
+    int id;
+    String name;
+    int age;
+    String title;
+    String description;
+
+
     public Application() throws SQLException {
         mainMenu();
     }
@@ -51,7 +58,7 @@ public class Application {
             todoMeny();
         } else {
             System.out.println(todoFacade.read());
-            int id = input.inputNumber(Output.askForId());
+            id = input.inputNumber(Output.askForId());
             ifTodoExistsDelete(id);
         }
     }
@@ -71,7 +78,7 @@ public class Application {
             todoMeny();
         } else {
             System.out.println(todoFacade.read());
-            int id = input.inputNumber(Output.askForId());
+            id = input.inputNumber(Output.askForId());
             ifTodoExistsShowOneTodo(id);
         }
     }
@@ -96,7 +103,7 @@ public class Application {
 
     private void createTodo() throws SQLException{
         System.out.println(userFacad.read());
-        int id = input.inputNumber(Output.askForId());
+        id = input.inputNumber(Output.askForId());
         ifUserExistsCreateTodo(id);
     }
 
@@ -105,10 +112,29 @@ public class Application {
             System.out.println(Output.noUser());
             createTodo();
         } else {
-            String title = input.inputString(Output.askForTitle());
-            String description = input.inputString(Output.askForDescription());
+            title = askForTitle();
+            description = askForDescription();
             todoFacade.create(id, title, description);
+
         }
+    }
+
+    private String askForTitle() {
+        title = input.inputString(Output.askForTitle());
+        if (title==null || title.isEmpty()){
+            System.out.println(Output.titleCantBeEmpty());
+            askForTitle();
+        }
+        return title;
+    }
+
+    private String askForDescription() {
+        description = input.inputString(Output.askForDescription());
+        if (description==null || description.isEmpty()){
+            System.out.println(Output.descriptionCantBeEmpty());
+            askForDescription();
+        }
+        return description;
     }
 
     private void updateTodo() throws SQLException {
@@ -132,7 +158,7 @@ public class Application {
 
     private void updateTodoStatus() throws SQLException {
         System.out.println(todoFacade.read());
-        int id = input.inputNumber(Output.askForId());
+        id = input.inputNumber(Output.askForId());
         ifTodoExistsUpdateStatus(id);
     }
 
@@ -159,7 +185,7 @@ public class Application {
 
     private void updateTodoDescription() throws SQLException{
         System.out.println(todoFacade.read());
-        int id = input.inputNumber(Output.askForId());
+        id = input.inputNumber(Output.askForId());
         ifTodoExistsUpdateDescription(id);
     }
 
@@ -192,7 +218,7 @@ public class Application {
             userMenu();
         } else {
             System.out.println(userFacad.read());
-            int id = input.inputNumber(Output.askForId());
+            id = input.inputNumber(Output.askForId());
             ifUserExistsDelete(id);
         }
     }
@@ -213,7 +239,7 @@ public class Application {
             userMenu();
         } else {
             System.out.println(userFacad.read());
-            int id = input.inputNumber(Output.askForId());
+            id = input.inputNumber(Output.askForId());
             ifUserExistsShowOneUser(id);
         }
     }
@@ -223,7 +249,7 @@ public class Application {
             System.out.println(Output.noUser());
             showOneUser();
         } else {
-            System.out.println(userFacad.read(id));
+            System.out.println(userFacad.read(id).toString());
         }
     }
 
@@ -238,9 +264,27 @@ public class Application {
 
 
     private void createUser() throws SQLException {
-        String name = input.inputString(Output.askForName());
-        int age = input.inputNumber(Output.askForAge());
+        name = askForName();
+        age = askForAge();
         userFacad.create(name, age);
+    }
+
+    private int askForAge() {
+        age = input.inputNumber(Output.askForAge());
+        if (age <= 0){
+            System.out.println(Output.ageCantBeZero());
+            askForAge();
+        }
+        return age;
+    }
+
+    private String askForName()  {
+        name = input.inputString(Output.askForName());
+        if(name == null || name.isEmpty()){
+            System.out.println(Output.nameCantBeEmptyOrNull());
+            askForName();
+        }
+        return name;
     }
 
     private void updateUser() throws SQLException {
@@ -264,7 +308,7 @@ public class Application {
 
     private void updateUserAge() throws SQLException {
         System.out.println(userFacad.read());
-        int id = input.inputNumber(Output.askForId());
+        id = input.inputNumber(Output.askForId());
         ifUserExistsUpdateAge(id);
     }
 
@@ -273,14 +317,14 @@ public class Application {
             System.out.println(Output.noUser());
             updateUserAge();
         } else {
-            int age = input.inputNumber(Output.askForNewAge());
+            age = input.inputNumber(Output.askForNewAge());
             userFacad.update(id, age);
         }
     }
 
     private void updateUserName() throws SQLException {
         System.out.println(userFacad.read());
-        int id = input.inputNumber(Output.askForId());
+        id = input.inputNumber(Output.askForId());
         ifUserExistsUpdateName(id);
     }
 
@@ -289,7 +333,7 @@ public class Application {
             System.out.println(Output.noUser());
             updateUserName();
         } else {
-            String name = input.inputString(Output.askForNewName());
+            name = input.inputString(Output.askForNewName());
             userFacad.update(id, name);
         }
     }

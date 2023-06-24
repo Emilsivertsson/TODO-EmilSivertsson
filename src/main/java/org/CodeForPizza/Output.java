@@ -119,4 +119,20 @@ public class Output {
     static String noTodo() {
         return "No todo with that id exists";
     }
+
+    public static String nameCantBeEmptyOrNull() {
+        return "Name can't be empty or null";
+    }
+
+    public static String ageCantBeZero() {
+        return "Age can't be 0 or below";
+    }
+
+    public static String titleCantBeEmpty() {
+        return "Title can't be empty";
+    }
+
+    public static String descriptionCantBeEmpty() {
+        return "Description can't be empty";
+    }
 }
