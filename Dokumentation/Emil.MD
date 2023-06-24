@@ -35,7 +35,7 @@ Det här är det jag gjorde till planeringen.<br>
 ![firstFlowchart](Planing%2Ffirstflow.jpg)
 
 #### UML
-![UML](Planing%2Fuml.jpg)
+![UML](Planing%2FUML.jpg)
 
 #### Board
 ![Board](Planing%2Fboard.jpg)
