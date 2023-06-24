@@ -29,10 +29,10 @@ Min plan är att ha följande:<br>
 Det här är det jag gjorde till planeringen.<br>
 
 #### Första Flowcharten
-![Basic flow](Planing%2FbasicFlow.jpg)
+![Basic flow](Planing%2Fbasicflow.jpg)
 
 #### Andra Flowcharten
-![firstFlowchart](Planing%2Ffirstflow.jpg)
+![firstFlowchart](Planing%2FFirstflow.jpg)
 
 #### UML
 ![UML](Planing%2FUML.jpg)
