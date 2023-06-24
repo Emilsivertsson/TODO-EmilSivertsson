@@ -134,8 +134,8 @@ Current scope:     <a href="../../index.html">all classes</a>
 &nbsp;    }
 &nbsp;
 &nbsp;    public void setTitle(String title) {
-<b class="fc">&nbsp;        if(title.equals(&quot;&quot;)){</b>
-<b class="fc">&nbsp;            throw new IllegalArgumentException(&quot;Title must be at least 1 character long and can not be empty&quot;);</b>
+<b class="fc">&nbsp;        if(title.isEmpty()){</b>
+<b class="fc">&nbsp;            throw new IllegalArgumentException(&quot;Title can not be empty&quot;);</b>
 &nbsp;        }
 <b class="fc">&nbsp;        this.title = title;</b>
 &nbsp;    }
@@ -181,7 +181,7 @@ Current scope:     <a href="../../index.html">all classes</a>
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2023-06-23 22:35</div>
+    <div style="float:right;">generated on 2023-06-24 20:41</div>
 </div>
 </body>
 </html>

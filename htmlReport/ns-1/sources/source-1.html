@@ -54,7 +54,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/30)
+    (0/34)
   </span>
 </td>
 <td class="coverageStat">
@@ -62,7 +62,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/151)
+    (0/179)
   </span>
 </td>
 </tr>
@@ -88,6 +88,13 @@ Current scope:     <a href="../../index.html">all classes</a>
 &nbsp;
 <b class="nc">&nbsp;    UserFacad userFacad = new UserFacad();</b>
 <b class="nc">&nbsp;    TodoFacade todoFacade = new TodoFacade();</b>
+&nbsp;
+&nbsp;    int id;
+&nbsp;    String name;
+&nbsp;    int age;
+&nbsp;    String title;
+&nbsp;    String description;
+&nbsp;
 &nbsp;
 <b class="nc">&nbsp;    public Application() throws SQLException {</b>
 <b class="nc">&nbsp;        mainMenu();</b>
@@ -127,7 +134,7 @@ Current scope:     <a href="../../index.html">all classes</a>
 <b class="nc">&nbsp;            todoMeny();</b>
 &nbsp;        } else {
 <b class="nc">&nbsp;            System.out.println(todoFacade.read());</b>
-<b class="nc">&nbsp;            int id = input.inputNumber(Output.askForId());</b>
+<b class="nc">&nbsp;            id = input.inputNumber(Output.askForId());</b>
 <b class="nc">&nbsp;            ifTodoExistsDelete(id);</b>
 &nbsp;        }
 &nbsp;    }
@@ -138,6 +145,7 @@ Current scope:     <a href="../../index.html">all classes</a>
 <b class="nc">&nbsp;            deleteTodo();</b>
 &nbsp;        } else {
 <b class="nc">&nbsp;            todoFacade.delete(id);</b>
+<b class="nc">&nbsp;            System.out.println(Output.todoDeleted());</b>
 &nbsp;        }
 &nbsp;    }
 &nbsp;
@@ -147,7 +155,7 @@ Current scope:     <a href="../../index.html">all classes</a>
 <b class="nc">&nbsp;            todoMeny();</b>
 &nbsp;        } else {
 <b class="nc">&nbsp;            System.out.println(todoFacade.read());</b>
-<b class="nc">&nbsp;            int id = input.inputNumber(Output.askForId());</b>
+<b class="nc">&nbsp;            id = input.inputNumber(Output.askForId());</b>
 <b class="nc">&nbsp;            ifTodoExistsShowOneTodo(id);</b>
 &nbsp;        }
 &nbsp;    }
@@ -172,7 +180,7 @@ Current scope:     <a href="../../index.html">all classes</a>
 &nbsp;
 &nbsp;    private void createTodo() throws SQLException{
 <b class="nc">&nbsp;        System.out.println(userFacad.read());</b>
-<b class="nc">&nbsp;        int id = input.inputNumber(Output.askForId());</b>
+<b class="nc">&nbsp;        id = input.inputNumber(Output.askForId());</b>
 <b class="nc">&nbsp;        ifUserExistsCreateTodo(id);</b>
 &nbsp;    }
 &nbsp;
@@ -181,10 +189,30 @@ Current scope:     <a href="../../index.html">all classes</a>
 <b class="nc">&nbsp;            System.out.println(Output.noUser());</b>
 <b class="nc">&nbsp;            createTodo();</b>
 &nbsp;        } else {
-<b class="nc">&nbsp;            String title = input.inputString(Output.askForTitle());</b>
-<b class="nc">&nbsp;            String description = input.inputString(Output.askForDescription());</b>
+<b class="nc">&nbsp;            title = askForTitle();</b>
+<b class="nc">&nbsp;            description = askForDescription();</b>
 <b class="nc">&nbsp;            todoFacade.create(id, title, description);</b>
+<b class="nc">&nbsp;            System.out.println(Output.todoCreated());</b>
+&nbsp;
 &nbsp;        }
+&nbsp;    }
+&nbsp;
+&nbsp;    private String askForTitle() {
+<b class="nc">&nbsp;        title = input.inputString(Output.askForTitle());</b>
+<b class="nc">&nbsp;        if (title==null || title.isEmpty()){</b>
+<b class="nc">&nbsp;            System.out.println(Output.titleCantBeEmpty());</b>
+<b class="nc">&nbsp;            askForTitle();</b>
+&nbsp;        }
+<b class="nc">&nbsp;        return title;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    private String askForDescription() {
+<b class="nc">&nbsp;        description = input.inputString(Output.askForDescription());</b>
+<b class="nc">&nbsp;        if (description==null || description.isEmpty()){</b>
+<b class="nc">&nbsp;            System.out.println(Output.descriptionCantBeEmpty());</b>
+<b class="nc">&nbsp;            askForDescription();</b>
+&nbsp;        }
+<b class="nc">&nbsp;        return description;</b>
 &nbsp;    }
 &nbsp;
 &nbsp;    private void updateTodo() throws SQLException {
@@ -208,18 +236,19 @@ Current scope:     <a href="../../index.html">all classes</a>
 &nbsp;
 &nbsp;    private void updateTodoStatus() throws SQLException {
 <b class="nc">&nbsp;        System.out.println(todoFacade.read());</b>
-<b class="nc">&nbsp;        int id = input.inputNumber(Output.askForId());</b>
+<b class="nc">&nbsp;        id = input.inputNumber(Output.askForId());</b>
 <b class="nc">&nbsp;        ifTodoExistsUpdateStatus(id);</b>
 &nbsp;    }
 &nbsp;
 &nbsp;    private void ifTodoExistsUpdateStatus(int id) throws SQLException {
-<b class="nc">&nbsp;        if (userFacad.db.checkIfTodoExist(id)) {</b>
+<b class="nc">&nbsp;        if (todoFacade.checkTodoExist(id)) {</b>
 <b class="nc">&nbsp;            System.out.println(Output.noTodo());</b>
 <b class="nc">&nbsp;            updateTodoStatus();</b>
 &nbsp;        } else {
 <b class="nc">&nbsp;            int statusChoice = input.inputNumber(Output.askForDone());</b>
 <b class="nc">&nbsp;            boolean status = statusChoice(statusChoice);</b>
 <b class="nc">&nbsp;            todoFacade.update(id, status);</b>
+<b class="nc">&nbsp;            System.out.println(Output.todoStatusUpdated());</b>
 &nbsp;        }
 &nbsp;    }
 &nbsp;
@@ -235,7 +264,7 @@ Current scope:     <a href="../../index.html">all classes</a>
 &nbsp;
 &nbsp;    private void updateTodoDescription() throws SQLException{
 <b class="nc">&nbsp;        System.out.println(todoFacade.read());</b>
-<b class="nc">&nbsp;        int id = input.inputNumber(Output.askForId());</b>
+<b class="nc">&nbsp;        id = input.inputNumber(Output.askForId());</b>
 <b class="nc">&nbsp;        ifTodoExistsUpdateDescription(id);</b>
 &nbsp;    }
 &nbsp;
@@ -246,6 +275,7 @@ Current scope:     <a href="../../index.html">all classes</a>
 &nbsp;        } else {
 <b class="nc">&nbsp;            String description = input.inputString(Output.askForNewDescription());</b>
 <b class="nc">&nbsp;            todoFacade.update(id, description);</b>
+<b class="nc">&nbsp;            System.out.println(Output.todoDescriptionUpdated());</b>
 &nbsp;        }
 &nbsp;    }
 &nbsp;
@@ -268,7 +298,7 @@ Current scope:     <a href="../../index.html">all classes</a>
 <b class="nc">&nbsp;            userMenu();</b>
 &nbsp;        } else {
 <b class="nc">&nbsp;            System.out.println(userFacad.read());</b>
-<b class="nc">&nbsp;            int id = input.inputNumber(Output.askForId());</b>
+<b class="nc">&nbsp;            id = input.inputNumber(Output.askForId());</b>
 <b class="nc">&nbsp;            ifUserExistsDelete(id);</b>
 &nbsp;        }
 &nbsp;    }
@@ -279,6 +309,7 @@ Current scope:     <a href="../../index.html">all classes</a>
 <b class="nc">&nbsp;            deleteUser();</b>
 &nbsp;        } else {
 <b class="nc">&nbsp;            userFacad.delete(id);</b>
+<b class="nc">&nbsp;            System.out.println(Output.userDeleted());</b>
 &nbsp;        }
 &nbsp;    }
 &nbsp;
@@ -289,7 +320,7 @@ Current scope:     <a href="../../index.html">all classes</a>
 <b class="nc">&nbsp;            userMenu();</b>
 &nbsp;        } else {
 <b class="nc">&nbsp;            System.out.println(userFacad.read());</b>
-<b class="nc">&nbsp;            int id = input.inputNumber(Output.askForId());</b>
+<b class="nc">&nbsp;            id = input.inputNumber(Output.askForId());</b>
 <b class="nc">&nbsp;            ifUserExistsShowOneUser(id);</b>
 &nbsp;        }
 &nbsp;    }
@@ -299,7 +330,7 @@ Current scope:     <a href="../../index.html">all classes</a>
 <b class="nc">&nbsp;            System.out.println(Output.noUser());</b>
 <b class="nc">&nbsp;            showOneUser();</b>
 &nbsp;        } else {
-<b class="nc">&nbsp;            System.out.println(userFacad.read(id));</b>
+<b class="nc">&nbsp;            System.out.println(userFacad.read(id).toString());</b>
 &nbsp;        }
 &nbsp;    }
 &nbsp;
@@ -314,9 +345,28 @@ Current scope:     <a href="../../index.html">all classes</a>
 &nbsp;
 &nbsp;
 &nbsp;    private void createUser() throws SQLException {
-<b class="nc">&nbsp;        String name = input.inputString(Output.askForName());</b>
-<b class="nc">&nbsp;        int age = input.inputNumber(Output.askForAge());</b>
+<b class="nc">&nbsp;        name = askForName();</b>
+<b class="nc">&nbsp;        age = askForAge();</b>
 <b class="nc">&nbsp;        userFacad.create(name, age);</b>
+<b class="nc">&nbsp;        System.out.println(Output.userCreated());</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    private int askForAge() {
+<b class="nc">&nbsp;        age = input.inputNumber(Output.askForAge());</b>
+<b class="nc">&nbsp;        if (age &lt;= 0){</b>
+<b class="nc">&nbsp;            System.out.println(Output.ageCantBeZero());</b>
+<b class="nc">&nbsp;            askForAge();</b>
+&nbsp;        }
+<b class="nc">&nbsp;        return age;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    private String askForName()  {
+<b class="nc">&nbsp;        name = input.inputString(Output.askForName());</b>
+<b class="nc">&nbsp;        if(name == null || name.isEmpty()){</b>
+<b class="nc">&nbsp;            System.out.println(Output.nameCantBeEmptyOrNull());</b>
+<b class="nc">&nbsp;            askForName();</b>
+&nbsp;        }
+<b class="nc">&nbsp;        return name;</b>
 &nbsp;    }
 &nbsp;
 &nbsp;    private void updateUser() throws SQLException {
@@ -340,7 +390,7 @@ Current scope:     <a href="../../index.html">all classes</a>
 &nbsp;
 &nbsp;    private void updateUserAge() throws SQLException {
 <b class="nc">&nbsp;        System.out.println(userFacad.read());</b>
-<b class="nc">&nbsp;        int id = input.inputNumber(Output.askForId());</b>
+<b class="nc">&nbsp;        id = input.inputNumber(Output.askForId());</b>
 <b class="nc">&nbsp;        ifUserExistsUpdateAge(id);</b>
 &nbsp;    }
 &nbsp;
@@ -349,14 +399,15 @@ Current scope:     <a href="../../index.html">all classes</a>
 <b class="nc">&nbsp;            System.out.println(Output.noUser());</b>
 <b class="nc">&nbsp;            updateUserAge();</b>
 &nbsp;        } else {
-<b class="nc">&nbsp;            int age = input.inputNumber(Output.askForNewAge());</b>
+<b class="nc">&nbsp;            age = input.inputNumber(Output.askForNewAge());</b>
 <b class="nc">&nbsp;            userFacad.update(id, age);</b>
+<b class="nc">&nbsp;            System.out.println(Output.userAgeUpdated());</b>
 &nbsp;        }
 &nbsp;    }
 &nbsp;
 &nbsp;    private void updateUserName() throws SQLException {
 <b class="nc">&nbsp;        System.out.println(userFacad.read());</b>
-<b class="nc">&nbsp;        int id = input.inputNumber(Output.askForId());</b>
+<b class="nc">&nbsp;        id = input.inputNumber(Output.askForId());</b>
 <b class="nc">&nbsp;        ifUserExistsUpdateName(id);</b>
 &nbsp;    }
 &nbsp;
@@ -365,8 +416,9 @@ Current scope:     <a href="../../index.html">all classes</a>
 <b class="nc">&nbsp;            System.out.println(Output.noUser());</b>
 <b class="nc">&nbsp;            updateUserName();</b>
 &nbsp;        } else {
-<b class="nc">&nbsp;            String name = input.inputString(Output.askForNewName());</b>
+<b class="nc">&nbsp;            name = input.inputString(Output.askForNewName());</b>
 <b class="nc">&nbsp;            userFacad.update(id, name);</b>
+<b class="nc">&nbsp;            System.out.println(Output.userNameUpdated());</b>
 &nbsp;        }
 &nbsp;    }
 &nbsp;}
@@ -394,7 +446,7 @@ Current scope:     <a href="../../index.html">all classes</a>
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2023-06-23 22:35</div>
+    <div style="float:right;">generated on 2023-06-24 20:41</div>
 </div>
 </body>
 </html>

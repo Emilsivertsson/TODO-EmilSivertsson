@@ -118,10 +118,11 @@ public class SQLite implements SQLInterface, ConnectionInterface {
     @Override
     public ArrayList<Todo> readOneUser(int id) throws SQLException {
         try{
-            PreparedStatement stmt = conn.prepareStatement("SELECT users.name, users.age, todo.id, todo.title, todo.text, todo.done\n" +
-                    "                FROM users\n" +
-                    "                inner join todo on users.id = todo.assignedTo\n" +
-                    "                WHERE users.id = ?");
+            PreparedStatement stmt = conn.prepareStatement("""
+                    SELECT users.name, users.age, todo.id, todo.title, todo.text, todo.done
+                                    FROM users
+                                    inner join todo on users.id = todo.assignedTo
+                                    WHERE users.id = ?""");
 
             stmt.setInt(1, id);
             ResultSet rs = stmt.executeQuery();

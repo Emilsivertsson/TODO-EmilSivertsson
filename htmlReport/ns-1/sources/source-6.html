@@ -194,16 +194,17 @@ Current scope:     <a href="../../index.html">all classes</a>
 &nbsp;    @Override
 &nbsp;    public ArrayList&lt;Todo&gt; readOneUser(int id) throws SQLException {
 &nbsp;        try{
-<b class="fc">&nbsp;            PreparedStatement stmt = conn.prepareStatement(&quot;SELECT users.name, users.age, todo.id, todo.title, todo.text, todo.done\n&quot; +</b>
-&nbsp;                    &quot;                FROM users\n&quot; +
-&nbsp;                    &quot;                inner join todo on users.id = todo.assignedTo\n&quot; +
-&nbsp;                    &quot;                WHERE users.id = ?&quot;);
-&nbsp;
+<b class="fc">&nbsp;            PreparedStatement stmt = conn.prepareStatement(&quot;&quot;&quot;</b>
+&nbsp;                    SELECT users.name, users.age, todo.id, todo.title, todo.text, todo.done
+&nbsp;                                    FROM users
+&nbsp;                                    inner join todo on users.id = todo.assignedTo
+&nbsp;                                    WHERE users.id = ?&quot;&quot;&quot;);
+<b class="fc">&nbsp;</b>
 <b class="fc">&nbsp;            stmt.setInt(1, id);</b>
 <b class="fc">&nbsp;            ResultSet rs = stmt.executeQuery();</b>
-<b class="fc">&nbsp;            ArrayList&lt;Todo&gt; todos = new ArrayList&lt;&gt;();</b>
+&nbsp;            ArrayList&lt;Todo&gt; todos = new ArrayList&lt;&gt;();
 &nbsp;
-&nbsp;
+<b class="fc">&nbsp;</b>
 <b class="fc">&nbsp;            while (rs.next()) {</b>
 <b class="fc">&nbsp;                Todo todo = new Todo();</b>
 <b class="fc">&nbsp;                todo.setId(rs.getInt(&quot;id&quot;));</b>
@@ -214,180 +215,180 @@ Current scope:     <a href="../../index.html">all classes</a>
 <b class="fc">&nbsp;            }</b>
 <b class="fc">&nbsp;            return todos;</b>
 <b class="fc">&nbsp;        } catch (SQLException e){</b>
-<b class="fc">&nbsp;            throw new SQLException(e.getMessage());</b>
+&nbsp;            throw new SQLException(e.getMessage());
 &nbsp;        }
 &nbsp;    }
 &nbsp;
 &nbsp;    @Override
 &nbsp;    public String readAllUsers() throws SQLException {
-&nbsp;        try{
+<b class="fc">&nbsp;        try{</b>
 <b class="fc">&nbsp;            PreparedStatement stmt = conn.prepareStatement(&quot;Select * from users&quot;);</b>
 <b class="fc">&nbsp;            ResultSet rs = stmt.executeQuery();</b>
 <b class="fc">&nbsp;            String result = &quot;&quot;;</b>
 <b class="fc">&nbsp;            while (rs.next()){</b>
 <b class="fc">&nbsp;                result += rs.getInt(&quot;id&quot;)</b>
 <b class="fc">&nbsp;                        + &quot; &quot; + rs.getString(&quot;name&quot;)</b>
-<b class="fc">&nbsp;                        + &quot; &quot; + rs.getInt(&quot;age&quot;) + &quot;\n&quot;</b>
+&nbsp;                        + &quot; &quot; + rs.getInt(&quot;age&quot;) + &quot;\n&quot;
 &nbsp;                        +&quot;-----------------&quot; + &quot;\n&quot;;
-&nbsp;            }
+<b class="fc">&nbsp;            }</b>
 <b class="fc">&nbsp;            return result;</b>
+<b class="fc">&nbsp;        }catch (SQLException e){</b>
+&nbsp;            throw new SQLException(e.getMessage());
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public void deleteUser(int id) throws SQLException {
+<b class="fc">&nbsp;        try{</b>
+<b class="fc">&nbsp;            PreparedStatement deleteTodosStmt = conn.prepareStatement(&quot;DELETE FROM todo WHERE assignedTo = ?&quot;);</b>
+<b class="fc">&nbsp;            deleteTodosStmt.setInt(1, id);</b>
+&nbsp;            deleteTodosStmt.executeUpdate();
+<b class="fc">&nbsp;</b>
+<b class="fc">&nbsp;            PreparedStatement stmt = conn.prepareStatement(&quot;Delete from users where id = ?&quot;);</b>
+<b class="fc">&nbsp;            stmt.setInt(1, id);</b>
+<b class="fc">&nbsp;            stmt.executeUpdate();</b>
 <b class="fc">&nbsp;        }catch (SQLException e){</b>
 <b class="fc">&nbsp;            throw new SQLException(e.getMessage());</b>
 &nbsp;        }
 &nbsp;    }
 &nbsp;
 &nbsp;    @Override
-&nbsp;    public void deleteUser(int id) throws SQLException {
-&nbsp;        try{
-<b class="fc">&nbsp;            PreparedStatement deleteTodosStmt = conn.prepareStatement(&quot;DELETE FROM todo WHERE assignedTo = ?&quot;);</b>
-<b class="fc">&nbsp;            deleteTodosStmt.setInt(1, id);</b>
-<b class="fc">&nbsp;            deleteTodosStmt.executeUpdate();</b>
-&nbsp;
-<b class="fc">&nbsp;            PreparedStatement stmt = conn.prepareStatement(&quot;Delete from users where id = ?&quot;);</b>
-<b class="fc">&nbsp;            stmt.setInt(1, id);</b>
-<b class="fc">&nbsp;            stmt.executeUpdate();</b>
-<b class="fc">&nbsp;        }catch (SQLException e){</b>
-<b class="fc">&nbsp;            throw new SQLException(e.getMessage());</b>
-<b class="fc">&nbsp;        }</b>
-&nbsp;    }
-&nbsp;
-&nbsp;    @Override
 &nbsp;    public void updateUserAge(int id, int age) throws SQLException {
-&nbsp;        try{
+<b class="fc">&nbsp;        try{</b>
 <b class="fc">&nbsp;            PreparedStatement stmt = conn.prepareStatement(&quot;Update users set age = ? where id = ?&quot;);</b>
 <b class="fc">&nbsp;            stmt.setInt(1, age);</b>
 <b class="fc">&nbsp;            stmt.setInt(2, id);</b>
 <b class="fc">&nbsp;            stmt.executeUpdate();</b>
 <b class="fc">&nbsp;        }catch (SQLException e){</b>
 <b class="fc">&nbsp;            throw new SQLException(e.getMessage());</b>
-<b class="fc">&nbsp;        }</b>
+&nbsp;        }
 &nbsp;    }
 &nbsp;
 &nbsp;    @Override
 &nbsp;    public void updateUserName(int id, String name) throws SQLException {
-&nbsp;        try{
+<b class="fc">&nbsp;        try{</b>
 <b class="fc">&nbsp;            PreparedStatement stmt = conn.prepareStatement(&quot;Update users set name = ? where id = ?&quot;);</b>
 <b class="fc">&nbsp;            stmt.setString(1, name);</b>
 <b class="fc">&nbsp;            stmt.setInt(2, id);</b>
 <b class="fc">&nbsp;            stmt.executeUpdate();</b>
 <b class="fc">&nbsp;        }catch (SQLException e){</b>
 <b class="fc">&nbsp;            throw new SQLException(e.getMessage());</b>
-<b class="fc">&nbsp;        }</b>
+&nbsp;        }
 &nbsp;    }
 &nbsp;
 &nbsp;    @Override
 &nbsp;    public boolean checkIfTodoExist(int id) throws SQLException {
-&nbsp;        try {
+<b class="fc">&nbsp;        try {</b>
 <b class="fc">&nbsp;            PreparedStatement stmt = conn.prepareStatement(&quot;SELECT COUNT(*) AS count FROM todo WHERE id = ?&quot;);</b>
 <b class="fc">&nbsp;            stmt.setInt(1, id);</b>
-<b class="fc">&nbsp;            ResultSet rs = stmt.executeQuery();</b>
-&nbsp;
+&nbsp;            ResultSet rs = stmt.executeQuery();
+<b class="fc">&nbsp;</b>
 <b class="fc">&nbsp;            if (rs.next()) {</b>
 <b class="fc">&nbsp;                int count = rs.getInt(&quot;count&quot;);</b>
-<b class="fc">&nbsp;                return count &lt;= 0;</b>
-&nbsp;            }
+&nbsp;                return count &lt;= 0;
+<b class="nc">&nbsp;            }</b>
 <b class="nc">&nbsp;        } catch (SQLException e) {</b>
 <b class="nc">&nbsp;            throw new SQLException(e.getMessage());</b>
-<b class="nc">&nbsp;        }</b>
-&nbsp;
-<b class="nc">&nbsp;        return true;</b>
+&nbsp;        }
+<b class="nc">&nbsp;</b>
+&nbsp;        return true;
 &nbsp;    }
 &nbsp;
 &nbsp;    @Override
 &nbsp;    public boolean checkTodosExist() throws SQLException {
-&nbsp;        try {
+<b class="fc">&nbsp;        try {</b>
 <b class="fc">&nbsp;            PreparedStatement stmt = conn.prepareStatement(&quot;SELECT COUNT(*) AS count FROM todo&quot;);</b>
-<b class="fc">&nbsp;            ResultSet rs = stmt.executeQuery();</b>
-&nbsp;
+&nbsp;            ResultSet rs = stmt.executeQuery();
+<b class="fc">&nbsp;</b>
 <b class="fc">&nbsp;            if (rs.next()) {</b>
 <b class="fc">&nbsp;                int count = rs.getInt(&quot;count&quot;);</b>
-<b class="fc">&nbsp;                return count &lt;= 0;</b>
-&nbsp;            }
+&nbsp;                return count &lt;= 0;
+<b class="nc">&nbsp;            }</b>
 <b class="nc">&nbsp;        } catch (SQLException e) {</b>
 <b class="nc">&nbsp;            throw new SQLException(e.getMessage());</b>
 <b class="nc">&nbsp;        }</b>
-<b class="nc">&nbsp;        return true;</b>
+&nbsp;        return true;
 &nbsp;    }
 &nbsp;
 &nbsp;    @Override
 &nbsp;    public void createTodo(Todo todo) throws SQLException {
-&nbsp;        try {
+<b class="fc">&nbsp;        try {</b>
 <b class="fc">&nbsp;            PreparedStatement stmt = conn.prepareStatement(&quot;Insert into todo (title, text, done, assignedTo) values (?,?,?,?)&quot;);</b>
 <b class="fc">&nbsp;            stmt.setString(1, todo.getTitle());</b>
 <b class="fc">&nbsp;            stmt.setString(2, todo.getText());</b>
 <b class="fc">&nbsp;            stmt.setBoolean(3, todo.isDone());</b>
 <b class="fc">&nbsp;            stmt.setInt(4, todo.getAssignedTo());</b>
-<b class="fc">&nbsp;            stmt.executeUpdate();</b>
+<b class="nc">&nbsp;            stmt.executeUpdate();</b>
 <b class="nc">&nbsp;        } catch (SQLException e) {</b>
-<b class="nc">&nbsp;            throw new SQLException(e.getMessage());</b>
-<b class="fc">&nbsp;        }</b>
+<b class="fc">&nbsp;            throw new SQLException(e.getMessage());</b>
+&nbsp;        }
 &nbsp;    }
 &nbsp;
 &nbsp;    @Override
 &nbsp;    public String readOneTodo(int id) throws SQLException {
-&nbsp;        try{
+<b class="fc">&nbsp;        try{</b>
 <b class="fc">&nbsp;            PreparedStatement stmt = conn.prepareStatement(&quot;Select title,text,done, assignedTo from todo where id = ?&quot;);</b>
 <b class="fc">&nbsp;            stmt.setInt(1, id);</b>
 <b class="fc">&nbsp;            ResultSet rs = stmt.executeQuery();</b>
 <b class="fc">&nbsp;            return  &quot;Title: &quot; +rs.getString(&quot;title&quot;) + &quot;\n&quot;</b>
 <b class="fc">&nbsp;                    + &quot;Description: &quot; +rs.getString(&quot;text&quot;) + &quot;\n&quot;</b>
 <b class="fc">&nbsp;                    + &quot;Completed: &quot; + rs.getBoolean(&quot;done&quot;) + &quot;\n&quot;</b>
-<b class="fc">&nbsp;                    + &quot;Assigned to: &quot; + rs.getInt(&quot;assignedTo&quot;);</b>
+<b class="nc">&nbsp;                    + &quot;Assigned to: &quot; + rs.getInt(&quot;assignedTo&quot;);</b>
 <b class="nc">&nbsp;        } catch (SQLException e){</b>
-<b class="nc">&nbsp;            throw new SQLException(e.getMessage());</b>
+&nbsp;            throw new SQLException(e.getMessage());
 &nbsp;        }
 &nbsp;    }
 &nbsp;
 &nbsp;    @Override
 &nbsp;    public String readAllTodos() throws SQLException {
-&nbsp;        try {
+<b class="fc">&nbsp;        try {</b>
 <b class="fc">&nbsp;            PreparedStatement stmt = conn.prepareStatement(&quot;Select id,title from todo&quot;);</b>
 <b class="fc">&nbsp;            ResultSet rs = stmt.executeQuery();</b>
 <b class="fc">&nbsp;            String result = &quot;&quot;;</b>
 <b class="fc">&nbsp;            while (rs.next()) {</b>
 <b class="fc">&nbsp;                result += &quot;Id: &quot;+rs.getInt(&quot;id&quot;) + &quot;\n&quot;</b>
-<b class="fc">&nbsp;                        + &quot;Title: &quot; + rs.getString(&quot;title&quot;) + &quot;\n&quot;</b>
+&nbsp;                        + &quot;Title: &quot; + rs.getString(&quot;title&quot;) + &quot;\n&quot;
 &nbsp;                        +&quot;-----------------&quot; + &quot;\n&quot;;
-&nbsp;            }
-<b class="fc">&nbsp;            return result;</b>
+<b class="fc">&nbsp;            }</b>
+<b class="nc">&nbsp;            return result;</b>
 <b class="nc">&nbsp;        } catch (SQLException e) {</b>
-<b class="nc">&nbsp;            throw new SQLException(e.getMessage());</b>
+&nbsp;            throw new SQLException(e.getMessage());
 &nbsp;        }
 &nbsp;    }
 &nbsp;
 &nbsp;    @Override
 &nbsp;    public void deleteTodo(int id) throws SQLException {
-&nbsp;        try {
+<b class="fc">&nbsp;        try {</b>
 <b class="fc">&nbsp;            PreparedStatement stmt = conn.prepareStatement(&quot;Delete from todo where id = ?&quot;);</b>
 <b class="fc">&nbsp;            stmt.setInt(1, id);</b>
 <b class="fc">&nbsp;            stmt.executeUpdate();</b>
 <b class="fc">&nbsp;        } catch (SQLException e) {</b>
 <b class="fc">&nbsp;            throw new SQLException(e.getMessage());</b>
-<b class="fc">&nbsp;        }</b>
+&nbsp;        }
 &nbsp;    }
 &nbsp;
 &nbsp;    @Override
 &nbsp;    public void updateTodoDescription(int id, String description) throws SQLException {
-&nbsp;        try {
+<b class="fc">&nbsp;        try {</b>
 <b class="fc">&nbsp;            PreparedStatement stmt = conn.prepareStatement(&quot;Update todo set text = ? where id = ?&quot;);</b>
 <b class="fc">&nbsp;            stmt.setString(1, description);</b>
 <b class="fc">&nbsp;            stmt.setInt(2, id);</b>
 <b class="fc">&nbsp;            stmt.executeUpdate();</b>
 <b class="fc">&nbsp;        } catch (SQLException e) {</b>
 <b class="fc">&nbsp;            throw new SQLException(e.getMessage());</b>
-<b class="fc">&nbsp;        }</b>
+&nbsp;        }
 &nbsp;    }
 &nbsp;
 &nbsp;    @Override
 &nbsp;    public void updateTodoStatus(int id, boolean status) throws SQLException {
-&nbsp;        try {
+<b class="fc">&nbsp;        try {</b>
 <b class="fc">&nbsp;            PreparedStatement stmt = conn.prepareStatement(&quot;Update todo set done = ? where id = ?&quot;);</b>
 <b class="fc">&nbsp;            stmt.setBoolean(1, status);</b>
 <b class="fc">&nbsp;            stmt.setInt(2, id);</b>
 <b class="fc">&nbsp;            stmt.executeUpdate();</b>
 <b class="fc">&nbsp;        } catch (SQLException e) {</b>
 <b class="fc">&nbsp;            throw new SQLException(e.getMessage());</b>
-<b class="fc">&nbsp;        }</b>
+&nbsp;        }
 &nbsp;    }
 &nbsp;}
 &nbsp;
@@ -414,7 +415,7 @@ Current scope:     <a href="../../index.html">all classes</a>
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2023-06-23 22:35</div>
+    <div style="float:right;">generated on 2023-06-24 20:41</div>
 </div>
 </body>
 </html>

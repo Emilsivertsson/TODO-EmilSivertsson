@@ -120,51 +120,51 @@ public class Output {
         return "No todo with that id exists";
     }
 
-    public static String nameCantBeEmptyOrNull() {
+    static String nameCantBeEmptyOrNull() {
         return "Name can't be empty or null";
     }
 
-    public static String ageCantBeZero() {
+    static String ageCantBeZero() {
         return "Age can't be 0 or below";
     }
 
-    public static String titleCantBeEmpty() {
+    static String titleCantBeEmpty() {
         return "Title can't be empty";
     }
 
-    public static String descriptionCantBeEmpty() {
+    static String descriptionCantBeEmpty() {
         return "Description can't be empty";
     }
 
-    public static String userNameUpdated() {
+    static String userNameUpdated() {
         return "User name updated";
     }
 
-    public static String userAgeUpdated() {
+    static String userAgeUpdated() {
         return "User age updated";
     }
 
-    public static String userCreated() {
+    static String userCreated() {
         return "User created";
     }
 
-    public static String userDeleted() {
+    static String userDeleted() {
         return "User deleted";
     }
 
-    public static String todoDescriptionUpdated() {
+    static String todoDescriptionUpdated() {
         return "Todo description updated";
     }
 
-    public static String todoStatusUpdated() {
+    static String todoStatusUpdated() {
         return "Todo status updated";
     }
 
-    public static String todoCreated() {
+    static String todoCreated() {
         return "Todo created";
     }
 
-    public static String todoDeleted() {
+    static String todoDeleted() {
         return "Todo deleted";
     }
 }

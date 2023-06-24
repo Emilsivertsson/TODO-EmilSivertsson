@@ -306,4 +306,160 @@ class OutputTest {
         // Assert
         assertEquals(expected, actual);
     }
+
+    @Test
+    @DisplayName("Should pass if name cant be empty or null is correct")
+    void nameCantBeEmptyOrNull() {
+        // Arrange
+        String expected = "Name can't be empty or null";
+
+        // Act
+        String actual = Output.nameCantBeEmptyOrNull();
+
+        // Assert
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    @DisplayName("Should pass if age cant be 0 or below is correct")
+    void ageCantBeZero() {
+        // Arrange
+        String expected = "Age can't be 0 or below";
+
+        // Act
+        String actual = Output.ageCantBeZero();
+
+        // Assert
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    @DisplayName("Should pass if the title cant be empty is correct")
+    void titleCantBeEmpty() {
+        // Arrange
+        String expected = "Title can't be empty";
+
+        // Act
+        String actual = Output.titleCantBeEmpty();
+
+        // Assert
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    @DisplayName("Should pass if the description cant be empty is correct")
+    void descriptionCantBeEmpty() {
+        // Arrange
+        String expected = "Description can't be empty";
+
+        // Act
+        String actual = Output.descriptionCantBeEmpty();
+
+        // Assert
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    @DisplayName("Should pass if the username updated is correct")
+    void userNameUpdated() {
+        // Arrange
+        String expected = "User name updated";
+
+        // Act
+        String actual = Output.userNameUpdated();
+
+        // Assert
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    @DisplayName("Should pass if the user age updated is correct")
+    void userAgeUpdated() {
+        // Arrange
+        String expected = "User age updated";
+
+        // Act
+        String actual = Output.userAgeUpdated();
+
+        // Assert
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    @DisplayName("Should pass if the user created is correct")
+    void userCreated() {
+        // Arrange
+        String expected = "User created";
+
+        // Act
+        String actual = Output.userCreated();
+
+        // Assert
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    @DisplayName("Should pass if the user deleted is correct")
+    void userDeleted() {
+        // Arrange
+        String expected = "User deleted";
+
+        // Act
+        String actual = Output.userDeleted();
+
+        // Assert
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    @DisplayName("Should pass if the todo description updated is correct")
+    void todoDescriptionUpdated() {
+        // Arrange
+        String expected = "Todo description updated";
+
+        // Act
+        String actual = Output.todoDescriptionUpdated();
+
+        // Assert
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    @DisplayName("Should pass if the todo status updated is correct")
+    void todoStatusUpdated() {
+        // Arrange
+        String expected = "Todo status updated";
+
+        // Act
+        String actual = Output.todoStatusUpdated();
+
+        // Assert
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    @DisplayName("Should pass if the todo created is correct")
+    void todoCreated() {
+        // Arrange
+        String expected = "Todo created";
+
+        // Act
+        String actual = Output.todoCreated();
+
+        // Assert
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    @DisplayName("Should pass if the todo deleted is correct")
+    void todoDeleted() {
+        // Arrange
+        String expected = "Todo deleted";
+
+        // Act
+        String actual = Output.todoDeleted();
+
+        // Assert
+        assertEquals(expected, actual);
+    }
 }
