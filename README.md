@@ -90,9 +90,12 @@ if you choose back to main, you will get the main menu.
 #### If you choose exit, the application will stop.
 
 ### Feedback
-This project has been checked by: <br>
+This project has been tested and checked by: <br>
 Wakana Sugihara in an early stage. <br>
 Johan Romeo in final stage. <br>
+
+Both has given me feedback on what to improve and what to change and approved it afterwards.
+
 
 
 ## Credits
