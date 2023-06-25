@@ -90,19 +90,9 @@ if you choose back to main, you will get the main menu.
 #### If you choose exit, the application will stop.
 
 ### Feedback
-This project has been checked by: Wakana Sugihara and Johan Romeo.
-
-The following feedback was given:
-
-#### Wakana:
-She found 3 bugs in the application:
-- One of the menus had a typo that made the application loop.
-- when Updating a Todo status the application crashed, because i had called the wrong method,<br>
-so when trying to update the connection to the database was not open. <br>
-- When creating users or todos the application accepted empty strings, and created a user or todo with an empty name or title.<br>
-all of these bugs have been fixed.
-
-#### Johan:
+This project has been checked by: <br>
+Wakana Sugihara in an early stage. <br>
+Johan Romeo in final stage. <br>
 
 
 ## Credits

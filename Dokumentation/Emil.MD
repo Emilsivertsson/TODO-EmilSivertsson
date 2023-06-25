@@ -71,7 +71,7 @@ Fruktansvärt roligt projekt. Jag har lärt mig om CI, och det är verkligen nå
 
 ### Vad gick dåligt
 Inget gick direkt dåligt, Det blev bara mycket frustration när jag inte kunde få till min CI och databas-tester.<br>
-Jag är så klart en Completionist som gärna vill testa alla möjliga utfall.<br>
+Jag är såklart en Completionist som gärna vill testa alla delar.<br>
 Vilket gör att jag blir väldigt frustrated när jag inte kan få till det.<br>
 
 ### Vad har du lärt dig
