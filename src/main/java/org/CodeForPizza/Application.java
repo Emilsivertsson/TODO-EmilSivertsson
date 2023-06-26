@@ -57,6 +57,7 @@ public class Application {
             System.out.println(Output.noTodos());
             todoMeny();
         } else {
+            System.out.println(Output.deletewhich());
             System.out.println(todoFacade.read());
             id = input.inputNumber(Output.askForId());
             ifTodoExistsDelete(id);
@@ -78,6 +79,7 @@ public class Application {
             System.out.println(Output.noTodos());
             todoMeny();
         } else {
+            System.out.println(Output.chooseTodo());
             System.out.println(todoFacade.read());
             id = input.inputNumber(Output.askForId());
             ifTodoExistsShowOneTodo(id);
@@ -98,6 +100,7 @@ public class Application {
             System.out.println(Output.noTodos());
             todoMeny();
         } else {
+            System.out.println(Output.allTodos());
             System.out.println(todoFacade.read());
         }
     }
@@ -159,6 +162,7 @@ public class Application {
     }
 
     private void updateTodoStatus() throws SQLException {
+        System.out.println(Output.whichTodoUpdate());
         System.out.println(todoFacade.read());
         id = input.inputNumber(Output.askForId());
         ifTodoExistsUpdateStatus(id);
@@ -187,6 +191,7 @@ public class Application {
     }
 
     private void updateTodoDescription() throws SQLException{
+        System.out.println(Output.whichTodoUpdate());
         System.out.println(todoFacade.read());
         id = input.inputNumber(Output.askForId());
         ifTodoExistsUpdateDescription(id);
@@ -221,6 +226,7 @@ public class Application {
             System.out.println(Output.noUsers());
             userMenu();
         } else {
+            System.out.println(Output.deleteWho());
             System.out.println(userFacad.read());
             id = input.inputNumber(Output.askForId());
             ifUserExistsDelete(id);
@@ -243,6 +249,7 @@ public class Application {
             System.out.println(Output.noUsers());
             userMenu();
         } else {
+            System.out.println(Output.chooseUser());
             System.out.println(userFacad.read());
             id = input.inputNumber(Output.askForId());
             ifUserExistsShowOneUser(id);
@@ -263,6 +270,7 @@ public class Application {
             System.out.println(Output.noUsers());
             userMenu();
         } else {
+            System.out.println(Output.allUsers());
             System.out.println(userFacad.read());
         }
     }
@@ -313,6 +321,7 @@ public class Application {
     }
 
     private void updateUserAge() throws SQLException {
+        System.out.println(Output.updateWho());
         System.out.println(userFacad.read());
         id = input.inputNumber(Output.askForId());
         ifUserExistsUpdateAge(id);
@@ -330,6 +339,7 @@ public class Application {
     }
 
     private void updateUserName() throws SQLException {
+        System.out.println(Output.updateWho());
         System.out.println(userFacad.read());
         id = input.inputNumber(Output.askForId());
         ifUserExistsUpdateName(id);

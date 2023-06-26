@@ -40,7 +40,7 @@ public class Output {
 
     static String updateUser(){
         return """
-                Please choose an option:
+                Please choose what to update:
                 1. Update name
                 2. Update age
                 3. Back to user menu
@@ -49,7 +49,7 @@ public class Output {
 
     static String updateTodo(){
         return """
-                Please choose an option:
+                Please choose what to update:
                 1. Update description
                 2. Update done
                 3. Back to todo menu
@@ -89,7 +89,7 @@ public class Output {
     }
 
     static String invalidInput() {
-        return "Please input a number";
+        return "Please input a number\n";
     }
 
     static String getExitText() {
@@ -97,74 +97,106 @@ public class Output {
     }
 
     static String askForNewDescription() {
-        return "What is the new description of the todo?";
+        return "What is the new description of the todo?\n";
     }
 
     static String askForTitle() {
-        return "What is the title of the todo?";
+        return "What is the title of the todo?\n";
     }
 
     static String noUsers() {
-       return "No users exist in the database";
+       return "No users exist in the database\n";
     }
 
     static String noTodos() {
-        return "No todos exist in the database";
+        return "No todos exist in the database\n";
     }
 
     static String noUser() {
-        return "No user with that id exists";
+        return "No user with that id exists\n";
     }
 
     static String noTodo() {
-        return "No todo with that id exists";
+        return "No todo with that id exists\n";
     }
 
     static String nameCantBeEmptyOrNull() {
-        return "Name can't be empty or null";
+        return "Name can't be empty or null\n";
     }
 
     static String ageCantBeZero() {
-        return "Age can't be 0 or below";
+        return "Age can't be 0 or below\n";
     }
 
     static String titleCantBeEmpty() {
-        return "Title can't be empty";
+        return "Title can't be empty\n";
     }
 
     static String descriptionCantBeEmpty() {
-        return "Description can't be empty";
+        return "Description can't be empty\n";
     }
 
     static String userNameUpdated() {
-        return "User name updated";
+        return "User name updated\n";
     }
 
     static String userAgeUpdated() {
-        return "User age updated";
+        return "User age updated\n";
     }
 
     static String userCreated() {
-        return "User created";
+        return "User created\n";
     }
 
     static String userDeleted() {
-        return "User deleted";
+        return "User deleted\n";
     }
 
     static String todoDescriptionUpdated() {
-        return "Todo description updated";
+        return "Todo description updated\n";
     }
 
     static String todoStatusUpdated() {
-        return "Todo status updated";
+        return "Todo status updated\n";
     }
 
     static String todoCreated() {
-        return "Todo created";
+        return "Todo created\n";
     }
 
     static String todoDeleted() {
-        return "Todo deleted";
+        return "Todo deleted\n";
+    }
+
+    public static String allTodos() {
+        return "All todos: \n";
+    }
+
+    public static String deleteWho() {
+        return "Who do you want to delete?\n";
+    }
+
+    public static String allUsers() {
+        return "All users: \n";
+    }
+
+    public static String chooseUser() {
+        return "Which user do you want to see todos for?\n";
+    }
+
+    public static String chooseTodo() {
+        return "Which todo do you want to see more info about?\n";
+    }
+
+    public static String updateWho() {
+        return "Who do you want to update?\n";
+    }
+
+    public static String deletewhich() {
+        return "Which one do you want to delete?\n";
+    }
+
+    public static String whichTodoUpdate() {
+        return "Which todo do you want to update?\n";
     }
 }
