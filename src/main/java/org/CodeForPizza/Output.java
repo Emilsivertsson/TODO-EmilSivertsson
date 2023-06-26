@@ -168,35 +168,35 @@ public class Output {
         return "Todo deleted\n";
     }
 
-    public static String allTodos() {
+    static String allTodos() {
         return "All todos: \n";
     }
 
-    public static String deleteWho() {
+    static String deleteWho() {
         return "Who do you want to delete?\n";
     }
 
-    public static String allUsers() {
+    static String allUsers() {
         return "All users: \n";
     }
 
-    public static String chooseUser() {
+    static String chooseUser() {
         return "Which user do you want to see todos for?\n";
     }
 
-    public static String chooseTodo() {
+    static String chooseTodo() {
         return "Which todo do you want to see more info about?\n";
     }
 
-    public static String updateWho() {
+    static String updateWho() {
         return "Who do you want to update?\n";
     }
 
-    public static String deletewhich() {
+    static String deletewhich() {
         return "Which one do you want to delete?\n";
     }
 
-    public static String whichTodoUpdate() {
+    static String whichTodoUpdate() {
         return "Which todo do you want to update?\n";
     }
 }

@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html id="htmlId">
 <head>
-  <title>Coverage Report > SQLInterface</title>
+  <title>Coverage Report > InputInterface</title>
   <style type="text/css">
     @import "../../css/coverage.css";
     @import "../../css/idea.min.css";
@@ -21,14 +21,14 @@ Current scope:     <a href="../../index.html">all classes</a>
     <a href="../index.html">org.CodeForPizza</a>
 </div>
 
-<h1>Coverage Summary for Class: SQLInterface (org.CodeForPizza)</h1>
+<h1>Coverage Summary for Class: InputInterface (org.CodeForPizza)</h1>
 
 <table class="coverageStats">
 <tr>
   <th class="name">Class</th>
 </tr>
 <tr>
-  <td class="name">SQLInterface</td>
+  <td class="name">InputInterface</td>
 </tr>
 
 </table>
@@ -40,32 +40,10 @@ Current scope:     <a href="../../index.html">all classes</a>
 <pre>
 <code class="sourceCode" id="sourceCode">&nbsp;package org.CodeForPizza;
 &nbsp;
-&nbsp;import java.sql.SQLException;
-&nbsp;import java.util.ArrayList;
+&nbsp;public interface InputInterface {
+&nbsp;    int inputNumber(String prompt);
 &nbsp;
-&nbsp;/**
-&nbsp; * this interface is implements methods for the SQL database.
-&nbsp; */
-&nbsp;public interface SQLInterface {
-&nbsp;
-&nbsp;    boolean checkIfUserExist(int id) throws SQLException;
-&nbsp;    boolean checkUsersExist() throws SQLException;
-&nbsp;    void createTables() throws SQLException;
-&nbsp;    void createPerson(User user) throws SQLException;
-&nbsp;    ArrayList&lt;Todo&gt; readOneUser(int id) throws SQLException;
-&nbsp;    String readAllUsers() throws SQLException;
-&nbsp;    void deleteUser(int id) throws SQLException;
-&nbsp;    void updateUserAge(int id, int age) throws SQLException;
-&nbsp;    void updateUserName(int id, String name) throws SQLException;
-&nbsp;    boolean checkIfTodoExist(int id) throws SQLException;
-&nbsp;    boolean checkTodosExist() throws SQLException;
-&nbsp;    void createTodo(Todo todo) throws SQLException;
-&nbsp;    String readOneTodo(int id) throws SQLException;
-&nbsp;    String readAllTodos() throws SQLException;
-&nbsp;    void deleteTodo(int id) throws SQLException;
-&nbsp;    void updateTodoDescription(int id, String description) throws SQLException;
-&nbsp;    void updateTodoStatus(int id, boolean status) throws SQLException;
-&nbsp;
+&nbsp;    String inputString(String prompt);
 &nbsp;}
 </code>
 </pre>
@@ -90,7 +68,7 @@ Current scope:     <a href="../../index.html">all classes</a>
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2023-06-24 20:41</div>
+    <div style="float:right;">generated on 2023-06-26 09:09</div>
 </div>
 </body>
 </html>

@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html id="htmlId">
 <head>
-  <title>Coverage Report > InputInterface</title>
+  <title>Coverage Report > ConnectionInterface</title>
   <style type="text/css">
     @import "../../css/coverage.css";
     @import "../../css/idea.min.css";
@@ -21,14 +21,14 @@ Current scope:     <a href="../../index.html">all classes</a>
     <a href="../index.html">org.CodeForPizza</a>
 </div>
 
-<h1>Coverage Summary for Class: InputInterface (org.CodeForPizza)</h1>
+<h1>Coverage Summary for Class: ConnectionInterface (org.CodeForPizza)</h1>
 
 <table class="coverageStats">
 <tr>
   <th class="name">Class</th>
 </tr>
 <tr>
-  <td class="name">InputInterface</td>
+  <td class="name">ConnectionInterface</td>
 </tr>
 
 </table>
@@ -40,10 +40,14 @@ Current scope:     <a href="../../index.html">all classes</a>
 <pre>
 <code class="sourceCode" id="sourceCode">&nbsp;package org.CodeForPizza;
 &nbsp;
-&nbsp;public interface InputInterface {
-&nbsp;    int inputNumber(String prompt);
+&nbsp;import java.sql.SQLException;
 &nbsp;
-&nbsp;    String inputString(String prompt);
+&nbsp;public interface ConnectionInterface {
+&nbsp;    void openConnection(String DBName) throws SQLException;
+&nbsp;
+&nbsp;    boolean checkConnection() throws SQLException;
+&nbsp;
+&nbsp;    void closeConnection() throws SQLException;
 &nbsp;}
 </code>
 </pre>
@@ -68,7 +72,7 @@ Current scope:     <a href="../../index.html">all classes</a>
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2023-06-24 20:41</div>
+    <div style="float:right;">generated on 2023-06-26 09:09</div>
 </div>
 </body>
 </html>

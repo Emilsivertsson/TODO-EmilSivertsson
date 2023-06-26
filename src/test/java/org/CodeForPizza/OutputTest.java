@@ -462,4 +462,100 @@ class OutputTest {
         // Assert
         assertEquals(expected, actual);
     }
+
+    @Test
+    void allTodos() {
+        // Arrange
+        String expected = "All todos: \n";
+
+        // Act
+        String actual = Output.allTodos();
+
+        // Assert
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    void deleteWho() {
+        // Arrange
+        String expected = "Who do you want to delete?\n";
+
+        // Act
+        String actual = Output.deleteWho();
+
+        // Assert
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    void allUsers() {
+        // arrange
+        String expected = "All users: \n";
+
+        // act
+        String actual = Output.allUsers();
+
+        // assert
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    void chooseUser() {
+        // arrange
+        String expected = "Which user do you want to see todos for?\n";
+
+        // act
+        String actual = Output.chooseUser();
+
+        // assert
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    void chooseTodo() {
+        // arrange
+        String expected = "Which todo do you want to see more info about?\n";
+
+        // act
+        String actual = Output.chooseTodo();
+
+        // assert
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    void updateWho() {
+        // arrange
+        String expected = "Who do you want to update?\n";
+
+        // act
+        String actual = Output.updateWho();
+
+        // assert
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    void deletewhich() {
+        // arrange
+        String expected = "Which one do you want to delete?\n";
+
+        // act
+        String actual = Output.deletewhich();
+
+        // assert
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    void whichTodoUpdate() {
+        // arrange
+        String expected = "Which todo do you want to update?\n";
+
+        // act
+        String actual = Output.whichTodoUpdate();
+
+        // assert
+        assertEquals(expected, actual);
+    }
 }
