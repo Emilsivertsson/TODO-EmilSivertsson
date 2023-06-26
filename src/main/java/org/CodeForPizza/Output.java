@@ -199,4 +199,8 @@ public class Output {
     static String whichTodoUpdate() {
         return "Which todo do you want to update?\n";
     }
+
+    static String noTodosForUser() {
+        return "No todos for that user\n";
+    }
 }

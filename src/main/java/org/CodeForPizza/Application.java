@@ -261,6 +261,14 @@ public class Application {
             System.out.println(Output.noUser());
             showOneUser();
         } else {
+            ifUserHasTodosPrintIt(id);
+        }
+    }
+
+    private void ifUserHasTodosPrintIt(int id) throws SQLException {
+        if (userFacad.read(id).isEmpty()){
+            System.out.println(Output.noTodosForUser());
+        } else {
             System.out.println(userFacad.read(id).toString());
         }
     }

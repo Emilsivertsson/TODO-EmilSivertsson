@@ -558,4 +558,16 @@ class OutputTest {
         // assert
         assertEquals(expected, actual);
     }
+
+    @Test
+    void noTodosForUser() {
+        // arrange
+        String expected = "No todos for that user\n";
+
+        // act
+        String actual = Output.noTodosForUser();
+
+        // assert
+        assertEquals(expected, actual);
+    }
 }
