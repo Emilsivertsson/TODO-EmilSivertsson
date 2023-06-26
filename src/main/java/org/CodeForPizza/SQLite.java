@@ -251,13 +251,17 @@ public class SQLite implements SQLInterface, ConnectionInterface {
     @Override
     public String readOneTodo(int id) throws SQLException {
         try{
-            PreparedStatement stmt = conn.prepareStatement("Select title,text,done, assignedTo from todo where id = ?");
+            PreparedStatement stmt = conn.prepareStatement("""
+                    Select todo.title, todo.text, todo.done, users.name from todo
+                            left join users on todo.assignedTo = users.id
+                    where todo.id = ?""");
+
             stmt.setInt(1, id);
             ResultSet rs = stmt.executeQuery();
             return  "Title: " +rs.getString("title") + "\n"
                     + "Description: " +rs.getString("text") + "\n"
                     + "Completed: " + rs.getBoolean("done") + "\n"
-                    + "Assigned to: " + rs.getInt("assignedTo");
+                    + "Assigned to: " + rs.getString("name") + "\n";
         } catch (SQLException e){
             throw new SQLException(e.getMessage());
         }
