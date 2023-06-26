@@ -315,12 +315,14 @@ class SQLiteTest {
     void readOneTodo() throws SQLException {
         // Arrange
         int id = 1;
-        String sql = "Select title,text,done, assignedTo from todo where id = ?";
+        String sql = "Select todo.title, todo.text, todo.done, users.name from todo\n" +
+                "        left join users on todo.assignedTo = users.id\n" +
+                "where todo.id = ?";
         ResultSet mockResultSet = Mockito.mock(ResultSet.class);
         when(mockResultSet.getString("title")).thenReturn("Todo Title");
         when(mockResultSet.getString("text")).thenReturn("Todo Text");
         when(mockResultSet.getBoolean("done")).thenReturn(true);
-        when(mockResultSet.getInt("assignedTo")).thenReturn(1);
+        when(mockResultSet.getString("name")).thenReturn("emil");
 
         when(mockConnection.prepareStatement(sql)).thenReturn(mockStatement);
         when(mockStatement.executeQuery()).thenReturn(mockResultSet);
@@ -335,13 +337,13 @@ class SQLiteTest {
         verify(mockResultSet).getString("title");
         verify(mockResultSet).getString("text");
         verify(mockResultSet).getBoolean("done");
-        verify(mockResultSet).getInt("assignedTo");
+        verify(mockResultSet).getString("name");
 
         String expectedResult = """
                 Title: Todo Title
                 Description: Todo Text
                 Completed: true
-                Assigned to: 1""";
+                Assigned to: emil\n""";
 
         assertEquals(expectedResult, result);
     }

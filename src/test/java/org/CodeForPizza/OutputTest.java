@@ -77,7 +77,7 @@ class OutputTest {
     void updateUser() {
         // Arrange
         String expected = """
-                Please choose an option:
+                Please choose what to update:
                 1. Update name
                 2. Update age
                 3. Back to user menu
@@ -95,7 +95,7 @@ class OutputTest {
     void updateTodo() {
         // Arrange
         String expected = """
-                Please choose an option:
+                Please choose what to update:
                 1. Update description
                 2. Update done
                 3. Back to todo menu
@@ -207,7 +207,7 @@ class OutputTest {
     @DisplayName("Should pass if the invalid input is correct")
     void invalidInput() {
         // Arrange
-        String expected = "Please input a number";
+        String expected = "Please input a number\n";
 
         // Act
         String actual = Output.invalidInput();
@@ -233,7 +233,7 @@ class OutputTest {
     @DisplayName("Should pass if the ask for new description is correct")
     void askForNewDescription() {
         // Arrange
-        String expected = "What is the new description of the todo?";
+        String expected = "What is the new description of the todo?\n";
 
         // Act
         String actual = Output.askForNewDescription();
@@ -246,7 +246,7 @@ class OutputTest {
     @DisplayName("Should pass if the ask for title is correct")
     void askForTitle() {
         // Arrange
-        String expected = "What is the title of the todo?";
+        String expected = "What is the title of the todo?\n";
 
         // Act
         String actual = Output.askForTitle();
@@ -259,7 +259,7 @@ class OutputTest {
     @DisplayName("Should pass if the No users is correct")
     void noUsers() {
         // Arrange
-        String expected = "No users exist in the database";
+        String expected = "No users exist in the database\n";
 
         // Act
         String actual = Output.noUsers();
@@ -272,7 +272,7 @@ class OutputTest {
     @DisplayName("Should pass if the no todos is correct")
     void noTodos() {
         // Arrange
-        String expected = "No todos exist in the database";
+        String expected = "No todos exist in the database\n";
 
         // Act
         String actual = Output.noTodos();
@@ -285,7 +285,7 @@ class OutputTest {
     @DisplayName("Should pass if the no user is correct")
     void noUser() {
         // Arrange
-        String expected = "No user with that id exists";
+        String expected = "No user with that id exists\n";
 
         // Act
         String actual = Output.noUser();
@@ -298,7 +298,7 @@ class OutputTest {
     @DisplayName("Should pass if the no todo is correct")
     void noTodo() {
         // Arrange
-        String expected = "No todo with that id exists";
+        String expected = "No todo with that id exists\n";
 
         // Act
         String actual = Output.noTodo();
@@ -311,7 +311,7 @@ class OutputTest {
     @DisplayName("Should pass if name cant be empty or null is correct")
     void nameCantBeEmptyOrNull() {
         // Arrange
-        String expected = "Name can't be empty or null";
+        String expected = "Name can't be empty or null\n";
 
         // Act
         String actual = Output.nameCantBeEmptyOrNull();
@@ -324,7 +324,7 @@ class OutputTest {
     @DisplayName("Should pass if age cant be 0 or below is correct")
     void ageCantBeZero() {
         // Arrange
-        String expected = "Age can't be 0 or below";
+        String expected = "Age can't be 0 or below\n";
 
         // Act
         String actual = Output.ageCantBeZero();
@@ -337,7 +337,7 @@ class OutputTest {
     @DisplayName("Should pass if the title cant be empty is correct")
     void titleCantBeEmpty() {
         // Arrange
-        String expected = "Title can't be empty";
+        String expected = "Title can't be empty\n";
 
         // Act
         String actual = Output.titleCantBeEmpty();
@@ -350,7 +350,7 @@ class OutputTest {
     @DisplayName("Should pass if the description cant be empty is correct")
     void descriptionCantBeEmpty() {
         // Arrange
-        String expected = "Description can't be empty";
+        String expected = "Description can't be empty\n";
 
         // Act
         String actual = Output.descriptionCantBeEmpty();
@@ -363,7 +363,7 @@ class OutputTest {
     @DisplayName("Should pass if the username updated is correct")
     void userNameUpdated() {
         // Arrange
-        String expected = "User name updated";
+        String expected = "User name updated\n";
 
         // Act
         String actual = Output.userNameUpdated();
@@ -376,7 +376,7 @@ class OutputTest {
     @DisplayName("Should pass if the user age updated is correct")
     void userAgeUpdated() {
         // Arrange
-        String expected = "User age updated";
+        String expected = "User age updated\n";
 
         // Act
         String actual = Output.userAgeUpdated();
@@ -389,7 +389,7 @@ class OutputTest {
     @DisplayName("Should pass if the user created is correct")
     void userCreated() {
         // Arrange
-        String expected = "User created";
+        String expected = "User created\n";
 
         // Act
         String actual = Output.userCreated();
@@ -402,7 +402,7 @@ class OutputTest {
     @DisplayName("Should pass if the user deleted is correct")
     void userDeleted() {
         // Arrange
-        String expected = "User deleted";
+        String expected = "User deleted\n";
 
         // Act
         String actual = Output.userDeleted();
@@ -415,7 +415,7 @@ class OutputTest {
     @DisplayName("Should pass if the todo description updated is correct")
     void todoDescriptionUpdated() {
         // Arrange
-        String expected = "Todo description updated";
+        String expected = "Todo description updated\n";
 
         // Act
         String actual = Output.todoDescriptionUpdated();
@@ -428,7 +428,7 @@ class OutputTest {
     @DisplayName("Should pass if the todo status updated is correct")
     void todoStatusUpdated() {
         // Arrange
-        String expected = "Todo status updated";
+        String expected = "Todo status updated\n";
 
         // Act
         String actual = Output.todoStatusUpdated();
@@ -441,7 +441,7 @@ class OutputTest {
     @DisplayName("Should pass if the todo created is correct")
     void todoCreated() {
         // Arrange
-        String expected = "Todo created";
+        String expected = "Todo created\n";
 
         // Act
         String actual = Output.todoCreated();
@@ -454,7 +454,7 @@ class OutputTest {
     @DisplayName("Should pass if the todo deleted is correct")
     void todoDeleted() {
         // Arrange
-        String expected = "Todo deleted";
+        String expected = "Todo deleted\n";
 
         // Act
         String actual = Output.todoDeleted();
